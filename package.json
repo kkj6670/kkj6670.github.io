@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "development study blog",
   "main": "index.js",
-  "repository": "https://github.com/kkj6670/kkj6670.github.io.git",
+  "repository": "https://github.com/kkj6670/react-blog.git",
+  "homepage": "http://kkj6670.github.io/blog",
   "author": "kkj6670",
   "license": "MIT",
   "private": false,
@@ -28,6 +29,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.3.2",
     "prettier": "^2.3.2",
     "ts-loader": "^9.2.3",
@@ -40,6 +42,8 @@
     "start": "webpack serve",
     "build": "webpack --progress --mode production",
     "lint": "eslint ./src",
-    "lint:fix": "eslint --fix './src/**/*.{ts,tsx,js,jsx}'"
+    "lint:fix": "eslint --fix './src/**/*.{ts,tsx,js,jsx}'",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
