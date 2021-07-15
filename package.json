@@ -4,7 +4,7 @@
   "description": "development study blog",
   "main": "index.js",
   "repository": "https://github.com/kkj6670/react-blog.git",
-  "homepage": "http://kkj6670.github.io/blog",
+  "homepage": "https://kkj6670.github.io/react-blog",
   "author": "kkj6670",
   "license": "MIT",
   "private": false,
@@ -44,6 +44,6 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx,js,jsx}'",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   }
 }
