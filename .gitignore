@@ -7,3 +7,6 @@ dist
 # log
 yarn-debug.log*
 yarn-error.log*
+
+# etc
+.idea
