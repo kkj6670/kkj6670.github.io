@@ -17,7 +17,7 @@ module.exports = {
 			{
 				test: /\.tsx?$/,
 				use: ['babel-loader', 'ts-loader'],
-			},
+			}
 		],
 	},
 
@@ -35,10 +35,13 @@ module.exports = {
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new CopyWebpackPlugin({
-			patterns: [{ from: './public/images', to: './images' }]
+			patterns: [
+				{ from: './public/images', to: './images' }
+			]
 		})
 	],
 	devServer: {
+		contentBase: path.join(__dirname, "dist"),
 		historyApiFallback: true,
 		inline: true,
 		port: 3000,

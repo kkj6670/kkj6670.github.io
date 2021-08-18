@@ -18,7 +18,7 @@ interface IBaseAction {
 
 const INITIAL_STATE: IBaseState = {
 	theme: 'dark',
-	selectedMenu: '',
+	selectedMenu: 'JavaScript',
 	selectedBoard: '',
 	boardData: {}
 };

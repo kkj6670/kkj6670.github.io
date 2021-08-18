@@ -1,6 +1,20 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'ImHyeminBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+  }
+  
   html,
   body {
 		width: 100%;
@@ -13,18 +27,15 @@ export const GlobalStyle = createGlobalStyle`
   
   body {
 	  font-size: 1.6rem;
-	  font-family: Arial sans-serif;
+	  font-family: 'ImHyeminBold', sans-serif;
+  }
+  
+  button {
+    font-family: 'ImHyeminBold', sans-serif;
   }
   
   li {
 	  list-style: none;
-  }
-
-  * {
-    box-sizing: border-box;
-	  margin: 0;
-	  padding: 0;
-	  border: 0 none;
   }
   
   a {
