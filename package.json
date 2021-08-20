@@ -50,7 +50,7 @@
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx,js,jsx}'",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist",
-    "autoDeploy": "yarn predeploy & yarn deploy"
+    "deploy:build": "yarn predeploy & yarn deploy"
   },
   "husky": {
     "hooks": {
