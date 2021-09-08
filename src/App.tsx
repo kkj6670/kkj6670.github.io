@@ -5,9 +5,9 @@ import { whiteTheme, darkTheme } from './styles/theme';
 import { useBase } from './store/Base';
 
 import LeftBar from './common/LeftBar';
-import Board from './common/Board';
+import BoardList from './common/Board/BoardList';
 
-const Wrap = styled.main`
+const Wrap = styled.div`
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -29,7 +29,9 @@ function App() {
 		<ThemeProvider theme={selectedTheme}>
 			<Wrap>
 				<LeftBar />
-				{/*<Board />*/}
+				<main>
+					<BoardList />
+				</main>
 			</Wrap>
 		</ThemeProvider>
 	);

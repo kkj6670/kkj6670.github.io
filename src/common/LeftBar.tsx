@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import {useBase, useBaseUpdate} from "../store/Base";
 
-const NavBox = styled.nav`
+const Header = styled.header`
 	display: flex;
 	flex-direction: column;
 	width: 250px;
@@ -17,7 +17,7 @@ const NavBox = styled.nav`
 	justify-content: space-between;
 `;
 
-const NavTitle = styled.h2`
+const HeaderTitle = styled.h1`
 	text-align: center;
 	font-size: 3.5rem;
 `;
@@ -60,7 +60,7 @@ const GitHubLink = styled.a`
   ${({theme}) => `
     color: ${theme.textColor};
   `};
-  background: url('./images/icon/github.svg') no-repeat center center / 30px;
+  background: url('/images/icon/github.svg') no-repeat center center / 30px;
 `;
 
 function LeftBar() {
@@ -77,32 +77,34 @@ function LeftBar() {
 	}, [baseUpdate]);
 
 	return (
-		<NavBox>
-			<NavTitle>Study Note</NavTitle>
-			<ul>
-				<MenuList selected={selectedMenu === 'JavaScript'}>
-					<button onClick={handleMenuClick}>JavaScript</button>
-				</MenuList>
-				<MenuList selected={selectedMenu === 'TypeScript'}>
-					<button onClick={handleMenuClick}>TypeScript</button>
-				</MenuList>
-				<MenuList selected={selectedMenu === 'React'}>
-					<button onClick={handleMenuClick}>React</button>
-				</MenuList>
-				<MenuList selected={selectedMenu === 'Git'}>
-					<button onClick={handleMenuClick}>Git</button>
-				</MenuList>
-				<MenuList selected={selectedMenu === 'Algorism'}>
-					<button onClick={handleMenuClick}>Algorism</button>
-				</MenuList>
-				<MenuList selected={selectedMenu === 'Other'}>
-					<button onClick={handleMenuClick}>Other</button>
-				</MenuList>
-			</ul>
+		<Header>
+			<HeaderTitle>Study Note</HeaderTitle>
+			<nav>
+				<ul>
+					<MenuList selected={selectedMenu === 'JavaScript'}>
+						<button onClick={handleMenuClick}>JavaScript</button>
+					</MenuList>
+					<MenuList selected={selectedMenu === 'TypeScript'}>
+						<button onClick={handleMenuClick}>TypeScript</button>
+					</MenuList>
+					<MenuList selected={selectedMenu === 'React'}>
+						<button onClick={handleMenuClick}>React</button>
+					</MenuList>
+					<MenuList selected={selectedMenu === 'Git'}>
+						<button onClick={handleMenuClick}>Git</button>
+					</MenuList>
+					<MenuList selected={selectedMenu === 'Algorism'}>
+						<button onClick={handleMenuClick}>Algorism</button>
+					</MenuList>
+					<MenuList selected={selectedMenu === 'Other'}>
+						<button onClick={handleMenuClick}>Other</button>
+					</MenuList>
+				</ul>
+			</nav>
 			<div>
 				<GitHubLink href='https://github.com/kkj6670' target='_blank'></GitHubLink>
 			</div>
-		</NavBox>
+		</Header>
 	);
 }
 

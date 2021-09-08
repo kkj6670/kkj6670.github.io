@@ -3,7 +3,7 @@ import React from 'react';
 function BoardNavigation() {
 
 	return (
-		<div>hi</div>
+		<div>boardNavigation</div>
 	);
 }
 
