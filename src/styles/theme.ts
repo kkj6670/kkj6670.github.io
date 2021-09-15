@@ -14,7 +14,11 @@ export const whiteTheme: DefaultTheme = {
 	name: 'white',
 	bgColor: '#FFF',
 	textColor: '#3A3A3A',
-	pointColor: '#ff8080'
+	pointColor: '#ff8080',
+	scrollColor: {
+		thumb: '#474c50',
+		track: 'rgba(202, 204, 206, 0.04)'
+	},
 };
 
 export const darkTheme: DefaultTheme = {
@@ -23,5 +27,8 @@ export const darkTheme: DefaultTheme = {
 	bgColor: '#2F3437FF',
 	textColor: '#FFF',
 	pointColor: '#ff8080',
-	color
+	scrollColor: {
+		thumb: '#474c50',
+		track: 'rgba(202, 204, 206, 0.04)'
+	},
 };

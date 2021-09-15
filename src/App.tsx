@@ -1,17 +1,41 @@
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { whiteTheme, darkTheme } from './styles/theme';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import { whiteTheme, darkTheme } from './styles/theme';
 import { useBase } from './store/Base';
 
 import LeftBar from './common/LeftBar';
 import BoardList from './common/Board/BoardList';
+import BoardViewer from './common/Board/BoardViewer';
 
 const Wrap = styled.div`
 	width: 100%;
 	height: 100%;
 	display: flex;
 	background-color: ${({theme}) => theme.bgColor};
+`;
+
+const Main = styled.main`
+	width: calc(100% - 250px);
+	height: 100%;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+  }
+	
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({theme}) => theme.scrollColor.thumb};
+    border-radius: 10px;
+    background-clip: content-box;
+    border: 3px solid rgba(255,255,255,0);
+  }
+	
+	::-webkit-scrollbar-track {
+    background-color: ${({theme}) => theme.scrollColor.track};
+  }
 `;
 
 function App() {
@@ -24,14 +48,19 @@ function App() {
 	const selectedTheme = useMemo(() => {
 		return theme === 'dark' ? darkTheme : whiteTheme;
 	}, [theme]);
-	
+
 	return (
 		<ThemeProvider theme={selectedTheme}>
 			<Wrap>
-				<LeftBar />
-				<main>
-					<BoardList />
-				</main>
+				<Router>
+					<LeftBar />
+					<Main>
+						<Switch>
+							<Route path='/:menu' component={BoardList} />
+							<Route path='/:menu/:id' component={BoardViewer} exact />
+						</Switch>
+					</Main>
+				</Router>
 			</Wrap>
 		</ThemeProvider>
 	);

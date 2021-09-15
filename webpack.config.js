@@ -24,6 +24,7 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, '/dist'),
 		filename: 'bundle.js',
+		publicPath: ""
 	},
 
 	plugins: [
@@ -36,7 +37,8 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin(),
 		new CopyWebpackPlugin({
 			patterns: [
-				{ from: './public/images', to: './images' }
+				{ from: './public/images', to: './images' },
+				{ from: './public/data', to: './data' },
 			]
 		})
 	],

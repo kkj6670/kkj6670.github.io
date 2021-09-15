@@ -6,6 +6,11 @@ interface IColor {
 	lightGray: string;
 };
 
+interface IScrollColor {
+	thumb: string;
+	track: string;
+};
+
 declare module 'styled-components' {
 	export interface DefaultTheme {
 		name: string;
@@ -13,5 +18,6 @@ declare module 'styled-components' {
 		textColor: string;
 		pointColor: string;
 		color: IColor;
+		scrollColor: IScrollColor
 	}
 }
