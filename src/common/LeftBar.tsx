@@ -99,18 +99,14 @@ function LeftBar() {
 
   const { selectedMenu } = baseState;
 
-  const handleMenuClick = useCallback(
-    (e) => {
-      const value = e.target.textContent;
-      history.push(`/${value}`);
-      // baseUpdate({ type: 'MENU_CHANGE', value });
-    },
-    [baseUpdate],
-  );
-
   useEffect(() => {
-    const menu = location.pathname.split('/')[0];
-    console.log(menu);
+    const menu = location.pathname?.split('/')?.[1];
+
+    if (!menu || menu.length === 0) {
+      baseUpdate({ type: 'MENU_CHANGE', value: 'javaScript' });
+    } else {
+      baseUpdate({ type: 'MENU_CHANGE', value: menu });
+    }
   }, [location]);
 
   return (
