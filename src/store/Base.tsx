@@ -1,14 +1,14 @@
 import React, { createContext, useContext, useReducer, Dispatch } from 'react';
 
 interface IBoardData {
-  id: number;
+  id?: number;
 }
 
 interface IBaseState {
   theme: string;
   selectedMenu: string;
   selectedBoard: string;
-  boardData: object;
+  boardData: IBoardData;
 }
 
 interface IBaseAction {

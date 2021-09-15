@@ -13,10 +13,32 @@
 		"plugin:import/warnings",
 		"plugin:prettier/recommended",
 		"plugin:@typescript-eslint/recommended",
+		"plugin:import/typescript"
 	],
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx"]
+			}
+		}
+	},
 	"rules": {
 		"linebreak-style": 0,
 		"react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-		"jsx-a11y/no-noninteractive-element-interactions": 0
+		"jsx-a11y/no-noninteractive-element-interactions": 0,
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"js": "never",
+				"jsx": "never",
+				"ts": "never",
+				"tsx": "never"
+			}
+		],
+		"no-use-before-define": "off",  // React import시 오류
+		"@typescript-eslint/no-use-before-define": ["error"],  // React import시 오류
+		"@typescript-eslint/explicit-module-boundary-types": "off", // Missing return type on function, React.FC 제거
+		"no-console": "off"
 	}
 }

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'ImHyeminBold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
@@ -47,3 +47,5 @@ export const GlobalStyle = createGlobalStyle`
 	  height: 100%;
   }
 `;
+
+export default GlobalStyle;
