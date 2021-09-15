@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from 'react';
+import React, { useEffect, useMemo } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -10,60 +10,58 @@ import BoardList from './common/Board/BoardList';
 import BoardViewer from './common/Board/BoardViewer';
 
 const Wrap = styled.div`
-	width: 100%;
-	height: 100%;
-	display: flex;
-	background-color: ${({theme}) => theme.bgColor};
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: ${({ theme }) => theme.bgColor};
 `;
 
 const Main = styled.main`
-	width: calc(100% - 250px);
-	height: 100%;
+  width: calc(100% - 250px);
+  height: 100%;
   overflow-y: auto;
 
   ::-webkit-scrollbar {
     width: 15px;
     height: 15px;
   }
-	
+
   ::-webkit-scrollbar-thumb {
-    background-color: ${({theme}) => theme.scrollColor.thumb};
+    background-color: ${({ theme }) => theme.scrollColor.thumb};
     border-radius: 10px;
     background-clip: content-box;
-    border: 3px solid rgba(255,255,255,0);
+    border: 3px solid rgba(255, 255, 255, 0);
   }
-	
-	::-webkit-scrollbar-track {
-    background-color: ${({theme}) => theme.scrollColor.track};
+
+  ::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.scrollColor.track};
   }
 `;
 
 function App() {
-	const baseContext = useBase();
+  const baseContext = useBase();
 
-	const {
-		theme
-	} = baseContext;
+  const { theme } = baseContext;
 
-	const selectedTheme = useMemo(() => {
-		return theme === 'dark' ? darkTheme : whiteTheme;
-	}, [theme]);
+  const selectedTheme = useMemo(() => {
+    return theme === 'dark' ? darkTheme : whiteTheme;
+  }, [theme]);
 
-	return (
-		<ThemeProvider theme={selectedTheme}>
-			<Wrap>
-				<Router>
-					<LeftBar />
-					<Main>
-						<Switch>
-							<Route path='/:menu' component={BoardList} />
-							<Route path='/:menu/:id' component={BoardViewer} exact />
-						</Switch>
-					</Main>
-				</Router>
-			</Wrap>
-		</ThemeProvider>
-	);
+  return (
+    <ThemeProvider theme={selectedTheme}>
+      <Wrap>
+        <Router>
+          <LeftBar />
+          <Main>
+            <Switch>
+              <Route path="/:menu" component={BoardList} />
+              <Route path="/:menu/:id" component={BoardViewer} exact />
+            </Switch>
+          </Main>
+        </Router>
+      </Wrap>
+    </ThemeProvider>
+  );
 }
 
 export default App;

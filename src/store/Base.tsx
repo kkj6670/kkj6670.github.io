@@ -1,26 +1,26 @@
 import React, { createContext, useContext, useReducer, Dispatch } from 'react';
 
 interface IBoardData {
-	id: number;
-};
+  id: number;
+}
 
 interface IBaseState {
-	theme: string;
-	selectedMenu: string;
-	selectedBoard: string;
-	boardData: object;
-};
+  theme: string;
+  selectedMenu: string;
+  selectedBoard: string;
+  boardData: object;
+}
 
 interface IBaseAction {
-	type: string;
-	value: string;
-};
+  type: string;
+  value: string;
+}
 
 const INITIAL_STATE: IBaseState = {
-	theme: 'dark',
-	selectedMenu: 'JavaScript',
-	selectedBoard: '',
-	boardData: {}
+  theme: 'dark',
+  selectedMenu: 'JavaScript',
+  selectedBoard: '',
+  boardData: {},
 };
 
 // BaseUpdateContext type
@@ -33,40 +33,38 @@ const useBase = () => useContext(BaseContext);
 const useBaseUpdate = () => useContext(BaseUpdateContext);
 
 function BaseReducer(state: IBaseState, action: IBaseAction) {
-	const nextState = { ...state };
-	const { type, value } = action;
-	switch (type) {
-		case 'MENU_CHANGE': {
-			nextState.selectedMenu = value;
-			return nextState;
-		}
-		case 'BOARD_CHANGE': {
-			nextState.selectedMenu = value;
-			return nextState;
-		}
-		default: {
-			console.error(`Unhandled action type: ${type}`);
-			return {
-				...state,
-			};
-		}
-	}
+  const nextState = { ...state };
+  const { type, value } = action;
+  switch (type) {
+    case 'MENU_CHANGE': {
+      nextState.selectedMenu = value;
+      return nextState;
+    }
+    case 'BOARD_CHANGE': {
+      nextState.selectedMenu = value;
+      return nextState;
+    }
+    default: {
+      console.error(`Unhandled action type: ${type}`);
+      return {
+        ...state,
+      };
+    }
+  }
 }
 
 interface IBase {
-	children: React.ReactNode
-};
+  children: React.ReactNode;
+}
 
 export default function BaseProvider({ children }: IBase) {
-	const [state, dispatch] = useReducer(BaseReducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(BaseReducer, INITIAL_STATE);
 
-	return (
-		<BaseContext.Provider value={state}>
-			<BaseUpdateContext.Provider value={dispatch}>
-				{children}
-			</BaseUpdateContext.Provider>
-		</BaseContext.Provider>
-	);
+  return (
+    <BaseContext.Provider value={state}>
+      <BaseUpdateContext.Provider value={dispatch}>{children}</BaseUpdateContext.Provider>
+    </BaseContext.Provider>
+  );
 }
 
 export { useBase, useBaseUpdate };

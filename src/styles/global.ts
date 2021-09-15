@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
-
+  
   * {
     box-sizing: border-box;
     margin: 0;
@@ -46,4 +46,4 @@ export const GlobalStyle = createGlobalStyle`
 	  width: 100%;
 	  height: 100%;
   }
-`
+`;
