@@ -4,8 +4,12 @@
 		"module": "commonjs",
 		"strict": true,
 		"esModuleInterop": true,
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
 		"outDir": "dist",
-		"jsx": "react"
+		"jsx": "react",
+		"typeRoots": ["./node_modules/@types", "@types"],
+		"skipLibCheck": true
 	},
 	"exclude": ["node_modules"],
 	"include": ["**/*.ts", "**/*.tsx"]

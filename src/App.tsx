@@ -46,8 +46,8 @@ function App() {
   const selectedTheme = useMemo(() => {
     return theme === 'dark' ? darkTheme : whiteTheme;
   }, [theme]);
-  console.log(process.env.PUBLIC_URL);
-  alert(process.env.PUBLIC_URL);
+
+  console.log(URL_PATH);
 
   return (
     <ThemeProvider theme={selectedTheme}>
@@ -56,9 +56,8 @@ function App() {
           <LeftBar />
           <Main>
             <Switch>
-              <Route path="/:menu" component={BoardList} />
-              <Route path="/:menu/:id" component={BoardViewer} exact />
-              <Route path="/tset/test" component={BoardViewer} exact />
+              <Route path={`${URL_PATH}:menu`} component={BoardList} exact />
+              <Route path={`${URL_PATH}:menu/:id`} component={BoardViewer} exact />
             </Switch>
           </Main>
         </Router>

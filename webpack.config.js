@@ -2,7 +2,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+
 const prod = process.env.NODE_ENV === 'production';
+
+const URL_PATH = prod ? '/react-blog/' : '/';
 
 module.exports = {
   mode: prod ? 'production' : 'development',
@@ -13,8 +16,9 @@ module.exports = {
   },
 
   output: {
-    path: path.join(__dirname, '/dist/'),
+    path: path.resolve('dist'),
     filename: 'bundle.js',
+    publicPath: '/react-blog/',
   },
 
   module: {
@@ -22,6 +26,14 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: ['babel-loader', 'ts-loader'],
+      },
+      {
+        test: /\.(png|jpg|gif|jpeg|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       },
     ],
   },
@@ -41,8 +53,8 @@ module.exports = {
       ],
     }),
     new webpack.DefinePlugin({
-      'process.env.PUBLIC_URL': JSON.stringify(process.env.PUBLIC_URL),
-    })
+      URL_PATH: JSON.stringify(URL_PATH),
+    }),
   ],
 
   devServer: {

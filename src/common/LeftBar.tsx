@@ -4,6 +4,8 @@ import { useHistory, Link, useLocation } from 'react-router-dom';
 import { useBase, useBaseUpdate } from '../store/Base';
 import Search from './Search';
 
+import IMG_GITHUB from '../../public/images/icon/github.svg';
+
 interface IMenuList {
   selected: boolean;
 }
@@ -88,7 +90,7 @@ const GitHubLink = styled.a`
   ${({ theme }) => `
     color: ${theme.textColor};
   `};
-  background: url('images/icon/github.svg') no-repeat center center / 30px;
+  background: url(${IMG_GITHUB}) no-repeat center center / 30px;
 `;
 
 function LeftBar() {
@@ -109,6 +111,8 @@ function LeftBar() {
     }
   }, [location]);
 
+  // console.log(`${URL_PATH}javaScript`);
+
   return (
     <Header>
       <div>
@@ -118,22 +122,22 @@ function LeftBar() {
       <nav>
         <MenuBox>
           <MenuList selected={selectedMenu === 'javaScript'}>
-            <Link to="javaScript">JavaScript</Link>
+            <Link to={`${URL_PATH}javaScript`}>JavaScript</Link>
           </MenuList>
           <MenuList selected={selectedMenu === 'typeScript'}>
-            <Link to="typeScript">TypeScript</Link>
+            <Link to={`${URL_PATH}/typeScript`}>TypeScript</Link>
           </MenuList>
           <MenuList selected={selectedMenu === 'react'}>
-            <Link to="react">React</Link>
+            <Link to={`${URL_PATH}/react`}>React</Link>
           </MenuList>
           <MenuList selected={selectedMenu === 'git'}>
-            <Link to="git">Git</Link>
+            <Link to={`${URL_PATH}/git`}>Git</Link>
           </MenuList>
           <MenuList selected={selectedMenu === 'algorism'}>
-            <Link to="algorism">Algorism</Link>
+            <Link to={`${URL_PATH}/algorism`}>Algorism</Link>
           </MenuList>
           <MenuList selected={selectedMenu === 'other'}>
-            <Link to="other">Other</Link>
+            <Link to={`${URL_PATH}/other`}>Other</Link>
           </MenuList>
         </MenuBox>
       </nav>
