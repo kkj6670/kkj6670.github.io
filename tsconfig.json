@@ -9,7 +9,8 @@
 		"outDir": "dist",
 		"jsx": "react",
 		"typeRoots": ["./node_modules/@types", "@types"],
-		"skipLibCheck": true
+		"skipLibCheck": true,
+		"resolveJsonModule": true
 	},
 	"exclude": ["node_modules"],
 	"include": ["**/*.ts", "**/*.tsx"]

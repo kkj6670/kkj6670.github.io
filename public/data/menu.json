@@ -1,30 +1,26 @@
 [
 	{
-		"name": "Javascript",
-		"children": [
-			{
-				"name": "VanillaJS"
-			},
-			{
-				"name": "ReactJS"
-			},
-			{
-				"name": "TypeScript"
-			}
-		]
+		"id": "javaScript",
+		"name": "JavaScript"
 	},
 	{
-		"name": "git",
-		"children": [
-			{
-				"name": "명령어"
-			},
-			{
-				"name": "ReactJS"
-			},
-			{
-				"name": "ReactJS"
-			}
-		]
+		"id": "typeScript",
+		"name": "TypeScript"
+	},
+	{
+		"id": "react",
+		"name": "React"
+	},
+	{
+		"id": "git",
+		"name": "Git"
+	},
+	{
+		"id": "algorism",
+		"name": "Algorism"
+	},
+	{
+		"id": "other",
+		"name": "Other"
 	}
 ]

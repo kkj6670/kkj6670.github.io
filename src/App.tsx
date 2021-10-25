@@ -54,9 +54,8 @@ function App() {
           <LeftBar />
           <Main>
             <Switch>
-              <Route path="" component={BoardList} exact />
-              <Route path="/react-blog/:menu" component={BoardList} exact />
-              <Route path="/react-blog/:menu/:id" component={BoardViewer} exact />
+              <Route path={`${URL_PATH}:menu`} component={BoardList} exact />
+              <Route path={`${URL_PATH}:menu/:id`} component={BoardViewer} exact />
             </Switch>
           </Main>
         </Router>

@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const prod = process.env.NODE_ENV === 'production';
+const URL_PATH = '/react-blog/';
 
 module.exports = {
   mode: prod ? 'production' : 'development',
@@ -16,7 +17,7 @@ module.exports = {
   output: {
     path: path.resolve('dist'),
     filename: 'bundle.js',
-    publicPath: '/react-blog',
+    publicPath: URL_PATH,
   },
 
   module: {
@@ -49,7 +50,10 @@ module.exports = {
         { from: './public/images', to: './images' },
         { from: './public/data', to: './data' },
       ],
-    })
+    }),
+    new webpack.DefinePlugin({
+      URL_PATH: JSON.stringify(URL_PATH),
+    }),
   ],
 
   devServer: {

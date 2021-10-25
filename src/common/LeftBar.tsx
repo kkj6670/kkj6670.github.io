@@ -5,6 +5,7 @@ import { useBase, useBaseUpdate } from '../store/Base';
 import Search from './Search';
 
 import IMG_GITHUB from '../../public/images/icon/github.svg';
+import menuData from '../../public/data/menu.json';
 
 interface IMenuList {
   selected: boolean;
@@ -102,16 +103,13 @@ function LeftBar() {
   const { selectedMenu } = baseState;
 
   useEffect(() => {
-    const menu = location.pathname?.split('/')?.[1];
-
-    if (!menu || menu.length === 0) {
-      baseUpdate({ type: 'MENU_CHANGE', value: 'javaScript' });
+    const menu = location.pathname?.replace('/react-blog/', '');
+    if (menu.length === 0) {
+      history.push('/react-blog/javaScript');
     } else {
       baseUpdate({ type: 'MENU_CHANGE', value: menu });
     }
   }, [location]);
-
-  // console.log(`${URL_PATH}javaScript`);
 
   return (
     <Header>
@@ -121,24 +119,11 @@ function LeftBar() {
       </div>
       <nav>
         <MenuBox>
-          <MenuList selected={selectedMenu === 'javaScript'}>
-            <Link to="/react-blog/javaScript">JavaScript</Link>
-          </MenuList>
-          <MenuList selected={selectedMenu === 'typeScript'}>
-            <Link to="/react-blog/typeScript">TypeScript</Link>
-          </MenuList>
-          <MenuList selected={selectedMenu === 'react'}>
-            <Link to="/react-blog/react">React</Link>
-          </MenuList>
-          <MenuList selected={selectedMenu === 'git'}>
-            <Link to="/react-blog/git">Git</Link>
-          </MenuList>
-          <MenuList selected={selectedMenu === 'algorism'}>
-            <Link to="/react-blog/algorism">Algorism</Link>
-          </MenuList>
-          <MenuList selected={selectedMenu === 'other'}>
-            <Link to="/react-blog/other">Other</Link>
-          </MenuList>
+          {menuData.map((item) => (
+            <MenuList key={item.id} selected={selectedMenu === item.id}>
+              <Link to={`${URL_PATH}${item.id}`}>{item.name}</Link>
+            </MenuList>
+          ))}
         </MenuBox>
       </nav>
       <GitHubLink href="https://github.com/kkj6670" target="_blank" />
