@@ -122,22 +122,22 @@ function LeftBar() {
       <nav>
         <MenuBox>
           <MenuList selected={selectedMenu === 'javaScript'}>
-            <Link to={`${URL_PATH}javaScript`}>JavaScript</Link>
+            <Link to="/react-blog/javaScript">JavaScript</Link>
           </MenuList>
           <MenuList selected={selectedMenu === 'typeScript'}>
-            <Link to={`${URL_PATH}/typeScript`}>TypeScript</Link>
+            <Link to="/react-blog/typeScript">TypeScript</Link>
           </MenuList>
           <MenuList selected={selectedMenu === 'react'}>
-            <Link to={`${URL_PATH}/react`}>React</Link>
+            <Link to="/react-blog/react">React</Link>
           </MenuList>
           <MenuList selected={selectedMenu === 'git'}>
-            <Link to={`${URL_PATH}/git`}>Git</Link>
+            <Link to="/react-blog/git">Git</Link>
           </MenuList>
           <MenuList selected={selectedMenu === 'algorism'}>
-            <Link to={`${URL_PATH}/algorism`}>Algorism</Link>
+            <Link to="/react-blog/algorism">Algorism</Link>
           </MenuList>
           <MenuList selected={selectedMenu === 'other'}>
-            <Link to={`${URL_PATH}/other`}>Other</Link>
+            <Link to="/react-blog/other">Other</Link>
           </MenuList>
         </MenuBox>
       </nav>

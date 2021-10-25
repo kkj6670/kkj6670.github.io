@@ -5,8 +5,6 @@ const webpack = require('webpack');
 
 const prod = process.env.NODE_ENV === 'production';
 
-const URL_PATH = prod ? '/react-blog/' : '/';
-
 module.exports = {
   mode: prod ? 'production' : 'development',
   devtool: prod ? 'hidden-source-map' : 'cheap-module-source-map',
@@ -18,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve('dist'),
     filename: 'bundle.js',
-    publicPath: '/react-blog/',
+    publicPath: '/react-blog',
   },
 
   module: {
@@ -51,10 +49,7 @@ module.exports = {
         { from: './public/images', to: './images' },
         { from: './public/data', to: './data' },
       ],
-    }),
-    new webpack.DefinePlugin({
-      URL_PATH: JSON.stringify(URL_PATH),
-    }),
+    })
   ],
 
   devServer: {
