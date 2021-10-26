@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, Dispatch } from 'react';
+import boardList from '../../public/data/boardList.json';
 
 interface IBoardData {
   id?: number;
