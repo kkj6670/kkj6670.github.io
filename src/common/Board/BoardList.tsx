@@ -2,7 +2,6 @@ import React from 'react';
 import BoardNavigation from './BoardNavigation';
 
 function BoardList() {
-
   return (
     <section>
       <article>글1</article>
