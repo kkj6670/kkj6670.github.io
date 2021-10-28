@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory, Link, useLocation } from 'react-router-dom';
-import { useBase, useBaseUpdate } from '../store/Base';
+// import { useBase, useBaseUpdate } from '../store/Base';
 import Search from './Search';
 
 import IMG_GITHUB from '../../public/images/icon/github.svg';
@@ -97,18 +97,15 @@ const GitHubLink = styled.a`
 function LeftBar() {
   const history = useHistory();
   const location = useLocation();
-  const baseUpdate = useBaseUpdate();
-  const baseState = useBase();
 
-  const { selectedMenu } = baseState;
+  const selectedMenu = useMemo(() => {
+    const menu = location.pathname.replace('/react-blog/', '').split('/')[0];
 
-  useEffect(() => {
-    const menu = location.pathname?.replace('/react-blog/', '');
     if (menu.length === 0) {
       history.push('/react-blog/javaScript');
-    } else {
-      baseUpdate({ type: 'MENU_CHANGE', value: menu });
     }
+
+    return menu;
   }, [location]);
 
   return (

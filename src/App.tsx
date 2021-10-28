@@ -3,7 +3,9 @@ import styled, { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { whiteTheme, darkTheme } from './styles/theme';
-import { useBase } from './store/Base';
+import { useBase, useBaseUpdate } from './store/Base';
+
+import boardData from '../public/data/boardData.json';
 
 import LeftBar from './common/LeftBar';
 import BoardList from './common/Board/BoardList';
@@ -39,13 +41,18 @@ const Main = styled.main`
 `;
 
 function App() {
-  const baseContext = useBase();
+  const baseState = useBase();
+  const baseUpdate = useBaseUpdate();
 
-  const { theme } = baseContext;
+  const { theme } = baseState;
 
   const selectedTheme = useMemo(() => {
     return theme === 'dark' ? darkTheme : whiteTheme;
   }, [theme]);
+
+  useEffect(() => {
+    baseUpdate({ type: 'SET_BOARD_DATA', value: boardData });
+  }, []);
 
   return (
     <ThemeProvider theme={selectedTheme}>

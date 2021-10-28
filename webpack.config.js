@@ -4,7 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const prod = process.env.NODE_ENV === 'production';
-const URL_PATH = '/react-blog/';
+const URL_PATH = '/react-blog/'; // github pages url
 
 module.exports = {
   mode: prod ? 'production' : 'development',

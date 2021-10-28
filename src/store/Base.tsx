@@ -1,26 +1,34 @@
 import React, { createContext, useContext, useReducer, Dispatch } from 'react';
-import boardList from '../../public/data/boardList.json';
 
+interface IBoardDataDetail {
+  id: number;
+  fileName: string;
+  title: string;
+  date: string;
+  tag: string[];
+}
+
+// TODO :: typescript 적용법
 interface IBoardData {
-  id?: number;
+  [key: string]: IBoardDataDetail[];
 }
 
 interface IBaseState {
   theme: string;
-  selectedMenu: string;
-  selectedBoard: string;
-  boardData: IBoardData;
+  // selectedMenu: string;
+  // selectedBoard: string;
+  boardData: any;
 }
 
 interface IBaseAction {
   type: string;
-  value: string;
+  value: any;
 }
 
 const INITIAL_STATE: IBaseState = {
   theme: 'dark',
-  selectedMenu: 'JavaScript',
-  selectedBoard: '',
+  // selectedMenu: 'JavaScript',
+  // selectedBoard: '',
   boardData: {},
 };
 
@@ -37,12 +45,16 @@ function BaseReducer(state: IBaseState, action: IBaseAction) {
   const nextState = { ...state };
   const { type, value } = action;
   switch (type) {
-    case 'MENU_CHANGE': {
-      nextState.selectedMenu = value;
-      return nextState;
-    }
-    case 'BOARD_CHANGE': {
-      nextState.selectedMenu = value;
+    // case 'MENU_CHANGE': {
+    //   nextState.selectedMenu = value;
+    //   return nextState;
+    // }
+    // case 'BOARD_CHANGE': {
+    //   nextState.selectedMenu = value;
+    //   return nextState;
+    // }
+    case 'SET_BOARD_DATA': {
+      nextState.boardData = value;
       return nextState;
     }
     default: {
