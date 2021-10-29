@@ -2,8 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: 'ImHyeminBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+    font-family: 'IM_Hyemin-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Regular.woff2') format('woff');
     font-weight: normal;
     font-style: normal;
   }
@@ -27,11 +27,13 @@ const GlobalStyle = createGlobalStyle`
   
   body {
 	  font-size: 1.6rem;
-	  font-family: 'ImHyeminBold', sans-serif;
+	  font-family: 'IM_Hyemin-Regular', sans-serif;
+    font-weight: bold;
   }
   
-  button {
-    font-family: 'ImHyeminBold', sans-serif;
+  input, button {
+    font-family: 'IM_Hyemin-Regular', sans-serif;
+    font-weight: bold;
   }
   
   li {

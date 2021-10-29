@@ -13,6 +13,8 @@ const Wrap = styled.div`
     border: 0 none;
     background-color: transparent;
     border-bottom: 1px solid ${({ theme }) => theme.color.gray};
+    color: ${({ theme }) => theme.textColor};
+    letter-spacing: 2px;
   }
 `;
 

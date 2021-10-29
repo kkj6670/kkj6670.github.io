@@ -1,16 +1,17 @@
 import React, { createContext, useContext, useReducer, Dispatch } from 'react';
 import boardData from '../../public/data/boardData.json';
 
-interface IBoardDataDetail {
+export interface IBoardDataDetail {
   id: number;
   fileName: string;
   title: string;
   date: string;
   tag: string[];
+  thumbnail: string;
 }
 
 // TODO :: typescript 적용법
-interface IBoardData {
+export interface IBoardData {
   [key: string]: IBoardDataDetail[];
 }
 
