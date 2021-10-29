@@ -1,11 +1,10 @@
 import React, { useMemo, useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory, Link, useLocation } from 'react-router-dom';
-// import { useBase, useBaseUpdate } from '../store/Base';
 import Search from './Search';
 
-import IMG_GITHUB from '../../public/images/icon/github.svg';
-import menuData from '../../public/data/menu.json';
+import IMG_GITHUB from '../../../public/images/icon/github.svg';
+import menuData from '../../../public/data/menu.json';
 
 interface IMenuList {
   selected: boolean;

@@ -6,9 +6,9 @@ import { whiteTheme, darkTheme } from './styles/theme';
 
 import { useBase } from './store/Base';
 
-import LeftBar from './common/LeftBar';
-import BoardList from './common/Board/BoardList';
-import BoardViewer from './common/Board/BoardViewer';
+import LeftBar from './components/common/LeftBar';
+import BoardList from './components/board/BoardList';
+import BoardViewer from './components/board/BoardViewer';
 
 const Wrap = styled.div`
   width: 100%;
@@ -40,9 +40,7 @@ const Main = styled.main`
 `;
 
 function App() {
-  const baseState = useBase();
-
-  const { theme, boardData } = baseState;
+  const { theme } = useBase();
 
   const selectedTheme = useMemo(() => {
     return theme === 'dark' ? darkTheme : whiteTheme;
