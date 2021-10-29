@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, Dispatch } from 'react';
+import boardData from '../../public/data/boardData.json';
 
 interface IBoardDataDetail {
   id: number;
@@ -17,19 +18,19 @@ interface IBaseState {
   theme: string;
   // selectedMenu: string;
   // selectedBoard: string;
-  boardData: any;
+  boardData: IBoardData;
 }
 
 interface IBaseAction {
   type: string;
-  value: any;
+  value: string;
 }
 
 const INITIAL_STATE: IBaseState = {
   theme: 'dark',
   // selectedMenu: 'JavaScript',
   // selectedBoard: '',
-  boardData: {},
+  boardData,
 };
 
 // BaseUpdateContext type
@@ -53,10 +54,6 @@ function BaseReducer(state: IBaseState, action: IBaseAction) {
     //   nextState.selectedMenu = value;
     //   return nextState;
     // }
-    case 'SET_BOARD_DATA': {
-      nextState.boardData = value;
-      return nextState;
-    }
     default: {
       console.error(`Unhandled action type: ${type}`);
       return {
