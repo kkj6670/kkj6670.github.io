@@ -13,11 +13,16 @@ interface IListItem {
 
 const ListBox = styled.section`
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 15px;
+  grid-row-gap: 12px;
 `;
 
 const ItemBox = styled.article`
-  width: 100%;
-  hieght: 100px;
+  padding: 1%;
+  border: 1px solid ${({ theme }) => theme.textColor};
+  border-radius: 5px;
 
   > a {
     display: block;
@@ -25,19 +30,34 @@ const ItemBox = styled.article`
     height: 100%;
     color: ${({ theme }) => theme.textColor};
     > h1 {
-      color: ${({ theme }) => theme.pointColor};
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+    }
+    > p {
+      font-size: 1.5rem;
     }
   }
 `;
 
+const TagItem = styled.span`
+  padding: 2px 5px;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.pointColor};
+  margin-left: 10px;
+`;
+
 function ListItem({ url, data }: IListItem) {
-  const { id, title, date, tag } = data;
+  const { fileName, title, date, tag } = data;
   return (
     <ItemBox>
-      <Link to={`${url}/${id}`}>
+      <Link to={`${url}/${fileName}`}>
         <h1>{title}</h1>
-        <p>{date}</p>
-        <p>{tag}</p>
+        <p>
+          <span>{date}</span>
+          {tag.map((name) => (
+            <TagItem key={name}>{name}</TagItem>
+          ))}
+        </p>
       </Link>
     </ItemBox>
   );

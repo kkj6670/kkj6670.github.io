@@ -20,7 +20,7 @@ const Wrap = styled.div`
 const Main = styled.main`
   width: calc(100% - 250px);
   height: 100%;
-  padding: 25px;
+  padding: 1%;
   overflow-y: auto;
 
   ::-webkit-scrollbar {
@@ -55,7 +55,7 @@ function App() {
           <Main>
             <Switch>
               <Route path={`${URL_PATH}:menu`} component={BoardList} exact />
-              <Route path={`${URL_PATH}:menu/:id`} component={BoardViewer} exact />
+              <Route path={`${URL_PATH}:menu/:fileName`} component={BoardViewer} exact />
             </Switch>
           </Main>
         </Router>

@@ -11,7 +11,7 @@
   "dependencies": {
     "@types/styled-components": "^5.1.11",
     "markdown-toc": "^1.2.0",
-    "marked": "^3.0.2",
+    "marked": "^3.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^6.0.2",
@@ -22,6 +22,7 @@
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
+    "@types/marked": "^3.0.2",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "@types/react-router-dom": "^5.1.9",
