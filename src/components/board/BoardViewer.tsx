@@ -18,6 +18,9 @@ const ViewerBox = styled.article`
   h3 {
     margin-top: 2rem;
     margin-bottom: 1rem;
+    :first-child {
+      margin-top: 0;
+    }
   }
   
   h1 {
