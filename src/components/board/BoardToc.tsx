@@ -1,7 +1,7 @@
 import React from 'react';
 
-function BoardNavigation() {
+function BoardToc() {
   return <div>boardNavigation</div>;
 }
 
-export default BoardNavigation;
+export default BoardToc;

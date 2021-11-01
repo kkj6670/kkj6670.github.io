@@ -6,7 +6,7 @@ import marked from 'marked';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
 
-import { IParamTypes } from '../../types/common';
+import { IParamTypes, IBoardToc } from '../../types/common';
 
 const ViewerBox = styled.article`
   color: ${({ theme }) => theme.textColor};
@@ -87,8 +87,24 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
       } else {
         response.text().then((md) => {
           const box = viewerBox.current;
-          console.log(md);
-          if (box !== null) box.innerHTML = marked(md);
+          const markedMd = marked(md);
+          if (box !== null) {
+            box.innerHTML = markedMd;
+
+            const hTags = box.querySelectorAll('h1, h2, h3');
+            const toc: IBoardToc[] = [];
+            hTags.forEach((tag) => {
+              const level = +tag.tagName.replace('H', '');
+              const anchor = tag.id;
+              const text = tag.textContent || '';
+
+              toc.push({
+                level,
+                anchor,
+                text,
+              });
+            });
+          }
         });
       }
     });
