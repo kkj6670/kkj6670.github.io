@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ const Wrap = styled.div`
 const Main = styled.main`
   width: calc(100% - 250px);
   height: 100%;
-  padding: 1%;
+  padding: 15px;
   overflow-y: auto;
 
   ::-webkit-scrollbar {
