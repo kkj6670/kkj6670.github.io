@@ -3,7 +3,7 @@ export interface IParamTypes {
   fileName: string;
 }
 
-export interface IBoardToc {
+export interface IBoardTocData {
   level: number;
   anchor: string;
   text: string;

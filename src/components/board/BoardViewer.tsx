@@ -6,13 +6,16 @@ import marked from 'marked';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
 
-import { IParamTypes, IBoardToc } from '../../types/common';
+import BoardToc from './BoardToc';
 
-const ViewerBox = styled.article`
+import { IParamTypes, IBoardTocData } from '../../types/common';
+
+const ContentBox = styled.article`
+  width: 100%;
+  padding-right: 200px;
   color: ${({ theme }) => theme.textColor};
-  pre {
-    margin: 2rem 0;
-  }
+  
+  pre { margin: 2rem 0; }
   h1,
   h2,
   h3 {
@@ -73,7 +76,8 @@ marked.setOptions({
 
 function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
   const { params } = match;
-  const viewerBox = useRef<HTMLDivElement>(null);
+  const contentBox = useRef<HTMLDivElement>(null);
+  const [toc, setToc] = useState<IBoardTocData[]>([]);
 
   useEffect(() => {
     fetch(`/react-blog/data/board/${params.menu}/${params.fileName}.md`, {
@@ -86,31 +90,38 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
         // TODO :: 이전으로
       } else {
         response.text().then((md) => {
-          const box = viewerBox.current;
+          const box = contentBox.current;
           const markedMd = marked(md);
           if (box !== null) {
             box.innerHTML = markedMd;
 
             const hTags = box.querySelectorAll('h1, h2, h3');
-            const toc: IBoardToc[] = [];
+            const tocList: IBoardTocData[] = [];
             hTags.forEach((tag) => {
               const level = +tag.tagName.replace('H', '');
               const anchor = tag.id;
               const text = tag.textContent || '';
 
-              toc.push({
+              tocList.push({
                 level,
                 anchor,
                 text,
               });
             });
+
+            setToc(tocList);
           }
         });
       }
     });
-  }, [params.fileName]);
+  }, [params.fileName, setToc]);
 
-  return <ViewerBox ref={viewerBox} />;
+  return (
+    <>
+      <ContentBox ref={contentBox} />
+      <BoardToc toc={toc} />
+    </>
+  );
 }
 
 export default BoardViewer;
