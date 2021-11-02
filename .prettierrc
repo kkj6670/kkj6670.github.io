@@ -1,6 +1,7 @@
 {
 	"parser": "typescript",
 	"singleQuote": true,
+	"jsxSingleQuote": true,
 	"useTabs": false,
 	"tabWidth": 2,
 	"trailingComma": "all",
