@@ -21,7 +21,7 @@ const Wrap = styled.div`
 function Search() {
   return (
     <Wrap>
-      <input type="text" placeholder="search..." />
+      <input type='text' placeholder='search...' />
     </Wrap>
   );
 }

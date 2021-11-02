@@ -122,7 +122,7 @@ function LeftBar() {
           ))}
         </MenuBox>
       </nav>
-      <GitHubLink href="https://github.com/kkj6670" target="_blank" />
+      <GitHubLink href='https://github.com/kkj6670' target='_blank' />
     </Header>
   );
 }
