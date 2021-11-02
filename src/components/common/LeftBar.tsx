@@ -86,7 +86,7 @@ const MenuList = styled.li<IMenuList>`
 const GitHubLink = styled.a`
   display: block;
   width: 100%;
-  height: 30px;
+  min-height: 30px;
   ${({ theme }) => `
     color: ${theme.textColor};
   `};
@@ -122,7 +122,7 @@ function LeftBar() {
           ))}
         </MenuBox>
       </nav>
-      <GitHubLink href='https://github.com/kkj6670' target='_blank' />
+      <GitHubLink href='https://github.com/kkj6670' target='_blank' title='kkj6670GitHubLinkOpen' />
     </Header>
   );
 }
