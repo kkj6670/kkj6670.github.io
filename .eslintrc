@@ -2,7 +2,8 @@
 	"parser": "@typescript-eslint/parser",
 	"plugins": [
 		"@typescript-eslint",
-		"prettier"
+		"prettier",
+		"react-hooks"
 	],
 	"extends": [
 		"airbnb",
@@ -21,8 +22,7 @@
 	},
 	"rules": {
 		"linebreak-style": [ "error", "unix" ],
-		"react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-		"jsx-a11y/no-noninteractive-element-interactions": 0,
+		"no-console": "off",
 		"import/extensions": [
 			"error",
 			"ignorePackages",
@@ -33,9 +33,13 @@
 				"tsx": "never"
 			}
 		],
-		"no-use-before-define": "off",  // React import시 오류
 		"@typescript-eslint/no-use-before-define": ["error"],  // React import시 오류
 		"@typescript-eslint/explicit-module-boundary-types": "off", // Missing return type on function, React.FC 제거
-		"no-console": "off"
+
+		"react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+		"jsx-a11y/no-noninteractive-element-interactions": 0,
+		"no-use-before-define": "off",  // React import시 오류
+		"react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+		"react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
 	}
 }
