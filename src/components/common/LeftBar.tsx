@@ -1,6 +1,11 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { useHistory, Link, useLocation } from 'react-router-dom';
+import { AiFillGithub } from 'react-icons/ai';
+import { SiJavascript, SiTypescript, SiReact } from 'react-icons/si';
+import { FaHeadSideVirus } from 'react-icons/fa';
+import { BsFillChatSquareDotsFill } from 'react-icons/bs';
+
 import Search from './Search';
 
 import IMG_GITHUB from '../../../public/images/icon/github.svg';
@@ -72,6 +77,8 @@ const MenuList = styled.li<IMenuList>`
     align-items: center;
     justify-content: center;
 
+    position: relative;
+
     ${({ theme, selected }) => `
 	    color: ${theme.textColor};
 	    background-color: ${selected ? 'rgb(71, 76, 80)' : 'transparent'};
@@ -80,17 +87,24 @@ const MenuList = styled.li<IMenuList>`
     &:hover {
       background-color: ${({ selected }) => (selected ? 'rgb(69,75,77)' : 'rgb(71, 76, 80)')};
     }
+
+    > svg {
+      left: 15px;
+      position: absolute;
+    }
   }
 `;
 
-const GitHubLink = styled.a`
-  display: block;
-  width: 100%;
-  min-height: 30px;
-  ${({ theme }) => `
-    color: ${theme.textColor};
-  `};
-  background: url(${IMG_GITHUB}) no-repeat center center / 30px;
+const LinkBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    color: #000;
+  }
 `;
 
 function LeftBar() {
@@ -117,12 +131,24 @@ function LeftBar() {
         <MenuBox>
           {menuData.map((item) => (
             <MenuList key={item.id} selected={selectedMenu === item.id}>
-              <Link to={`${URL_PATH}${item.id}`}>{item.name}</Link>
+              <Link to={`${URL_PATH}${item.id}`}>
+                {item.id === 'javaScript' && <SiJavascript size='25px' />}
+                {item.id === 'typeScript' && <SiTypescript size='25px' />}
+                {item.id === 'react' && <SiReact size='25px' />}
+                {item.id === 'git' && <AiFillGithub size='25px' />}
+                {item.id === 'algorism' && <FaHeadSideVirus size='25px' />}
+                {item.id === 'other' && <BsFillChatSquareDotsFill size='25px' />}
+                {item.name}
+              </Link>
             </MenuList>
           ))}
         </MenuBox>
       </nav>
-      <GitHubLink href='https://github.com/kkj6670' target='_blank' title='kkj6670GitHubLinkOpen' />
+      <LinkBox>
+        <a href='https://github.com/kkj6670' target='_blank' title='kkj6670GitHubLinkOpen' rel='noreferrer'>
+          <AiFillGithub size='100%' />
+        </a>
+      </LinkBox>
     </Header>
   );
 }
