@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { IBoardTocData } from '../../types/common';
+
+import useScrollTop from '../../lib/hooks/useScrollTop';
 
 interface IBoardToc {
   toc: IBoardTocData[];
@@ -17,7 +19,26 @@ const TocBox = styled.ul`
   width: 180px;
   position: fixed;
   right: 30px;
-  top: 100px;
+  top: 50px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding: 0 15px;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.scrollColor.thumb};
+    border-radius: 10px;
+    background-clip: content-box;
+    border: 3px solid rgba(255, 255, 255, 0);
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.scrollColor.track};
+  }
 `;
 
 const TocItem = styled.li<ITocItem>`
@@ -34,11 +55,13 @@ const TocItem = styled.li<ITocItem>`
       margin-top: ${marginTop}px;
     `;
   }}
+
   :first-child {
     margin-top: 0;
   }
 
   > a {
+    width: 100%;
     display: block;
     color: ${({ theme }) => theme.textColor};
   }
@@ -57,23 +80,29 @@ const TocItem = styled.li<ITocItem>`
 `;
 
 function BoardToc({ toc }: IBoardToc) {
-  useEffect(() => {
-    const mainTag = document.getElementsByTagName('main');
-    const setActiveItem = (e: Event) => {
-      console.log(e);
-    };
-    mainTag[0].addEventListener('scroll', setActiveItem);
+  const tocBox = useRef(null);
+  const scrollTop = useScrollTop();
 
-    return () => {
-      mainTag[0].removeEventListener('scroll', setActiveItem);
-    };
-  }, []);
+  const activeItem = useMemo(() => {
+    let targetItem = '';
+
+    for (let i = 0; i < toc.length; i += 1) {
+      const { offsetTop, anchor } = toc[i];
+
+      if (offsetTop - 15 >= scrollTop) {
+        targetItem = anchor;
+        break;
+      }
+    }
+
+    return targetItem;
+  }, [scrollTop, toc]);
 
   return (
-    <TocBox>
+    <TocBox ref={tocBox}>
       {toc.map((item) => {
         return (
-          <TocItem key={item.anchor} level={item.level} activeItem='목차1' anchor={item.anchor}>
+          <TocItem key={item.anchor} level={item.level} activeItem={activeItem} anchor={item.anchor}>
             <a href={`#${item.anchor}`} title={`${item.anchor} 바로가기`}>
               {item.text}
             </a>

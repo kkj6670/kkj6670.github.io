@@ -95,17 +95,19 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
           if (box !== null) {
             box.innerHTML = markedMd;
 
-            const hTags = box.querySelectorAll('h1, h2, h3');
+            const hTags: NodeListOf<HTMLElement> = box.querySelectorAll('h1, h2, h3');
             const tocList: IBoardTocData[] = [];
             hTags.forEach((tag) => {
               const level = +tag.tagName.replace('H', '');
               const anchor = tag.id;
               const text = tag.textContent || '';
+              const { offsetTop } = tag;
 
               tocList.push({
                 level,
                 anchor,
                 text,
+                offsetTop,
               });
             });
 
@@ -114,7 +116,7 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
         });
       }
     });
-  }, [params.fileName, setToc]);
+  }, [params.menu, params.fileName, setToc]);
 
   return (
     <>
