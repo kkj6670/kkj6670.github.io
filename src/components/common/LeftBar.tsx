@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { useHistory, Link, useLocation } from 'react-router-dom';
 import Search from './Search';
@@ -105,7 +105,7 @@ function LeftBar() {
     }
 
     return menu;
-  }, [location]);
+  }, [location, history]);
 
   return (
     <Header>
