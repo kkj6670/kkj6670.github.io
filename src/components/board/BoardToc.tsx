@@ -69,10 +69,11 @@ const TocItem = styled.li<ITocItem>`
     color: ${({ theme }) => theme.textColor};
   }
 
+  transition: all 0.125s ease-in 0s;
+
   ${({ activeItem, anchor, theme }) => {
     return activeItem === anchor
       ? `
-      transition: all 0.125s ease-in 0s; transform: scale(1.05);
       transform: scale(1.15);
       > a {
         color: ${theme.pointColor};
