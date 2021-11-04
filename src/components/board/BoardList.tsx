@@ -37,6 +37,13 @@ const ItemBox = styled.article`
       font-size: 1.5rem;
     }
   }
+
+  :hover {
+    border-color: ${({ theme }) => theme.pointColor};
+    transform: scale(1.02);
+  }
+
+  transition: all 0.125s ease-in 0s;
 `;
 
 const TagItem = styled.span`
