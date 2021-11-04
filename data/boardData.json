@@ -1,12 +1,1 @@
-{
-	"git": [
-		{
-			"id": 1,
-			"fileName": "setting_alias",
-			"title": "Alias 설정",
-			"date": "2021-10-30 21:10",
-			"tag": ["기본 세팅","처음"],
-			"thumbnail": "/"
-		}
-	]
-}
+{"git":[{"fileName":"setting_alias.md","date":"2021-11-04T09:21:26.838Z","title":"Alias 설정","tag":["기본세팅","처음"]}]}
