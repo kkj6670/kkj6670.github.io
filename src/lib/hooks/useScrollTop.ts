@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function useScrollTop(element?: HTMLElement) {
   const [scrollTop, setScrollTop] = useState(0);
@@ -8,7 +8,7 @@ export default function useScrollTop(element?: HTMLElement) {
     if (targetElement) {
       setScrollTop(targetElement.scrollTop);
     }
-  }, [setScrollTop]);
+  }, [setScrollTop, element]);
 
   useEffect(() => {
     const mainTag = document.getElementsByTagName('main');

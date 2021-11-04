@@ -8,7 +8,6 @@ import { BsFillChatSquareDotsFill } from 'react-icons/bs';
 
 import Search from './Search';
 
-import IMG_GITHUB from '../../../public/images/icon/github.svg';
 import menuData from '../../../public/data/menu.json';
 
 interface IMenuList {

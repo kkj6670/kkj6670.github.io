@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
 import { IBoardTocData } from '../../types/common';
