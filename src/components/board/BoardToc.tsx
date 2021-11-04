@@ -92,8 +92,9 @@ function BoardToc({ toc }: IBoardToc) {
 
     for (let i = 0; i < toc.length; i += 1) {
       const { offsetTop, anchor } = toc[i];
-
-      if (offsetTop - 15 >= scrollTop) {
+      const nextOffsetTop = toc[i + 1]?.offsetTop;
+      // offsetTop ~ nextOffsetTop scrollTop
+      if (offsetTop >= scrollTop || nextOffsetTop >= scrollTop || !nextOffsetTop) {
         targetItem = anchor;
         break;
       }

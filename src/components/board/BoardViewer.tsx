@@ -107,7 +107,7 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
                 level,
                 anchor,
                 text,
-                offsetTop,
+                offsetTop: offsetTop - 15,
               });
             });
 
