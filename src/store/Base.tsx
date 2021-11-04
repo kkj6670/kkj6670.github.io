@@ -2,12 +2,10 @@ import React, { createContext, useContext, useReducer, Dispatch } from 'react';
 import boardData from '../../public/data/boardData.json';
 
 export interface IBoardDataDetail {
-  id: number;
   fileName: string;
   title: string;
   date: string;
   tag: string[];
-  thumbnail: string;
 }
 
 // TODO :: typescript 적용법

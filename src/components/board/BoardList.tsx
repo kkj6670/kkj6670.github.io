@@ -84,7 +84,7 @@ function BoardList({ match }: RouteComponentProps<IParamTypes>) {
     <ListBox>
       {!targetData || targetData.length === 0
         ? '해당 Note가 존재하지 않습니다.'
-        : targetData.map((item) => <ListItem key={item.id} url={url} data={item} />)}
+        : targetData.map((item) => <ListItem key={item.fileName} url={url} data={item} />)}
     </ListBox>
   );
 }

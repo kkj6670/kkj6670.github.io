@@ -55,14 +55,15 @@
   },
   "scripts": {
     "start": "webpack serve",
-    "build": "yarn lint && webpack --progress --mode production",
+    "build": "yarn createBoardData && yarn lint && webpack --progress --mode production",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src/**/*.{ts,tsx,js,jsx}",
     "predeploy": "yarn build & yarn postBuild",
     "deploy": "gh-pages -d dist",
     "deploy:build": "yarn predeploy & yarn deploy",
     "postBuild": "cp dist/index.html dist/404.html",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "createBoardData": "node ./scripts/createBoardData.mjs"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
