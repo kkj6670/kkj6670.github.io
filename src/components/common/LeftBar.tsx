@@ -130,7 +130,7 @@ function LeftBar() {
         <MenuBox>
           {menuData.map((item) => (
             <MenuList key={item.id} selected={selectedMenu === item.id}>
-              <Link to={`${URL_PATH}${item.id}`}>
+              <Link to={`${URL_PATH}${item.id}`} title={`${item.id} menu open`}>
                 {item.id === 'javaScript' && <SiJavascript size='25px' />}
                 {item.id === 'typeScript' && <SiTypescript size='25px' />}
                 {item.id === 'react' && <SiReact size='25px' />}
