@@ -17,6 +17,8 @@ const ListBox = styled.section`
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 15px;
   grid-row-gap: 12px;
+
+  color: ${({ theme }) => theme.textColor};
 `;
 
 const ItemBox = styled.article`
