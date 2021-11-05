@@ -14,28 +14,33 @@ const ContentBox = styled.article`
   width: 100%;
   padding-right: 200px;
   color: ${({ theme }) => theme.textColor};
-  
-  pre { margin: 2rem 0; }
+  font-size: 2rem;
+
+  pre {
+    margin: 2rem 0;
+  }
+
   h1,
   h2,
   h3 {
     margin-top: 2rem;
     margin-bottom: 1rem;
+
     :first-child {
       margin-top: 0;
     }
   }
-  
+
   h1 {
-    font-size: 3.5rem;
+    font-size: 4rem;
   }
 
   h2 {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 
   h3 {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
   code {

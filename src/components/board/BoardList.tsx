@@ -57,12 +57,13 @@ const TagItem = styled.span`
 
 function ListItem({ url, data }: IListItem) {
   const { fileName, title, date, tag } = data;
+  const dateFormat = new Date(date).toLocaleString();
   return (
     <ItemBox>
       <Link to={`${url}/${fileName.replace('.md', '')}`}>
         <h1>{title}</h1>
         <p>
-          <span>{date}</span>
+          <span>{dateFormat}</span>
           {tag.map((name) => (
             <TagItem key={name}>{name}</TagItem>
           ))}
