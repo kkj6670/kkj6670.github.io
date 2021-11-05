@@ -80,7 +80,7 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
   const [toc, setToc] = useState<IBoardTocData[]>([]);
 
   useEffect(() => {
-    fetch(`/react-blog/data/board/${params.menu}/${params.fileName}`, {
+    fetch(`/react-blog/data/board/${params.menu}/${params.fileName}.md`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
