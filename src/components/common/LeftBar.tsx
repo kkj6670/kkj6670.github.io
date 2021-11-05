@@ -120,10 +120,6 @@ function LeftBar() {
     return menu;
   }, [location, history]);
 
-  console.log('test');
-
-  console.log('tesT');
-
   return (
     <Header>
       <div>
