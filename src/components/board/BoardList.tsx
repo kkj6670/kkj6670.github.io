@@ -59,11 +59,11 @@ function ListItem({ url, data }: IListItem) {
   const { fileName, title, date, tag } = data;
   return (
     <ItemBox>
-      <Link to={`${url}/${fileName.replace('.md', '')}`}>
+      <Link to={`${url}/${fileName?.replace('.md', '')}`}>
         <h1>{title}</h1>
         <p>
           <span>{date}</span>
-          {tag.map((name) => (
+          {tag?.map((name) => (
             <TagItem key={name}>{name}</TagItem>
           ))}
         </p>
