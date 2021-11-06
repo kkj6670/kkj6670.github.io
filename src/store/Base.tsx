@@ -8,15 +8,12 @@ export interface IBoardDataDetail {
   tag: string[];
 }
 
-// TODO :: typescript 적용법
 export interface IBoardData {
   [key: string]: IBoardDataDetail[];
 }
 
 interface IBaseState {
   theme: string;
-  // selectedMenu: string;
-  // selectedBoard: string;
   boardData: IBoardData;
 }
 
@@ -27,8 +24,6 @@ interface IBaseAction {
 
 const INITIAL_STATE: IBaseState = {
   theme: 'dark',
-  // selectedMenu: 'JavaScript',
-  // selectedBoard: '',
   boardData,
 };
 
@@ -45,14 +40,10 @@ function BaseReducer(state: IBaseState, action: IBaseAction) {
   const nextState = { ...state };
   const { type, value } = action;
   switch (type) {
-    // case 'MENU_CHANGE': {
-    //   nextState.selectedMenu = value;
-    //   return nextState;
-    // }
-    // case 'BOARD_CHANGE': {
-    //   nextState.selectedMenu = value;
-    //   return nextState;
-    // }
+    case 'THEME_CHANGE': {
+      nextState.theme = value;
+      return nextState;
+    }
     default: {
       console.error(`Unhandled action type: ${type}`);
       return {
