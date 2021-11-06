@@ -1,8 +1,9 @@
 <!--
-    BOARD_TITLE: Alias 설정
-    BOARD_TAG: ["단축키", "기본세팅", "처음"]
+    BOARD_TITLE: Git 설정관련 명령어 모음
+    BOARD_DATE: 2021-11-06 16:52
+    BOARD_TAG: ["설정", "단축키", "기본세팅", "처음"]
 -->
-## 설정 명령어
+## Alias 설정
 ```text
 // 추가
 $ git config --global alias.cm commit

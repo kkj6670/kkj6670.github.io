@@ -2,10 +2,10 @@ import React, { createContext, useContext, useReducer, Dispatch } from 'react';
 import boardData from '../../public/data/boardData.json';
 
 export interface IBoardDataDetail {
-  fileName: string;
-  title: string;
-  date: string;
-  tag: string[];
+  fileName?: string;
+  title?: string;
+  date?: string;
+  tag?: string[];
 }
 
 export interface IBoardData {
