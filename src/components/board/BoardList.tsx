@@ -59,7 +59,7 @@ function ListItem({ url, data }: IListItem) {
   const { fileName, title, date, tag } = data;
   return (
     <ItemBox>
-      <Link to={`${url}/${fileName?.replace('.md', '')}`}>
+      <Link to={`${url}/${fileName}`}>
         <h1>{title}</h1>
         <p>
           <span>{date}</span>
@@ -77,7 +77,7 @@ function BoardList({ match }: RouteComponentProps<IParamTypes>) {
   const { boardData } = useBase();
 
   const targetData = useMemo(() => {
-    return boardData[params.menu];
+    return Object.keys(boardData[params.menu] || {}).map((fileName) => boardData[params.menu][fileName]);
   }, [boardData, params.menu]);
 
   return (

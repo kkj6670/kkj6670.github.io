@@ -9,6 +9,7 @@ import 'highlight.js/styles/atom-one-dark.css';
 import BoardToc from './BoardToc';
 
 import { IParamTypes, IBoardTocData } from '../../types/common';
+import { useBase } from '../../store/Base';
 
 const ContentBox = styled.article`
   width: 100%;
@@ -83,44 +84,33 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
   const { params } = match;
   const contentBox = useRef<HTMLDivElement>(null);
   const [toc, setToc] = useState<IBoardTocData[]>([]);
+  const { boardData } = useBase();
 
   useEffect(() => {
-    fetch(`/react-blog/data/board/${params.menu}/${params.fileName}.md`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then((response) => {
-      if (response.status === 404) {
-        // TODO :: 이전으로
-      } else {
-        response.text().then((md) => {
-          const box = contentBox.current;
-          const markedMd = marked(md);
-          if (box !== null) {
-            box.innerHTML = markedMd;
+    const { content } = boardData[params.menu][params.fileName];
+    const box = contentBox.current;
+    if (box !== null && content) {
+      const markedMd = marked(content);
+      box.innerHTML = markedMd;
 
-            const hTags: NodeListOf<HTMLElement> = box.querySelectorAll('h1, h2, h3');
-            const tocList: IBoardTocData[] = [];
-            hTags.forEach((tag) => {
-              const level = +tag.tagName.replace('H', '');
-              const anchor = tag.id;
-              const text = tag.textContent || '';
-              const { offsetTop } = tag;
+      const hTags: NodeListOf<HTMLElement> = box.querySelectorAll('h1, h2, h3');
+      const tocList: IBoardTocData[] = [];
+      hTags.forEach((tag) => {
+        const level = +tag.tagName.replace('H', '');
+        const anchor = tag.id;
+        const text = tag.textContent || '';
+        const { offsetTop } = tag;
 
-              tocList.push({
-                level,
-                anchor,
-                text,
-                offsetTop: offsetTop - 15,
-              });
-            });
-
-            setToc(tocList);
-          }
+        tocList.push({
+          level,
+          anchor,
+          text,
+          offsetTop: offsetTop - 15,
         });
-      }
-    });
+      });
+
+      setToc(tocList);
+    }
   }, [params.menu, params.fileName, setToc]);
 
   return (

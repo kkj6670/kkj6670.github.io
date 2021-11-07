@@ -18,7 +18,7 @@ interface ITocItem {
 const TocBox = styled.ul`
   width: 180px;
   position: fixed;
-  right: 30px;
+  right: 20px;
   top: 50px;
   max-height: calc(100vh - 100px);
   overflow-y: auto;

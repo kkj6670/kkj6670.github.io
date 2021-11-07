@@ -1,15 +1,22 @@
 import React, { createContext, useContext, useReducer, Dispatch } from 'react';
 import boardData from '../../public/data/boardData.json';
 
+console.log(boardData);
+
 export interface IBoardDataDetail {
   fileName?: string;
   title?: string;
   date?: string;
   tag?: string[];
+  content?: string;
+}
+
+export interface IBoardDataList {
+  [key: string]: IBoardDataDetail;
 }
 
 export interface IBoardData {
-  [key: string]: IBoardDataDetail[];
+  [key: string]: IBoardDataList;
 }
 
 interface IBaseState {
