@@ -58,13 +58,13 @@
   },
   "scripts": {
     "start": "webpack serve",
-    "build": "yarn setBoardData && yarn lint && webpack --progress --mode production",
+    "build": "rm -rf ./dist & yarn setBoardData & yarn lint & webpack --progress --mode production",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src/**/*.{ts,tsx,js,jsx,mjs}",
     "predeploy": "yarn build & yarn postBuild",
     "deploy": "gh-pages -d dist",
     "deploy:build": "yarn predeploy & yarn deploy",
-    "postBuild": "cp dist/index.html dist/404.html react-snap",
+    "postBuild": "yarn react-snap & cp dist/index.html dist/404.html",
     "prepare": "husky install",
     "setBoardData": "node scripts/setBoardData.mjs"
   },
@@ -73,5 +73,8 @@
       "eslint --fix",
       "prettier --write"
     ]
-  }
+  },
+  "reactSnap" : {
+    "source" : "dist"
+ }
 }

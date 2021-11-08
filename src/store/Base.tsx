@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useReducer, Dispatch } from 'react';
 import boardData from '../../public/data/boardData.json';
 
-console.log(boardData);
-
 export interface IBoardDataDetail {
   fileName?: string;
   title?: string;
