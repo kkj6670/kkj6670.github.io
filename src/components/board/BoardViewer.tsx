@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 import marked from 'marked';
 import hljs from 'highlight.js';
@@ -10,6 +11,7 @@ import BoardToc from './BoardToc';
 
 import { IParamTypes, IBoardTocData } from '../../types/common';
 import { useBase } from '../../store/Base';
+import { convertToPlainText } from '../../lib/utils';
 
 const ContentBox = styled.article`
   width: 100%;
@@ -61,7 +63,6 @@ const ContentBox = styled.article`
       background-color: ${({ theme }) => theme.scrollColor.track};
     }
   }
-}
 `;
 
 marked.setOptions({
@@ -84,13 +85,16 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
   const { params } = match;
   const contentBox = useRef<HTMLDivElement>(null);
   const [toc, setToc] = useState<IBoardTocData[]>([]);
+  const [metaTitle, setMetaTitle] = useState('');
+  const [plainContent, setPlainContent] = useState('');
   const { boardData } = useBase();
 
   useEffect(() => {
-    const { content } = boardData[params.menu][params.fileName];
+    const { content, title } = boardData[params.menu][params.fileName];
     const box = contentBox.current;
     if (box !== null && content) {
       const markedMd = marked(content);
+      const plainText = convertToPlainText(content);
       box.innerHTML = markedMd;
 
       const hTags: NodeListOf<HTMLElement> = box.querySelectorAll('h1, h2, h3');
@@ -110,11 +114,17 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
       });
 
       setToc(tocList);
+      setMetaTitle(title || '');
+      setPlainContent(plainText);
     }
-  }, [params.menu, params.fileName, setToc]);
+  }, [params.menu, params.fileName, setToc, boardData]);
 
   return (
     <>
+      <Helmet>
+        <meta name='title' content={metaTitle} />
+        <meta name='description' content={plainContent} />
+      </Helmet>
       <ContentBox ref={contentBox} />
       <BoardToc toc={toc} />
     </>
