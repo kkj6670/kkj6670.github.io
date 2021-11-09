@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styled from 'styled-components';
 
-const Wrap = styled.div`
+import { useBase } from '../../store/Base';
+
+const SearchBox = styled.div`
   width: 100%;
   height: 25px;
   margin-bottom: 10px;
@@ -18,11 +20,32 @@ const Wrap = styled.div`
   }
 `;
 
+let timer: ReturnType<typeof setTimeout>;
+
 function Search() {
+  const { boardData } = useBase();
+  const [text, setText] = useState('');
+
+  const handleInput = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target;
+      setText(value);
+    },
+    [setText],
+  );
+
+  useEffect(() => {
+    if (timer) clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      console.log(text);
+    }, 200);
+  }, [text]);
+
   return (
-    <Wrap>
-      <input type='text' placeholder='search...' />
-    </Wrap>
+    <SearchBox>
+      <input type='text' placeholder='Quick Search...' onInput={handleInput} value={text} />
+    </SearchBox>
   );
 }
 

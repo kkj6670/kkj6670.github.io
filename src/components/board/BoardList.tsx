@@ -49,10 +49,15 @@ const ItemBox = styled.article`
 `;
 
 const TagItem = styled.span`
+  display: inline-flex;
   padding: 2px 5px;
   border-radius: 5px;
   background-color: ${({ theme }) => theme.pointColor};
   margin-left: 10px;
+  margin-top: 10px;
+  :first-child {
+    margin-left: 0;
+  }
 `;
 
 function ListItem({ url, data }: IListItem) {
@@ -61,8 +66,8 @@ function ListItem({ url, data }: IListItem) {
     <ItemBox>
       <Link to={`${url}/${fileName}`}>
         <h1>{title}</h1>
+        <p>{date}</p>
         <p>
-          <span>{date}</span>
           {tag?.map((name) => (
             <TagItem key={name}>{name}</TagItem>
           ))}
