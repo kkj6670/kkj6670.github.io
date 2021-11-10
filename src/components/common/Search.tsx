@@ -20,6 +20,44 @@ const SearchBox = styled.div`
   }
 `;
 
+const SearchList = styled.ul`
+  position: fixed;
+  width: calc(100% - 270px);
+  padding: 15px;
+  border-radius: 7px;
+  max-height: calc(100% - 40px);
+  overflow-y: auto;
+  top: 20px;
+  left: 265px;
+  z-index: 1000;
+  box-shadow: rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 5px 10px, rgb(15 15 15 / 20%) 0px 15px 40px;
+  ${({ theme }) => `
+    color: ${theme.textColor};
+    background-color: ${theme.name === 'dark' ? theme.color.darkGray : theme.color.lightGray};
+  `};
+  > li {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid ${({ theme }) => theme.textColor};
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    :last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  inset: 0px;
+  z-index: 999;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: black;
+  opacity: 0.5;
+`;
+
 let timer: ReturnType<typeof setTimeout>;
 
 function Search() {
@@ -45,6 +83,13 @@ function Search() {
   return (
     <SearchBox>
       <input type='text' placeholder='Quick Search...' onInput={handleInput} value={text} />
+      <SearchList hidden={text.length === 0}>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+      </SearchList>
+      <Overlay hidden={text.length === 0} />
     </SearchBox>
   );
 }
