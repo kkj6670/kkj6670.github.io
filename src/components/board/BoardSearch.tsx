@@ -37,13 +37,12 @@ const SearchList = styled.ul`
   > li {
     width: 100%;
     height: 50px;
-    border-bottom: 1px solid ${({ theme }) => theme.textColor};
+    border-top: 1px solid ${({ theme }) => theme.textColor};
     padding: 15px;
-    padding-bottom: 5px;
-    margin-bottom: 5px;
-    :last-child {
-      padding-bottom: 0;
-      margin-bottom: 0;
+    margin-top: 5px;
+    :first-child {
+      border-top: 0 none;
+      margin-top: 0;
     }
   }
 `;
@@ -90,13 +89,20 @@ function BoardSearch() {
     }, 200);
   }, [text]);
 
+  const searchItem = useMemo(
+    () => allBoardList.filter((board) => board.content?.indexOf(text) !== -1),
+    [allBoardList, text],
+  );
+
   return (
     <SearchBox>
       <input type='text' placeholder='Quick Search...' onInput={handleInput} value={text} />
       <SearchList hidden={text.length === 0}>
-        {allBoardList.map((board) => {
-          return board.content?.indexOf(text) !== -1 ? <li>{board.title}</li> : <li>검색 결과가 없습니다.</li>;
-        })}
+        {searchItem.length > 0 ? (
+          searchItem.map((item) => <li key={item.fileName}>{item.title}</li>)
+        ) : (
+          <li>Note를 찾을수 없습니다.</li>
+        )}
       </SearchList>
       <Overlay hidden={text.length === 0} />
     </SearchBox>
