@@ -4,3 +4,4 @@ declare module '*.svg' {
 }
 
 declare const URL_PATH: string;
+declare const NODE_ENV: string;

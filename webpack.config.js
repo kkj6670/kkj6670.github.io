@@ -3,7 +3,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
-const prod = process.env.NODE_ENV === 'production';
+const { NODE_ENV } = process.env;
+const prod = NODE_ENV === 'production';
 const URL_PATH = '/react-blog/'; // github pages url
 
 module.exports = {
@@ -23,8 +24,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: ['babel-loader', 'ts-loader'],
+        test: /\.(js|ts)x?$/,
+        use: ['babel-loader'],
+      },
+      {
+        test: /\.(ts)x?$/,
+        use: ['ts-loader'],
       },
       {
         test: /\.(png|jpg|gif|jpeg|svg)$/,
@@ -57,6 +62,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       URL_PATH: JSON.stringify(URL_PATH),
+      NODE_ENV: JSON.stringify(NODE_ENV),
     }),
   ],
 

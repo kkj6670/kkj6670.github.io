@@ -6,7 +6,7 @@ import GlobalStyle from './styles/global';
 
 const rootElement = document.getElementById('root');
 
-if (rootElement?.hasChildNodes()) {
+if (NODE_ENV === 'production' && rootElement?.hasChildNodes()) {
   hydrate(
     <BaseProvider>
       <GlobalStyle />
