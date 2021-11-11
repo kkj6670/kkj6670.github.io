@@ -6,7 +6,7 @@ import { SiJavascript, SiTypescript, SiReact } from 'react-icons/si';
 import { FaHeadSideVirus } from 'react-icons/fa';
 import { BsFillChatSquareDotsFill } from 'react-icons/bs';
 
-import Search from './Search';
+import BoardSearch from '../board/BoardSearch';
 
 import menuData from '../../../public/data/menu.json';
 
@@ -124,7 +124,7 @@ function LeftBar() {
     <Header>
       <div>
         <HeaderTitle>Study Note</HeaderTitle>
-        <Search />
+        <BoardSearch />
       </div>
       <nav>
         <MenuBox>

@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 
-import { useBase } from '../../store/Base';
+import { IBoardDataDetail, useBase } from '../../store/Base';
 
 const SearchBox = styled.div`
   width: 100%;
@@ -23,7 +23,6 @@ const SearchBox = styled.div`
 const SearchList = styled.ul`
   position: fixed;
   width: calc(100% - 270px);
-  padding: 15px;
   border-radius: 7px;
   max-height: calc(100% - 40px);
   overflow-y: auto;
@@ -39,6 +38,7 @@ const SearchList = styled.ul`
     width: 100%;
     height: 50px;
     border-bottom: 1px solid ${({ theme }) => theme.textColor};
+    padding: 15px;
     padding-bottom: 5px;
     margin-bottom: 5px;
     :last-child {
@@ -60,7 +60,7 @@ const Overlay = styled.div`
 
 let timer: ReturnType<typeof setTimeout>;
 
-function Search() {
+function BoardSearch() {
   const { boardData } = useBase();
   const [text, setText] = useState('');
 
@@ -71,6 +71,16 @@ function Search() {
     },
     [setText],
   );
+
+  const allBoardList: IBoardDataDetail[] = useMemo(() => {
+    const category = Object.keys(boardData);
+
+    return category.reduce<IBoardDataDetail[]>((prev: IBoardDataDetail[], cur: string) => {
+      const items = Object.keys(boardData[cur]);
+      const nextList = items.map((item) => boardData[cur][item]);
+      return [...prev, ...nextList];
+    }, []);
+  }, [boardData]);
 
   useEffect(() => {
     if (timer) clearTimeout(timer);
@@ -84,14 +94,13 @@ function Search() {
     <SearchBox>
       <input type='text' placeholder='Quick Search...' onInput={handleInput} value={text} />
       <SearchList hidden={text.length === 0}>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
+        {allBoardList.map((board) => {
+          return board.content?.indexOf(text) !== -1 ? <li>{board.title}</li> : <li>검색 결과가 없습니다.</li>;
+        })}
       </SearchList>
       <Overlay hidden={text.length === 0} />
     </SearchBox>
   );
 }
 
-export default Search;
+export default BoardSearch;
