@@ -1,7 +1,7 @@
 <!--
     BOARD_TITLE: Git 설정관련 명령어 모음
     BOARD_DATE: 2021-11-06 16:52
-    BOARD_TAG: ["설정", "단축키", "기본세팅", "처음"]
+    BOARD_TAG: ["설정", "단축키", "기본세팅"]
 -->
 ## Alias 설정
 ```text
@@ -15,7 +15,7 @@ $ git config --global --unset alias.ci
 $ git config --global --get-regexp alias
 ```
 
-## 자주 사용하는 명령어 모음
+## Alias 기본 설정 모음
 ```text
 // status
 git config --global alias.st
