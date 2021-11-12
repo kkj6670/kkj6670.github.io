@@ -15,17 +15,17 @@ folders.forEach((name) => {
     const md = fs.readFileSync(fileDir, 'utf8');
 
     const commentRegExp = /(<!--)(.*\s.*\s.*\s.*\s)(-->\n)/g;
-    const content = md.replace(commentRegExp,'');
+    const content = md.replace(commentRegExp, '');
 
     const info = md.match(/(BOARD_)(.*)(:\s)(.*)/g);
-    const [ title, date, tag ] = info.map(item => item.replace(/(BOARD_)(.*)(:\s)/,''));
+    const [title, date, tag] = info.map((item) => item.replace(/(BOARD_)(.*)(:\s)/, ''));
 
     return {
       fileName: fileName.replace('.md', ''),
       title,
       date,
       tag: JSON.parse(tag),
-      content
+      content,
     };
   });
 
@@ -37,19 +37,20 @@ folders.forEach((name) => {
   }
 });
 
-fs.open(BOARD_JSON_DIR, 'w', function (err, fd) {
-  if (err) throw err;
-  console.log('1. file open');
+console.log('>>> write boardData');
+fs.open(BOARD_JSON_DIR, 'w', (openErr, fd) => {
+  if (openErr) throw openErr;
+  console.log('>>>> 1. file open');
 
-  let buf = new Buffer(JSON.stringify(boardData));
-  fs.write(fd, buf, 0, buf.length, null, function (err, written, buffer) {
-    if (err) throw err;
+  const buf = Buffer.from(JSON.stringify(boardData));
+  fs.write(fd, buf, 0, buf.length, null, (writeErr) => {
+    if (writeErr) throw writeErr;
 
-    console.log('2. file write');
-    fs.close(fd, function (err) {
-      if (err) throw err;
+    console.log('>>>>> 2. file write');
+    fs.close(fd, (closeErr) => {
+      if (closeErr) throw closeErr;
 
-      console.log('3. file closed');
+      console.log('>>>>>> 3. file closed');
     });
   });
 });
