@@ -15,6 +15,7 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     name: string;
     bgColor: string;
+    pointBgColor: string;
     textColor: string;
     pointColor: string;
     color: IColor;

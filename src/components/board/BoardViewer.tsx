@@ -11,7 +11,7 @@ import BoardToc from './BoardToc';
 
 import { IParamTypes, IBoardTocData } from '../../types/common';
 import { useBase } from '../../store/Base';
-import { convertToPlainText } from '../../lib/utils';
+import { mdToPlainText } from '../../lib/utils';
 
 const ContentBox = styled.article`
   width: 100%;
@@ -94,7 +94,7 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
     const box = contentBox.current;
     if (box !== null && content) {
       const markedMd = marked(content);
-      const plainText = convertToPlainText(content);
+      const plainText = mdToPlainText(content);
       box.innerHTML = markedMd;
 
       const hTags: NodeListOf<HTMLElement> = box.querySelectorAll('h1, h2, h3');

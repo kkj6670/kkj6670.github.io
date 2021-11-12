@@ -13,6 +13,7 @@ export const whiteTheme: DefaultTheme = {
   ...defaultTheme,
   name: 'white',
   bgColor: '#FFF',
+  pointBgColor: color.lightGray,
   textColor: '#3A3A3A',
   pointColor: '#ff8080',
   scrollColor: {
@@ -25,6 +26,7 @@ export const darkTheme: DefaultTheme = {
   ...defaultTheme,
   name: 'dark',
   bgColor: '#2F3437FF',
+  pointBgColor: color.darkGray,
   textColor: '#FFF',
   pointColor: '#ff8080',
   scrollColor: {

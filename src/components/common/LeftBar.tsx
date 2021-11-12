@@ -24,7 +24,7 @@ const Header = styled.header`
 
   ${({ theme }) => `
     color: ${theme.textColor};
-    background-color: ${theme.name === 'dark' ? theme.color.darkGray : theme.color.lightGray};
+    background-color: ${theme.pointBgColor};
   `};
 
   justify-content: space-between;
@@ -83,13 +83,20 @@ const MenuList = styled.li<IMenuList>`
 	    background-color: ${selected ? 'rgb(71, 76, 80)' : 'transparent'};
 	  `};
 
+    transition: all 0.125s ease-in 0s;
+
     &:hover {
       background-color: ${({ selected }) => (selected ? 'rgb(69,75,77)' : 'rgb(71, 76, 80)')};
+      > svg {
+        transform: scale(1.2);
+      }
+      font-size: 2rem;
     }
 
     > svg {
       left: 15px;
       position: absolute;
+      transition: all 0.125s ease-in 0s;
     }
   }
 `;
