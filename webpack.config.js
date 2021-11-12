@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
@@ -9,7 +10,7 @@ const URL_PATH = '/react-blog/'; // github pages url
 
 module.exports = {
   mode: prod ? 'production' : 'development',
-  devtool: prod ? 'hidden-source-map' : 'cheap-module-source-map',
+  devtool: prod ? 'hidden-source-map' : 'inline-source-map',
   entry: './src/index.tsx',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -67,11 +68,13 @@ module.exports = {
   ],
 
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    historyApiFallback: true,
+    contentBase: path.resolve('dist'),
+    historyApiFallback: {
+      index: `${URL_PATH}/index.html`,
+    },
     inline: true,
     port: 3000,
     hot: true,
-    publicPath: '',
+    publicPath: URL_PATH,
   },
 };
