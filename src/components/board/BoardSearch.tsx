@@ -35,7 +35,7 @@ const SearchBox = styled.div<ISearchBox>`
 
 const SearchListBox = styled.ul`
   position: fixed;
-  width: calc(100% - 270px);
+  width: calc(100% - 280px);
   border-radius: 7px;
   max-height: calc(100% - 40px);
   overflow-y: auto;
@@ -43,6 +43,22 @@ const SearchListBox = styled.ul`
   left: 265px;
   z-index: 1000;
   background-color: ${({ theme }) => theme.pointBgColor};
+
+  ::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.scrollColor.thumb};
+    border-radius: 10px;
+    background-clip: content-box;
+    border: 3px solid rgba(255, 255, 255, 0);
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.scrollColor.track};
+  }
 `;
 
 const SearchListItem = styled.li`
@@ -50,9 +66,14 @@ const SearchListItem = styled.li`
   border-top: 1px solid ${({ theme }) => theme.textColor};
   padding: 15px;
   margin-top: 5px;
+
   :first-child {
     border-top: 0 none;
     margin-top: 0;
+  }
+
+  :hover {
+    background-color: ${({ theme }) => theme.pointBgHoverColor};
   }
 
   ${({ theme }) => `
@@ -91,7 +112,7 @@ let timer: ReturnType<typeof setTimeout>;
 function BoardSearch() {
   const { boardData } = useBase();
   const [searchText, setsearchText] = useState('');
-  const [searchItem, setSearchItem] = useState<IBoardSearchList[]>([]);
+  const [searchItems, setSearchItems] = useState<JSX.Element[]>([]);
 
   const handleInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -117,71 +138,78 @@ function BoardSearch() {
 
   useEffect(() => {
     if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      const searchList = allBoardList.filter(
+        (board) => board.content?.includes(searchText) || board.title?.includes(searchText),
+      );
 
-    if (searchText.length === 0) setSearchItem([]);
-    else {
-      timer = setTimeout(() => {
-        setSearchItem(
-          allBoardList.filter((board) => board.content?.includes(searchText) || board.title?.includes(searchText)),
-        );
-      }, 200);
-    }
-  }, [searchText, allBoardList]);
+      let items = [<SearchListItem>Note를 찾을수 없습니다.</SearchListItem>];
+      if (searchList.length > 0) {
+        items = searchList.map((item) => {
+          const { title, content } = item;
+          const lowerTitle = title.toLowerCase();
+          const lowerContent = content.toLowerCase();
+          const lowerSearchText = searchText.toLowerCase();
+
+          const isSameTitle = lowerTitle.includes(lowerSearchText);
+          const isSameContent = lowerContent.includes(lowerSearchText);
+
+          let titleElem = <p>{title}</p>;
+          let contentElem = <p>{content}</p>;
+
+          if (isSameTitle) {
+            const sIdx = lowerTitle.indexOf(lowerSearchText);
+            const eIdx = sIdx + searchText.length;
+
+            const startText = title.slice(0, sIdx);
+            const middleText = title.slice(sIdx, eIdx);
+            const endText = title.slice(eIdx, title.length);
+
+            titleElem = (
+              <p>
+                {startText}
+                <span>{middleText}</span>
+                {endText}
+              </p>
+            );
+          }
+
+          if (isSameContent) {
+            const sIdx = lowerContent.indexOf(searchText);
+            const eIdx = sIdx + searchText.length;
+
+            const startText = content.slice(sIdx - 30 < 0 ? 0 : sIdx - 30, sIdx);
+            const middleText = content.slice(sIdx, eIdx);
+            const endText = content.slice(eIdx, eIdx + 300);
+
+            contentElem = (
+              <p>
+                {startText}
+                <span>{middleText}</span>
+                {endText}
+              </p>
+            );
+          }
+
+          return (
+            <SearchListItem key={item.fileName}>
+              <Link to={`${URL_PATH}${item.menu}/${item.fileName}`}>
+                {titleElem}
+                {contentElem}
+              </Link>
+            </SearchListItem>
+          );
+        });
+      }
+
+      setSearchItems(items);
+    }, 200);
+  }, [searchText, setSearchItems, allBoardList]);
 
   return (
     <SearchBox isActive={searchText.length > 0}>
       <input type='text' placeholder='Quick Search...' onInput={handleInput} value={searchText} />
-      <SearchListBox hidden={searchText.length === 0}>
-        {searchItem.length > 0 ? (
-          searchItem.map((item) => {
-            const { title, content } = item;
-            const isSameTitle = title?.includes(searchText);
-            const isSameContent = content?.includes(searchText);
-
-            let titleElem = <p>{title}</p>;
-            let contentElem = <p>{content}</p>;
-
-            if (isSameTitle) {
-              const [start, end] = title?.split(searchText);
-
-              titleElem = (
-                <p>
-                  {start}
-                  <span>{searchText}</span>
-                  {end}
-                </p>
-              );
-            }
-
-            if (isSameContent) {
-              const sIdx = content.indexOf(searchText);
-              const eIdx = sIdx + searchText.length;
-
-              const startText = content.slice(sIdx - 30 < 0 ? 0 : sIdx - 30, sIdx);
-              const endText = content.slice(eIdx, eIdx + 300);
-
-              contentElem = (
-                <p>
-                  {startText}
-                  <span>{searchText}</span>
-                  {endText}
-                </p>
-              );
-            }
-
-            return (
-              <SearchListItem key={item.fileName}>
-                <Link to={`${URL_PATH}${item.menu}/${item.fileName}`}>
-                  {titleElem}
-                  {contentElem}
-                </Link>
-              </SearchListItem>
-            );
-          })
-        ) : (
-          <SearchListItem>Note를 찾을수 없습니다.</SearchListItem>
-        )}
-      </SearchListBox>
+      <SearchListBox hidden={searchText.length === 0}>{searchItems}</SearchListBox>
       <Overlay hidden={searchText.length === 0} />
     </SearchBox>
   );

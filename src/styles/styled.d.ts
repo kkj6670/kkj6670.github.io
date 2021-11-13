@@ -2,6 +2,7 @@ import 'styled-components';
 
 interface IColor {
   darkGray: string;
+  darkGray2: string;
   gray: string;
   lightGray: string;
 }
@@ -16,6 +17,7 @@ declare module 'styled-components' {
     name: string;
     bgColor: string;
     pointBgColor: string;
+    pointBgHoverColor: string;
     textColor: string;
     pointColor: string;
     color: IColor;

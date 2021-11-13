@@ -8,12 +8,13 @@ export function mdToPlainText(
   text: string,
   options: IMdToPlainTextOptions = { whiteSpace: true, code: true, onlyWord: true },
 ): string {
+  const header = /[#]/g;
   const whiteSpace = /[\s]/g;
   const codeStart = /(```\w+)+/g;
   const codeEnd = /(```)/g;
   const onlyWord = /([^\w가-힣ㄱ-ㅎㅏ-ㅣ])/g;
 
-  let plainText = text;
+  let plainText = text.replace(header, '');
   if (options.whiteSpace) plainText = plainText.replace(whiteSpace, '');
   if (options.code) {
     plainText = plainText.replace(codeStart, '');
