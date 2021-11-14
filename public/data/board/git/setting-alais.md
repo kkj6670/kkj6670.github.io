@@ -1,5 +1,5 @@
 <!--
-    BOARD_TITLE: Git 설정관련 명령어 모음
+    BOARD_TITLE: Git Alias 설정
     BOARD_DATE: 2021-11-06 16:52
     BOARD_TAG: ["설정", "단축키", "기본세팅"]
 -->
