@@ -80,13 +80,13 @@ const MenuList = styled.li<IMenuList>`
 
     ${({ theme, selected }) => `
 	    color: ${theme.textColor};
-	    background-color: ${selected ? 'rgb(71, 76, 80)' : 'transparent'};
+	    background-color: ${selected ? theme.pointBgHoverColor : 'transparent'};
 	  `};
 
     transition: all 0.125s ease-in 0s;
 
     &:hover {
-      background-color: ${({ selected }) => (selected ? 'rgb(69,75,77)' : 'rgb(71, 76, 80)')};
+      background-color: ${({ theme }) => theme.pointBgHoverColor};
       > svg {
         transform: scale(1.2);
       }
