@@ -1,6 +1,6 @@
 <!--
     BOARD_TITLE: Git 개행문자 설정
-    BOARD_DATE: 2021-11-14 16: 45
+    BOARD_DATE: 2021-11-14 16:45
     BOARD_TAG: ["개행", "설정", "기본세팅"]
 -->
 
