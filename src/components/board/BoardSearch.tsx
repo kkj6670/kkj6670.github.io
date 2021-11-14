@@ -65,37 +65,37 @@ const SearchListItem = styled.li`
   width: 100%;
   border-top: 1px solid ${({ theme }) => theme.textColor};
   padding: 15px;
-  margin-top: 5px;
+  color: ${({ theme }) => theme.textColor};
 
   :first-child {
     border-top: 0 none;
-    margin-top: 0;
   }
 
   :hover {
     background-color: ${({ theme }) => theme.pointBgHoverColor};
   }
 
-  ${({ theme }) => `
-    color: ${theme.textColor};
-    > a {
-      display: block;
-      color: ${theme.textColor};
+  a {
+    display: block;
+    color: ${({ theme }) => theme.textColor};
 
-      > p:first-child {
-        font-size: 2.5rem;
-        margin-bottom: 5px;
-      }
-
-      > p:last-child {
-        padding-left: 10px;
-      }
-
-      span {
-        color: ${theme.pointColor};
-      }
+    span {
+      color: ${({ theme }) => theme.pointColor};
     }
-  `};
+
+    > p {
+      margin-bottom: 8px;
+    }
+
+    > p:first-child {
+      font-size: 2.2rem;
+    }
+
+    > p:last-child {
+      margin-bottom: 0;
+      padding-left: 10px;
+    }
+  }
 `;
 
 const Overlay = styled.div`
@@ -140,9 +140,9 @@ function BoardSearch() {
     if (timer) clearTimeout(timer);
 
     timer = setTimeout(() => {
-      let items = [<SearchListItem>Note를 찾을수 없습니다.</SearchListItem>];
+      let items = [<SearchListItem key='empty'>Note를 찾을수 없습니다.</SearchListItem>];
 
-      if (searchText.length > 0) {
+      if (searchText.replace(/\s/g, '').length > 0) {
         const isTagSearch = searchText.indexOf('#') === 0;
 
         let searchList: IBoardSearchList[] = [];
@@ -155,7 +155,6 @@ function BoardSearch() {
         }
 
         if (searchList.length > 0) {
-          console.log('??');
           items = searchList.map((item) => {
             const { title, content } = item;
             const lowerTitle = title.toLowerCase();
@@ -191,7 +190,7 @@ function BoardSearch() {
 
               const startText = content.slice(sIdx - 30 < 0 ? 0 : sIdx - 30, sIdx);
               const middleText = content.slice(sIdx, eIdx);
-              const endText = content.slice(eIdx, eIdx + 300);
+              const endText = content.slice(eIdx, sIdx + 400);
 
               contentElem = (
                 <p>
@@ -206,6 +205,7 @@ function BoardSearch() {
               <SearchListItem key={item.fileName}>
                 <Link to={`${URL_PATH}${item.menu}/${item.fileName}`}>
                   {titleElem}
+                  <p>{item.date}</p>
                   {contentElem}
                 </Link>
               </SearchListItem>
