@@ -44,6 +44,9 @@ const Header = styled.header`
   ::-webkit-scrollbar-track {
     background-color: ${({ theme }) => theme.scrollColor.track};
   }
+
+  font-family: 'IM_Hyemin-Regular';
+  font-weight: bold;
 `;
 
 const HeaderTitle = styled.h1`
@@ -77,6 +80,9 @@ const MenuList = styled.li<IMenuList>`
     justify-content: center;
 
     position: relative;
+
+    font-family: 'IM_Hyemin-Regular';
+    font-weight: bold;
 
     ${({ theme, selected }) => `
 	    color: ${theme.textColor};

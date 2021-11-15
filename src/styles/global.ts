@@ -7,6 +7,49 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
+
+  @font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 100;
+    src: url('./NotoSansKR-Thin.otf') format('otf');
+  }
+
+  @font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 300;
+    src: url('./NotoSansKR-Light.otf') format('otf');
+  }
+
+  @font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./NotoSansKR-Regular.otf') format('otf');
+  }
+
+  @font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./NotoSansKR-Medium.otf') format('otf');
+  }
+
+  @font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./NotoSansKR-Bold.otf') format('otf');
+  }
+  
+  @font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 900;
+    src: url('./NotoSansKR-Black.otf') format('otf');
+  } 
+
   
   * {
     box-sizing: border-box;
@@ -27,13 +70,13 @@ const GlobalStyle = createGlobalStyle`
   
   body {
 	  font-size: 1.6rem;
-	  font-family: 'IM_Hyemin-Regular', sans-serif;
-    font-weight: bold;
+	  font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
   }
   
   input, button {
-    font-family: 'IM_Hyemin-Regular', sans-serif;
-    font-weight: bold;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
   }
   
   li {
@@ -41,6 +84,8 @@ const GlobalStyle = createGlobalStyle`
   }
   
   a {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
     text-decoration: none;
   }
   
