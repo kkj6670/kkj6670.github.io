@@ -1,7 +1,7 @@
 <!--
-    BOARD_TITLE: Git 개행문자 설정
+    BOARD_TITLE: Git 개행문자(crlf, lf) 설정
     BOARD_DATE: 2021-11-14 16:45
-    BOARD_TAG: ["개행", "설정", "기본세팅"]
+    BOARD_TAG: ["crlf", "개행", "설정", "기본세팅"]
 -->
 
 ## OS별 Line Break
@@ -9,9 +9,9 @@ windows : CRLF / CR(Carriage-Return, \r) + LF(Line Feed, \n)
 unix, mac : LF(Line Feed, \n)
 
 ## Line Break 설정 (core.eol)
-core.eol = native - 기본 OS의 설정으로 사용
-core.eol = crlf - CRLF로 사용
-core.eol = lf - LF로 사용
+- core.eol = native - 기본 OS의 설정으로 사용
+- core.eol = crlf - CRLF로 사용
+- core.eol = lf - LF로 사용
   
 ```text
 // 설정
@@ -22,11 +22,11 @@ git config --global --list|grep core.eol
 ```
 
 ## Auto CRLF 처리 (core.autocrlf)
-core.autocrlf = false - 파일 그대로 check in, check out  
+- core.autocrlf = false - 파일 그대로 check in, check out  
 
-core.autocrlf = true - CRLF -> LF로 변경  
+- core.autocrlf = true - CRLF -> LF로 변경  
 
-core.autocrlf = input - LF로 사용
+- core.autocrlf = input - LF로 사용
 
 ```text
 // 설정
