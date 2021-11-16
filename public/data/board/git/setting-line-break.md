@@ -9,9 +9,9 @@ windows : CRLF / CR(Carriage-Return, \r) + LF(Line Feed, \n)
 unix, mac : LF(Line Feed, \n)
 
 ## Line Break 설정 (core.eol)
-core.eol = native - 기본 OS의 설정으로 사용
-core.eol = crlf - CRLF로 사용
-core.eol = lf - LF로 사용
+- core.eol = native - 기본 OS의 설정으로 사용
+- core.eol = crlf - CRLF로 사용
+- core.eol = lf - LF로 사용
   
 ```text
 // 설정
@@ -22,11 +22,11 @@ git config --global --list|grep core.eol
 ```
 
 ## Auto CRLF 처리 (core.autocrlf)
-core.autocrlf = false - 파일 그대로 check in, check out  
+- core.autocrlf = false - 파일 그대로 check in, check out  
 
-core.autocrlf = true - CRLF -> LF로 변경  
+- core.autocrlf = true - CRLF -> LF로 변경  
 
-core.autocrlf = input - LF로 사용
+- core.autocrlf = input - LF로 사용
 
 ```text
 // 설정

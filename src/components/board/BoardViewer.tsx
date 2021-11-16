@@ -34,10 +34,6 @@ const ContentBox = styled.article`
     }
   }
 
-  h3 {
-    margin-top: 2rem;
-  }
-
   h1 {
     font-size: 4rem;
   }
@@ -48,9 +44,13 @@ const ContentBox = styled.article`
 
   h3 {
     font-size: 3rem;
+    margin-top: 2rem;
+    font-weight: 500;
   }
 
   code {
+    font-family: 'NOTO SANS KR' sans-serif;
+
     ::-webkit-scrollbar {
       width: 15px;
       height: 15px;
@@ -66,6 +66,11 @@ const ContentBox = styled.article`
     ::-webkit-scrollbar-track {
       background-color: ${({ theme }) => theme.scrollColor.track};
     }
+  }
+
+  li {
+    list-style: disc;
+    margin-left: 3rem;
   }
 `;
 

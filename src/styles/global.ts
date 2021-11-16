@@ -71,12 +71,12 @@ const GlobalStyle = createGlobalStyle`
   body {
 	  font-size: 1.6rem;
 	  font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 500;
+    font-weight: 100;
   }
   
   input, button {
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 500;
+    font-weight: 100;
   }
   
   li {
@@ -85,7 +85,7 @@ const GlobalStyle = createGlobalStyle`
   
   a {
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 500;
+    font-weight: 100;
     text-decoration: none;
   }
   
