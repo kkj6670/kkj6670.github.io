@@ -30,27 +30,24 @@ folders.forEach((name) => {
   });
 
   if (files.length > 0) {
-    files.sort((a, b) => b.date - a.date);
+    files.sort((a, b) => a.date - b.date);
     files.forEach((data) => {
       boardData[name][data.fileName] = data;
     });
   }
 });
 
-console.log('>>> write boardData');
+console.log('>>> write boardData - Start');
 fs.open(BOARD_JSON_DIR, 'w', (openErr, fd) => {
   if (openErr) throw openErr;
-  console.log('>>>> 1. file open');
 
   const buf = Buffer.from(JSON.stringify(boardData));
   fs.write(fd, buf, 0, buf.length, null, (writeErr) => {
     if (writeErr) throw writeErr;
 
-    console.log('>>>>> 2. file write');
     fs.close(fd, (closeErr) => {
       if (closeErr) throw closeErr;
-
-      console.log('>>>>>> 3. file closed');
     });
   });
 });
+console.log('>>> write boardData - End');
