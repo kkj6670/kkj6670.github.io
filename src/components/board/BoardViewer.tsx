@@ -26,12 +26,16 @@ const ContentBox = styled.article`
   h1,
   h2,
   h3 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 4rem;
+    margin-bottom: 1.2rem;
 
     :first-child {
       margin-top: 0;
     }
+  }
+
+  h3 {
+    margin-top: 2rem;
   }
 
   h1 {

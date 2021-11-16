@@ -81,6 +81,7 @@ const SearchListItem = styled.li`
 
     span {
       color: ${({ theme }) => theme.pointColor};
+      text-decoration: underline;
     }
 
     > p {
