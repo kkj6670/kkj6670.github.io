@@ -68,7 +68,7 @@
     "predeploy": "yarn build & yarn postBuild",
     "deploy": "gh-pages -d dist",
     "deploy:build": "yarn predeploy & yarn deploy",
-    "postBuild": "yarn react-snap & cp dist/index.html dist/404.html",
+    "postBuild": "cp dist/index.html dist/404.html & yarn react-snap",
     "prepare": "husky install",
     "setBoardData": "node scripts/setBoardData.mjs"
   },
