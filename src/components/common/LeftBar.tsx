@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useHistory, Link, useLocation } from 'react-router-dom';
 import { AiFillGithub } from 'react-icons/ai';
@@ -51,8 +51,10 @@ const Header = styled.header`
 
 const HeaderTitle = styled.h1`
   text-align: center;
-  font-size: 3.5rem;
+  font-size: 3rem;
   margin-bottom: 1.5rem;
+  background: url(/react-blog/images/icon/note.svg) no-repeat 0 50%;
+  background-size: 30px;
 `;
 
 const MenuBox = styled.ul`
@@ -100,7 +102,7 @@ const MenuList = styled.li<IMenuList>`
     }
 
     > svg {
-      left: 15px;
+      left: 10px;
       position: absolute;
       transition: all 0.125s ease-in 0s;
     }
@@ -136,7 +138,7 @@ function LeftBar() {
   return (
     <Header>
       <div>
-        <HeaderTitle>Study Note</HeaderTitle>
+        <HeaderTitle>K Note</HeaderTitle>
         <BoardSearch />
       </div>
       <nav>

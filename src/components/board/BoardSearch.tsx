@@ -33,7 +33,7 @@ const SearchBox = styled.div<ISearchBox>`
   }
 `;
 
-const SearchListBox = styled.ul`
+const SearchListBox = styled.div`
   position: fixed;
   width: calc(100% - 280px);
   border-radius: 7px;
@@ -61,7 +61,7 @@ const SearchListBox = styled.ul`
   }
 `;
 
-const SearchListItem = styled.li`
+const SearchListItem = styled.article`
   width: 100%;
   border-top: 1px solid ${({ theme }) => theme.textColor};
   padding: 15px;
@@ -86,10 +86,12 @@ const SearchListItem = styled.li`
 
     > p {
       margin-bottom: 8px;
+      font-weight: 400;
     }
 
     > p:first-child {
       font-size: 2.2rem;
+      font-weight: 700;
     }
 
     > p:last-child {
@@ -204,7 +206,7 @@ function BoardSearch() {
 
             return (
               <SearchListItem key={item.fileName}>
-                <Link to={`${URL_PATH}${item.menu}/${item.fileName}`}>
+                <Link to={`${URL_PATH}${item.menu}/${item.fileName}`} title={`${item.title} 열기`}>
                   {titleElem}
                   <p>{item.date}</p>
                   {contentElem}

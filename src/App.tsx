@@ -18,7 +18,7 @@ const Wrap = styled.div`
 `;
 
 const Main = styled.main`
-  width: calc(100% - 250px);
+  width: 100%;
   height: 100%;
   padding: 15px;
   overflow-y: auto;

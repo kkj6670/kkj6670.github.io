@@ -13,11 +13,12 @@ import { IParamTypes, IBoardTocData } from '../../types/common';
 import { useBase } from '../../store/Base';
 import { mdToPlainText } from '../../lib/utils';
 
-const ContentBox = styled.article`
+const ContentBox = styled.section`
   width: 100%;
   padding-right: 200px;
   color: ${({ theme }) => theme.textColor};
   font-size: 2rem;
+  font-weight: 100;
 
   pre {
     margin: 2rem 0;
