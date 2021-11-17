@@ -31,7 +31,7 @@ folders.forEach((name) => {
   });
 
   if (files.length > 0) {
-    files.sort((a, b) => a.date - b.date);
+    files.sort((a, b) => new Date(b.date) - new Date(a.date));
     files.forEach((data) => {
       boardData[name][data.fileName] = data;
     });
