@@ -3,7 +3,6 @@
     BOARD_DATE: 2021-11-14 16:45
     BOARD_TAG: ["crlf", "개행", "설정", "기본세팅"]
 -->
-
 ## OS별 Line Break
 windows : CRLF / CR(Carriage-Return, \r) + LF(Line Feed, \n)
 unix, mac : LF(Line Feed, \n)
