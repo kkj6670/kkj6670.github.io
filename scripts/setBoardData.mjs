@@ -14,9 +14,8 @@ folders.forEach((name) => {
 
     const md = fs.readFileSync(fileDir, 'utf8');
 
-    // FIXME :: 1. 정규표현식 +가 안먹어서 다른방법 필요
-    // FIXME :: 2. MD파일 CRLF일때 정규표현식 안먹음
-    const commentRegExp = /(<!--)(.*\s.*\s.*\s.*\s)(-->\n)/g;
+    // TODO :: 정규표현식 연구
+    const commentRegExp = /(<!--)([\r\n]+)(.*)([\r\n]+)(.*)([\r\n]+)(.*)([\r\n]+)(-->)([\r\n]+)/g;
     const content = md.replace(commentRegExp, '');
 
     const info = md.match(/(BOARD_)(.*)(:\s)(.*)/g);
