@@ -6,6 +6,8 @@ import { SiJavascript, SiTypescript, SiReact } from 'react-icons/si';
 import { FaHeadSideVirus } from 'react-icons/fa';
 import { BsFillChatSquareDotsFill } from 'react-icons/bs';
 
+import { useBase } from '../../store/Base';
+
 import BoardSearch from '../board/BoardSearch';
 
 import menuData from '../../../public/data/menu.json';
@@ -19,7 +21,7 @@ const Header = styled.header`
   flex-direction: column;
   width: 250px;
   height: 100%;
-  padding: 2.5% 1%;
+  padding: 40px 20px;
   overflow-y: auto;
 
   ${({ theme }) => `
@@ -74,15 +76,13 @@ const MenuList = styled.li<IMenuList>`
 
   & > a {
     display: flex;
+    position: relative;
     width: 100%;
     height: 100%;
     cursor: pointer;
-    font-size: 1.8rem;
+    font-size: 1.65rem;
     align-items: center;
     justify-content: center;
-
-    position: relative;
-
     font-family: 'IM_Hyemin-Regular';
     font-weight: bold;
 
@@ -95,16 +95,20 @@ const MenuList = styled.li<IMenuList>`
 
     &:hover {
       background-color: ${({ theme }) => theme.pointBgHoverColor};
-      > svg {
-        transform: scale(1.2);
-      }
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
 
     > svg {
-      left: 10px;
-      position: absolute;
       transition: all 0.125s ease-in 0s;
+      position: absolute;
+      left: 5px;
+    }
+
+    > span {
+      font-size: 1.4rem;
+      font-weight: 300;
+      position: absolute;
+      right: 5px;
     }
   }
 `;
@@ -124,6 +128,7 @@ const LinkBox = styled.div`
 function LeftBar() {
   const history = useHistory();
   const location = useLocation();
+  const { boardData } = useBase();
 
   const selectedMenu = useMemo(() => {
     const menu = location.pathname.replace('/react-blog/', '').split('/')[0];
@@ -146,13 +151,14 @@ function LeftBar() {
           {menuData.map((item) => (
             <MenuList key={item.id} selected={selectedMenu === item.id}>
               <Link to={`${URL_PATH}${item.id}`} title={`${item.id} menu open`}>
-                {item.id === 'javaScript' && <SiJavascript size='25px' />}
-                {item.id === 'typeScript' && <SiTypescript size='25px' />}
-                {item.id === 'react' && <SiReact size='25px' />}
-                {item.id === 'git' && <AiFillGithub size='25px' />}
-                {item.id === 'algorism' && <FaHeadSideVirus size='25px' />}
-                {item.id === 'other' && <BsFillChatSquareDotsFill size='25px' />}
+                {item.id === 'javaScript' && <SiJavascript size='22px' />}
+                {item.id === 'typeScript' && <SiTypescript size='22px' />}
+                {item.id === 'react' && <SiReact size='22px' />}
+                {item.id === 'git' && <AiFillGithub size='22px' />}
+                {item.id === 'algorism' && <FaHeadSideVirus size='22px' />}
+                {item.id === 'other' && <BsFillChatSquareDotsFill size='22px' />}
                 {item.name}
+                <span>({Object.keys(boardData[item.id] || {})?.length})</span>
               </Link>
             </MenuList>
           ))}
