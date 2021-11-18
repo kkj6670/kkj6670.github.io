@@ -34,7 +34,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|jpeg|svg)$/,
-        use: ['file-loader'],
+        use: ['url-loader'],
       },
       {
         test: /\.css$/,
