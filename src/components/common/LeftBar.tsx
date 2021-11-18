@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 import { useHistory, Link, useLocation } from 'react-router-dom';
 import { AiFillGithub } from 'react-icons/ai';
@@ -6,14 +6,24 @@ import { SiJavascript, SiTypescript, SiReact } from 'react-icons/si';
 import { FaHeadSideVirus } from 'react-icons/fa';
 import { BsFillChatSquareDotsFill } from 'react-icons/bs';
 
-import { useBase } from '../../store/Base';
-
-import BoardSearch from '../board/BoardSearch';
+import NoteIcon from '../../../public/images/icon/note.svg';
+import MoonIcon from '../../../public/images/icon/moon.svg';
+import SunIcon from '../../../public/images/icon/sun.svg';
 
 import menuData from '../../../public/data/menu.json';
 
+import { useBase, useBaseUpdate } from '../../store/Base';
+
+import BoardSearch from '../board/BoardSearch';
+
+console.log(SunIcon, MoonIcon);
+
 interface IMenuList {
   selected: boolean;
+}
+
+interface IBtnThemeChangeProps {
+  themeMode: string;
 }
 
 const Header = styled.header`
@@ -55,7 +65,7 @@ const HeaderTitle = styled.h1`
   text-align: center;
   font-size: 3rem;
   margin-bottom: 1.5rem;
-  background: url(/react-blog/images/icon/note.svg) no-repeat 0 50%;
+  background: url(${NoteIcon}) no-repeat 0 50%;
   background-size: 30px;
 `;
 
@@ -106,29 +116,46 @@ const MenuList = styled.li<IMenuList>`
 
     > span {
       font-size: 1.4rem;
-      font-weight: 300;
+      font-weight: 600;
       position: absolute;
       right: 5px;
+      color: ${({ theme }) => theme.color.darkGray3};
     }
   }
 `;
 
-const LinkBox = styled.div`
+const FooterBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  > a {
-    display: block;
-    width: 40px;
-    height: 40px;
-    color: #000;
+  justify-content: space-evenly;
+`;
+
+const GitHubLink = styled.a`
+  display: block;
+  width: 40px;
+  height: 40px;
+  color: #000;
+`;
+
+const BtnThemeChange = styled.button<IBtnThemeChangeProps>`
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  background: url(${({ themeMode }) => (themeMode === 'dark' ? SunIcon : MoonIcon)}) no-repeat center;
+  background-size: 90%;
+  :hover {
+    background-size: 100%;
   }
+
+  transition: all 0.125s ease-in 0s;
 `;
 
 function LeftBar() {
   const history = useHistory();
   const location = useLocation();
-  const { boardData } = useBase();
+  const { boardData, theme } = useBase();
+  const baseUpdate = useBaseUpdate();
 
   const selectedMenu = useMemo(() => {
     const menu = location.pathname.replace('/react-blog/', '').split('/')[0];
@@ -139,6 +166,11 @@ function LeftBar() {
 
     return menu;
   }, [location, history]);
+
+  const handleThemeChnage = useCallback(() => {
+    const value = theme === 'dark' ? 'white' : 'dark';
+    baseUpdate({ type: 'THEME_CHANGE', value });
+  }, [theme, baseUpdate]);
 
   return (
     <Header>
@@ -164,11 +196,12 @@ function LeftBar() {
           ))}
         </MenuBox>
       </nav>
-      <LinkBox>
-        <a href='https://github.com/kkj6670' target='_blank' title='kkj6670GitHubLinkOpen' rel='noreferrer'>
+      <FooterBox>
+        <BtnThemeChange title='theme change button' themeMode={theme} onClick={handleThemeChnage} />
+        <GitHubLink href='https://github.com/kkj6670' target='_blank' title='kkj6670GitHubLinkOpen' rel='noreferrer'>
           <AiFillGithub size='100%' />
-        </a>
-      </LinkBox>
+        </GitHubLink>
+      </FooterBox>
     </Header>
   );
 }

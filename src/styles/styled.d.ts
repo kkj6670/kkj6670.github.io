@@ -3,6 +3,7 @@ import 'styled-components';
 interface IColor {
   darkGray: string;
   darkGray2: string;
+  darkGray3: string;
   gray: string;
   lightGray: string;
 }

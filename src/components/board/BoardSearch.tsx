@@ -29,7 +29,7 @@ const SearchBox = styled.div<ISearchBox>`
     background-color: transparent;
     border-bottom: 1px solid ${({ theme, isActive }) => (isActive ? theme.pointColor : theme.textColor)};
     color: ${({ theme }) => theme.textColor};
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
   }
 `;
 

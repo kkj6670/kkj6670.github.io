@@ -51,6 +51,10 @@ const ContentBox = styled.section`
 
   code {
     font-family: 'NOTO SANS KR' sans-serif;
+    border-radius: 8px;
+
+    color: ${({ theme }) => theme.textColor};
+    background-color: ${({ theme }) => theme.pointBgColor};
 
     ::-webkit-scrollbar {
       width: 15px;

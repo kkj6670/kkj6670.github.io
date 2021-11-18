@@ -78,6 +78,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 400;
   }
+
+  a, button {
+    cursor: pointer;
+  }
   
   li {
 	  list-style: none;
