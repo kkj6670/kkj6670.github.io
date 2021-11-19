@@ -62,7 +62,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve",
-    "build": "rm -rf ./dist & yarn setBoardData & yarn lint & cross-env NODE_ENV=production webpack --progress --mode production",
+    "build": "rm -rf ./dist & yarn setBoardData & yarn lint:fix & cross-env NODE_ENV=production webpack --progress --mode production",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src/**/*.{ts,tsx,js,jsx,mjs}",
     "predeploy": "yarn build & yarn postBuild",
