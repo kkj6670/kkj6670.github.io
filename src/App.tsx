@@ -7,6 +7,7 @@ import { whiteTheme, darkTheme } from './styles/theme';
 import { useBase } from './store/Base';
 
 import LeftBar from './components/common/LeftBar';
+import ThemeChangeButton from './components/common/ThemeChangeButton';
 import BoardList from './components/board/BoardList';
 import BoardViewer from './components/board/BoardViewer';
 
@@ -58,6 +59,7 @@ function App() {
               <Route path={`${URL_PATH}:menu/:fileName`} component={BoardViewer} exact />
             </Switch>
           </Main>
+          <ThemeChangeButton />
         </Router>
       </Wrap>
     </ThemeProvider>

@@ -27,8 +27,9 @@ interface IBaseAction {
   value: string;
 }
 
+const blogTheme = localStorage.getItem('blogTheme');
 const INITIAL_STATE: IBaseState = {
-  theme: 'dark',
+  theme: blogTheme || 'dark',
   boardData,
 };
 
@@ -47,6 +48,7 @@ function BaseReducer(state: IBaseState, action: IBaseAction) {
   switch (type) {
     case 'THEME_CHANGE': {
       nextState.theme = value;
+      localStorage.setItem('blogTheme', value);
       return nextState;
     }
     default: {
