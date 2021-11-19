@@ -6,15 +6,11 @@ import { IBoardDataDetail, useBase } from '../../store/Base';
 
 import { mdToPlainText } from '../../lib/utils';
 
-interface ISearchBox {
-  isActive: boolean;
-}
-
 interface IBoardSearchList extends IBoardDataDetail {
   menu: string;
 }
 
-const SearchBox = styled.div<ISearchBox>`
+const SearchBox = styled.div`
   width: 100%;
   height: 25px;
   margin-bottom: 10px;
@@ -26,8 +22,9 @@ const SearchBox = styled.div<ISearchBox>`
     height: 100%;
     padding: 2px 5px;
     border: 0 none;
-    background-color: transparent;
-    border-bottom: 1px solid ${({ theme, isActive }) => (isActive ? theme.pointColor : theme.textColor)};
+    background-color: ${({ theme }) => theme.pointBgColor};
+    border: 1px solid ${({ theme }) => theme.textColor};
+    border-radius: 5px;
     color: ${({ theme }) => theme.textColor};
     letter-spacing: 1.5px;
   }
@@ -222,7 +219,7 @@ function BoardSearch() {
   }, [searchText, setSearchItems, allBoardList]);
 
   return (
-    <SearchBox isActive={searchText.length > 0}>
+    <SearchBox>
       <input type='text' placeholder='Quick Search...' onInput={handleInput} value={searchText} />
       <SearchListBox hidden={searchText.length === 0}>{searchItems}</SearchListBox>
       <Overlay hidden={searchText.length === 0} />
