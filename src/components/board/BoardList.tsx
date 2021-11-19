@@ -53,6 +53,7 @@ const TagItem = styled.span`
   display: inline-flex;
   padding: 2px 5px;
   border-radius: 5px;
+  color: #fff;
   background-color: ${({ theme }) => theme.pointColor};
   margin-left: 10px;
   margin-top: 10px;

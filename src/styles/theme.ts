@@ -1,7 +1,7 @@
 import { DefaultTheme } from 'styled-components';
 
 export const color = {
-  darkGray: '#373C3FFF',
+  darkGray: '#373C3F',
   darkGray2: '#474C50',
   darkGray3: '#868E96',
   gray: '#A1A1A1',
@@ -18,7 +18,7 @@ export const whiteTheme: DefaultTheme = {
   bgColor: '#FFF',
   pointBgColor: color.lightGray,
   pointBgHoverColor: color.lightGray2,
-  textColor: '#3A3A3A',
+  textColor: '#24292f',
   pointColor: '#ff8080',
   scrollColor: {
     thumb: '#D3D1CB',
