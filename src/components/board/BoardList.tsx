@@ -23,8 +23,9 @@ const ListBox = styled.section`
 
 const ItemBox = styled.article`
   padding: 1%;
-  border: 1px solid ${({ theme }) => theme.textColor};
+  border: 2px solid ${({ theme }) => theme.pointBgHoverColor};
   border-radius: 5px;
+  box-shadow: ${({ theme }) => theme.scrollColor.track} 0px 4px 16px 0px;
 
   > a {
     display: block;

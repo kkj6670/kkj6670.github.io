@@ -22,8 +22,7 @@ const TocBox = styled.ul`
   top: 50px;
   max-height: calc(100vh - 100px);
   overflow-y: auto;
-  padding-left: 20px;
-  padding-right: 15px;
+  padding: 0 15px;
   border-left: 3px solid #eee;
   border-top-color: transparent;
 

@@ -21,8 +21,8 @@ export const whiteTheme: DefaultTheme = {
   textColor: '#3A3A3A',
   pointColor: '#ff8080',
   scrollColor: {
-    thumb: '#474c50',
-    track: 'rgba(202, 204, 206, 0.04)',
+    thumb: '#D3D1CB',
+    track: '#EDECE9',
   },
 };
 
