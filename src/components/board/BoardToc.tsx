@@ -16,13 +16,13 @@ interface ITocItem {
 }
 
 const TocBox = styled.ul`
-  width: 180px;
+  width: 185px;
   position: fixed;
   right: 20px;
   top: 50px;
   max-height: calc(100vh - 100px);
   overflow-y: auto;
-  padding: 0 15px;
+  padding: 0 15px 5px 20px;
   border-left: 3px solid #eee;
   border-top-color: transparent;
 
