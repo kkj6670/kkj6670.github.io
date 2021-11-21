@@ -133,12 +133,13 @@ function LeftBar() {
   const history = useHistory();
   const location = useLocation();
   const { boardData } = useBase();
+  console.log(boardData);
 
   const selectedMenu = useMemo(() => {
     const menu = location.pathname.replace('/react-blog/', '').split('/')[0];
 
     if (menu.length === 0) {
-      history.push('/react-blog/javaScript');
+      history.push('/react-blog/javascript');
     }
 
     return menu;
@@ -155,8 +156,8 @@ function LeftBar() {
           {menuData.map((item) => (
             <MenuList key={item.id} selected={selectedMenu === item.id}>
               <Link to={`${URL_PATH}${item.id}`} title={`${item.id} menu open`}>
-                {item.id === 'javaScript' && <SiJavascript size='22px' />}
-                {item.id === 'typeScript' && <SiTypescript size='22px' />}
+                {item.id === 'javascript' && <SiJavascript size='22px' />}
+                {item.id === 'typescript' && <SiTypescript size='22px' />}
                 {item.id === 'react' && <SiReact size='22px' />}
                 {item.id === 'git' && <AiFillGithub size='22px' />}
                 {item.id === 'algorism' && <FaHeadSideVirus size='22px' />}

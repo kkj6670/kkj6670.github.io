@@ -76,6 +76,15 @@ const ContentBox = styled.section`
   li {
     list-style: disc;
     margin-left: 3rem;
+
+    li {
+      list-style: unset;
+    }
+  }
+
+  img {
+    max-width: 80%;
+    background-color: #fff;
   }
 `;
 
@@ -95,6 +104,8 @@ marked.setOptions({
   xhtml: false,
 });
 
+const IMAGE_PATH_REG_EXP = /(..\/..\/..\/images\/board)/g;
+
 function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
   const { params } = match;
   const contentBox = useRef<HTMLDivElement>(null);
@@ -109,7 +120,8 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
     if (box !== null && content) {
       const markedMd = marked(content);
       const plainText = mdToPlainText(content);
-      box.innerHTML = markedMd;
+
+      box.innerHTML = markedMd.replace(IMAGE_PATH_REG_EXP, `${URL_PATH}images/board`);
 
       const hTags: NodeListOf<HTMLElement> = box.querySelectorAll('h1, h2, h3');
       const tocList: IBoardTocData[] = [];
