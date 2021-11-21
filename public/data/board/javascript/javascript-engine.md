@@ -32,14 +32,14 @@ first();
 스택에 변수를 위한 공간을 할당할 수 없기 때문에, 동적 변수를 런타임 시점에 Heap 공간에 할당
         
 ## Task Queue(Evnet Queue)
-    - 처리해야하는 Task들을 임시로 저장하는 대기 Queue
-    - Task들은 Call Stack이 empty일때, 대기열에 들어온 순서대로 수행
+- 처리해야하는 Task들을 임시로 저장하는 대기 Queue
+- Task들은 Call Stack이 empty일때, 대기열에 들어온 순서대로 수행
     
-    ![taskQueue](../../../images/board/javascript/javascript-engine/javascript-engine-03.png)
+![런타임 동작 gif](../../../images/board/javascript/javascript-engine/javascript-engine-03.png)
     
-    - 비동기로 호출되는 함수들은 Call Stack에 쌓이지 않고 Task Queue에 enQueue처리
-    - 이벤트에 의해 실행되는 함수(핸들러)들이 비동기로 실행됨.
-    - 자바스크립트 엔진이 아닌 Web Api영역에 정의되어 있는 함수들은 비동기로 실행된다.
+- 비동기로 호출되는 함수들은 Call Stack에 쌓이지 않고 Task Queue에 enQueue처리
+- 이벤트에 의해 실행되는 함수(핸들러)들이 비동기로 실행됨.
+- 자바스크립트 엔진이 아닌 Web Api영역에 정의되어 있는 함수들은 비동기로 실행된다.
     
 
 ## 런타임 동작 예제
