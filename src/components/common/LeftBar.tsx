@@ -133,7 +133,6 @@ function LeftBar() {
   const history = useHistory();
   const location = useLocation();
   const { boardData } = useBase();
-  console.log(boardData);
 
   const selectedMenu = useMemo(() => {
     const menu = location.pathname.replace('/react-blog/', '').split('/')[0];

@@ -105,14 +105,17 @@ marked.setOptions({
 });
 
 const IMAGE_PATH_REG_EXP = /(..\/..\/..\/images\/board)/g;
+const IMAGE_TAG_REG_EXP = /(<img )/g;
 
 function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
   const { params } = match;
+  const { boardData } = useBase();
   const contentBox = useRef<HTMLDivElement>(null);
-  const [toc, setToc] = useState<IBoardTocData[]>([]);
   const [metaTitle, setMetaTitle] = useState('');
   const [plainContent, setPlainContent] = useState('');
-  const { boardData } = useBase();
+  const [toc, setToc] = useState<IBoardTocData[]>([]);
+  const [isLoading, setLoading] = useState(true);
+  const [mdHtml, setMdHtml] = useState({ __html: '' });
 
   useEffect(() => {
     const { content, title } = boardData[params.menu][params.fileName];
@@ -121,29 +124,39 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
       const markedMd = marked(content);
       const plainText = mdToPlainText(content);
 
-      box.innerHTML = markedMd.replace(IMAGE_PATH_REG_EXP, `${URL_PATH}images/board`);
-
-      const hTags: NodeListOf<HTMLElement> = box.querySelectorAll('h1, h2, h3');
-      const tocList: IBoardTocData[] = [];
-      hTags.forEach((tag) => {
-        const level = +tag.tagName.replace('H', '');
-        const anchor = tag.id;
-        const text = tag.textContent || '';
-        const { offsetTop } = tag;
-
-        tocList.push({
-          level,
-          anchor,
-          text,
-          offsetTop: offsetTop - 15,
-        });
-      });
-
-      setToc(tocList);
+      setMdHtml({ __html: markedMd.replace(IMAGE_PATH_REG_EXP, `${URL_PATH}images/board`) });
       setMetaTitle(title || '');
       setPlainContent(plainText);
+      setLoading(false);
     }
-  }, [params.menu, params.fileName, setToc, boardData]);
+  }, [params.menu, params.fileName, boardData]);
+
+  useEffect(() => {
+    const box = contentBox.current;
+
+    // FIXME : image loading후 적용할 방법
+    if (!isLoading && box !== null) {
+      setTimeout(() => {
+        const hTags: NodeListOf<HTMLElement> = box.querySelectorAll('h1, h2, h3');
+        const tocList: IBoardTocData[] = [];
+        hTags.forEach((tag) => {
+          const level = +tag.tagName.replace('H', '');
+          const anchor = tag.id;
+          const text = tag.textContent || '';
+          const { offsetTop } = tag;
+
+          tocList.push({
+            level,
+            anchor,
+            text,
+            offsetTop: offsetTop - 15,
+          });
+        });
+
+        setToc(tocList);
+      }, 200);
+    }
+  }, [isLoading, contentBox]);
 
   return (
     <>
@@ -151,8 +164,8 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
         <meta name='title' content={metaTitle} />
         <meta name='description' content={plainContent} />
       </Helmet>
-      <ContentBox ref={contentBox} />
-      <BoardToc toc={toc} />
+      <ContentBox ref={contentBox} dangerouslySetInnerHTML={mdHtml} />
+      {toc.length > 0 && <BoardToc toc={toc} />}
     </>
   );
 }
