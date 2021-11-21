@@ -1,24 +1,21 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export default function useScrollTop(element?: HTMLElement) {
+export default function useScrollTop(element: HTMLElement = document.getElementsByTagName('main')[0]) {
   const [scrollTop, setScrollTop] = useState(0);
 
   const scrollEvent = useCallback(() => {
-    const targetElement = !element ? document.getElementsByTagName('main')[0] : element;
-    if (targetElement) {
-      setScrollTop(targetElement.scrollTop);
+    if (element) {
+      setScrollTop(element.scrollTop);
     }
   }, [setScrollTop, element]);
 
   useEffect(() => {
-    const mainTag = document.getElementsByTagName('main');
-
-    mainTag[0].addEventListener('scroll', scrollEvent);
+    element.addEventListener('scroll', scrollEvent);
 
     return () => {
-      mainTag[0].removeEventListener('scroll', scrollEvent);
+      element.removeEventListener('scroll', scrollEvent);
     };
-  }, [scrollEvent]);
+  }, [element, scrollEvent]);
 
   return scrollTop;
 }
