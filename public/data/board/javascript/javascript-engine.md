@@ -15,10 +15,12 @@
 function add(x, y){
     return x+y;
 }
+
 function first(){
     var i = add(1,1); 
     console.log(i);
 }
+
 first();
 ```
 
