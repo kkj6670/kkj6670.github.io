@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
@@ -12,6 +12,7 @@ import BoardToc from './BoardToc';
 import { IParamTypes, IBoardTocData } from '../../types/common';
 import { useBase } from '../../store/Base';
 import { mdToPlainText } from '../../lib/utils';
+import useWindowSize from '../../lib/hooks/useWindowSize';
 
 const ContentBox = styled.section`
   width: 100%;
@@ -105,17 +106,22 @@ marked.setOptions({
 });
 
 const IMAGE_PATH_REG_EXP = /(..\/..\/..\/images\/board)/g;
-const IMAGE_TAG_REG_EXP = /(<img )/g;
 
 function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
   const { params } = match;
   const { boardData } = useBase();
+  const windowSize = useWindowSize();
+
+  const firstUpdate = useRef(true);
   const contentBox = useRef<HTMLDivElement>(null);
+
   const [metaTitle, setMetaTitle] = useState('');
   const [plainContent, setPlainContent] = useState('');
   const [toc, setToc] = useState<IBoardTocData[]>([]);
-  const [isLoading, setLoading] = useState(true);
   const [mdHtml, setMdHtml] = useState({ __html: '' });
+
+  const [totalImg, setTotalImg] = useState(-1);
+  const [loadImg, setLoadImg] = useState(0);
 
   useEffect(() => {
     const { content, title } = boardData[params.menu][params.fileName];
@@ -127,36 +133,78 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
       setMdHtml({ __html: markedMd.replace(IMAGE_PATH_REG_EXP, `${URL_PATH}images/board`) });
       setMetaTitle(title || '');
       setPlainContent(plainText);
-      setLoading(false);
     }
   }, [params.menu, params.fileName, boardData]);
 
-  useEffect(() => {
-    const box = contentBox.current;
+  const setTocData = useCallback(() => {
+    if (contentBox.current) {
+      const hTags: NodeListOf<HTMLElement> = contentBox.current.querySelectorAll('h1, h2, h3');
+      const tocList: IBoardTocData[] = [];
+      hTags.forEach((tag) => {
+        const level = +tag.tagName.replace('H', '');
+        const anchor = tag.id;
+        const text = tag.textContent || '';
+        const { offsetTop } = tag;
 
-    // FIXME : image loading후 적용할 방법
-    if (!isLoading && box !== null) {
-      setTimeout(() => {
-        const hTags: NodeListOf<HTMLElement> = box.querySelectorAll('h1, h2, h3');
-        const tocList: IBoardTocData[] = [];
-        hTags.forEach((tag) => {
-          const level = +tag.tagName.replace('H', '');
-          const anchor = tag.id;
-          const text = tag.textContent || '';
-          const { offsetTop } = tag;
-
-          tocList.push({
-            level,
-            anchor,
-            text,
-            offsetTop: offsetTop - 15,
-          });
+        tocList.push({
+          level,
+          anchor,
+          text,
+          offsetTop: offsetTop - 15,
         });
+      });
 
-        setToc(tocList);
-      }, 200);
+      setToc(tocList);
     }
-  }, [isLoading, contentBox]);
+  }, [contentBox, setToc]);
+
+  // 이미지 로딩후 boardToc offsetTop set
+  const contentObserver = useMemo(() => {
+    return new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'childList') {
+          const imgList = contentBox.current?.querySelectorAll('img');
+          setTotalImg(imgList?.length || 0);
+          let cnt = 0;
+          imgList?.forEach((img) => {
+            img.addEventListener('load', () => {
+              cnt += 1;
+              setLoadImg(cnt);
+            });
+          });
+        }
+      });
+    });
+  }, [setTotalImg, setLoadImg]);
+
+  useEffect(() => {
+    const target = contentBox.current;
+    const config = { childList: true };
+
+    if (target) {
+      contentObserver.observe(target, config);
+    }
+
+    return () => {
+      contentObserver.disconnect();
+    };
+  }, [contentBox, contentObserver]);
+
+  useEffect(() => {
+    // 첫 렌더링시 실행 안함
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+
+    setTocData();
+  }, [windowSize, setTocData, firstUpdate]);
+
+  useEffect(() => {
+    if (totalImg > -1 && totalImg === loadImg) {
+      setTocData();
+    }
+  }, [totalImg, loadImg, setTocData]);
 
   return (
     <>
