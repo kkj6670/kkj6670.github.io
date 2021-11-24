@@ -79,6 +79,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
 
+  input:focus, button:focus {
+    outline: none;
+  }
+
   a, button {
     cursor: pointer;
   }

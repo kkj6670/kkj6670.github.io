@@ -6,27 +6,45 @@ import { IBoardDataDetail, useBase } from '../../store/Base';
 
 import { mdToPlainText } from '../../lib/utils';
 
+import SearchIcon from '../../../public/images/icon/search.svg';
+
 interface IBoardSearchList extends IBoardDataDetail {
   menu: string;
 }
+
+const SearchIconBox = styled.div`
+  width: 25px;
+  height: 25px;
+  mask: url(${SearchIcon}) no-repeat center;
+  mask-size: 22px;
+  background-color: ${({ theme }) => theme.textColor};
+`;
 
 const SearchBox = styled.div`
   width: 100%;
   height: 25px;
   margin-bottom: 10px;
+  position: relative;
   > input {
     display: block;
     position: relative;
     z-index: 1000;
     width: 100%;
     height: 100%;
-    padding: 2px 5px;
+    padding: 5px 5px 5px 25px;
     border: 0 none;
     background-color: ${({ theme }) => theme.pointBgColor};
     border: 1px solid ${({ theme }) => theme.textColor};
     border-radius: 5px;
     color: ${({ theme }) => theme.textColor};
     letter-spacing: 1.5px;
+  }
+
+  > ${SearchIconBox} {
+    position: absolute;
+    z-index: 1001;
+    left: 0;
+    top: 0;
   }
 `;
 
@@ -37,7 +55,7 @@ const SearchListBox = styled.div`
   max-height: calc(100% - 40px);
   overflow-y: auto;
   top: 20px;
-  left: 265px;
+  left: 240px;
   z-index: 1000;
   background-color: ${({ theme }) => theme.pointBgColor};
 
@@ -56,16 +74,29 @@ const SearchListBox = styled.div`
   ::-webkit-scrollbar-track {
     background-color: ${({ theme }) => theme.scrollColor.track};
   }
+
+  // 검색결과
+  > p {
+    display: flex;
+    align-items: center;
+    padding: 20px 0 10px 20px;
+    font-weight: 400;
+    > span {
+      font-weight: bold;
+      color: ${({ theme }) => theme.pointColor};
+      text-decoration: underline;
+    }
+  }
 `;
 
 const SearchListItem = styled.article`
   width: 100%;
-  border-top: 1px solid ${({ theme }) => theme.textColor};
+  border-bottom: 1px solid ${({ theme }) => theme.textColor};
   padding: 15px;
   color: ${({ theme }) => theme.textColor};
 
   :first-child {
-    border-top: 0 none;
+    border-bottom: 0 none;
   }
 
   :hover {
@@ -81,16 +112,19 @@ const SearchListItem = styled.article`
       text-decoration: underline;
     }
 
-    > p {
-      margin-bottom: 8px;
-      font-weight: 400;
-    }
-
+    // 제목
     > p:first-child {
       font-size: 2.2rem;
       font-weight: 700;
     }
 
+    // 날짜
+    > p {
+      margin-bottom: 8px;
+      font-weight: 400;
+    }
+
+    // 내용
     > p:last-child {
       margin-bottom: 0;
       padding-left: 10px;
@@ -122,6 +156,16 @@ function BoardSearch() {
     [setsearchText],
   );
 
+  const handleKeydown = useCallback(
+    (e: React.KeyboardEvent) => {
+      console.log(e);
+      if (e.key === 'Escape') {
+        setsearchText('');
+      }
+    },
+    [setsearchText],
+  );
+
   const allBoardList: IBoardSearchList[] = useMemo(() => {
     const menus = Object.keys(boardData);
 
@@ -140,7 +184,7 @@ function BoardSearch() {
     if (timer) clearTimeout(timer);
 
     timer = setTimeout(() => {
-      let items = [<SearchListItem key='empty'>Note를 찾을수 없습니다.</SearchListItem>];
+      let items: JSX.Element[] = [];
 
       if (searchText.replace(/\s/g, '').length > 0) {
         const isTagSearch = searchText.indexOf('#') === 0;
@@ -165,7 +209,7 @@ function BoardSearch() {
             const isSameContent = lowerContent.includes(lowerSearchText);
 
             let titleElem = <p>{title}</p>;
-            let contentElem = <p>{content}</p>;
+            let contentElem = <p>{content.substring(0, 300)}</p>;
 
             if (isSameTitle) {
               const sIdx = lowerTitle.indexOf(lowerSearchText);
@@ -190,7 +234,7 @@ function BoardSearch() {
 
               const startText = content.slice(sIdx - 30 < 0 ? 0 : sIdx - 30, sIdx);
               const middleText = content.slice(sIdx, eIdx);
-              const endText = content.slice(eIdx, sIdx + 400);
+              const endText = content.slice(eIdx, sIdx + 300);
 
               contentElem = (
                 <p>
@@ -220,9 +264,22 @@ function BoardSearch() {
 
   return (
     <SearchBox>
-      <input type='text' placeholder='Quick Search...' onInput={handleInput} value={searchText} />
-      <SearchListBox hidden={searchText.length === 0}>{searchItems}</SearchListBox>
+      <input
+        type='text'
+        placeholder='Quick Search...'
+        onInput={handleInput}
+        value={searchText}
+        onKeyDown={handleKeydown}
+      />
+      <SearchListBox hidden={searchText.length === 0}>
+        <p>
+          <SearchIconBox />
+          검색 결과 <span>{searchItems.length}</span>개
+        </p>
+        {searchItems}
+      </SearchListBox>
       <Overlay hidden={searchText.length === 0} />
+      <SearchIconBox />
     </SearchBox>
   );
 }
