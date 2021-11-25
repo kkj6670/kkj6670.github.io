@@ -75,8 +75,8 @@ const SearchListBox = styled.div`
     background-color: ${({ theme }) => theme.scrollColor.track};
   }
 
-  // 검색결과
-  > p {
+  // 검색결과 text
+  > div {
     display: flex;
     align-items: center;
     padding: 20px 0 10px 20px;
@@ -272,10 +272,10 @@ function BoardSearch() {
         onKeyDown={handleKeydown}
       />
       <SearchListBox hidden={searchText.length === 0}>
-        <p>
+        <div>
           <SearchIconBox />
           검색 결과 <span>{searchItems.length}</span>개
-        </p>
+        </div>
         {searchItems}
       </SearchListBox>
       <Overlay hidden={searchText.length === 0} />
