@@ -143,7 +143,7 @@ const Overlay = styled.div`
 
 let timer: ReturnType<typeof setTimeout>;
 
-function BoardSearch() {
+const BoardSearch = function () {
   const { boardData } = useBase();
   const [searchText, setsearchText] = useState('');
   const [searchItems, setSearchItems] = useState<JSX.Element[]>([]);
@@ -282,6 +282,6 @@ function BoardSearch() {
       <SearchIconBox />
     </SearchBox>
   );
-}
+};
 
 export default BoardSearch;

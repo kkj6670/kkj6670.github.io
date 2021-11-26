@@ -62,7 +62,7 @@ const TagItem = styled.span`
   }
 `;
 
-function ListItem({ url, data }: IListItem) {
+const ListItem = function ({ url, data }: IListItem) {
   const { fileName, title, date, tag } = data;
   return (
     <ItemBox>
@@ -77,9 +77,9 @@ function ListItem({ url, data }: IListItem) {
       </Link>
     </ItemBox>
   );
-}
+};
 
-function BoardList({ match }: RouteComponentProps<IParamTypes>) {
+const BoardList = function ({ match }: RouteComponentProps<IParamTypes>) {
   const { params, url } = match;
   const { boardData } = useBase();
 
@@ -94,6 +94,6 @@ function BoardList({ match }: RouteComponentProps<IParamTypes>) {
         : targetData.map((item) => <ListItem key={item.fileName} url={url} data={item} />)}
     </ListBox>
   );
-}
+};
 
 export default BoardList;

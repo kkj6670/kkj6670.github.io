@@ -82,7 +82,7 @@ const TocItem = styled.li<ITocItem>`
   }}
 `;
 
-function BoardToc({ toc }: IBoardToc) {
+const BoardToc = function ({ toc }: IBoardToc) {
   const tocBox = useRef(null);
   const scrollTop = useScrollTop();
 
@@ -115,6 +115,6 @@ function BoardToc({ toc }: IBoardToc) {
       })}
     </TocBox>
   );
-}
+};
 
 export default BoardToc;

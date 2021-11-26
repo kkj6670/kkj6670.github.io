@@ -11,3 +11,7 @@ yarn-error.log*
 # etc
 .idea
 *.iml
+
+# next.js
+/.next/
+/out/

@@ -1,19 +1,14 @@
 {
   "presets": [
-    "@babel/preset-env",
-    [
-      "@babel/preset-react",
-      {
-        "runtime": "automatic"
-      }
-    ],
-    "@babel/preset-typescript"
+    "next/babel"
   ],
   "plugins": [
     [
-      "@babel/plugin-transform-runtime",
+      "styled-components",
       {
-        "regenerator": true
+        "ssr": true,
+        "displayName": true,
+        "preprocess": false
       }
     ]
   ]

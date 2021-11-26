@@ -41,7 +41,7 @@ const Main = styled.main`
   }
 `;
 
-function App() {
+const App = function () {
   const { theme } = useBase();
 
   const selectedTheme = useMemo(() => {
@@ -64,6 +64,6 @@ function App() {
       </Wrap>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

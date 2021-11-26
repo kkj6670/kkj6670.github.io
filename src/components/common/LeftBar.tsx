@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
-import { useHistory, Link, useLocation } from 'react-router-dom';
 import { AiFillGithub } from 'react-icons/ai';
 import { SiJavascript, SiTypescript, SiReact } from 'react-icons/si';
 import { FaHeadSideVirus } from 'react-icons/fa';
@@ -129,20 +129,12 @@ const GitHubLink = styled.a`
   color: #000;
 `;
 
-function LeftBar() {
-  const history = useHistory();
-  const location = useLocation();
+const LeftBar = function () {
   const { boardData } = useBase();
 
   const selectedMenu = useMemo(() => {
-    const menu = location.pathname.replace('/react-blog/', '').split('/')[0];
-
-    if (menu.length === 0) {
-      history.push('/react-blog/javascript');
-    }
-
-    return menu;
-  }, [location, history]);
+    return 'javascript';
+  }, []);
 
   return (
     <Header>
@@ -154,15 +146,17 @@ function LeftBar() {
         <MenuBox>
           {menuData.map((item) => (
             <MenuList key={item.id} selected={selectedMenu === item.id}>
-              <Link to={`${URL_PATH}${item.id}`} title={`${item.id} menu open`}>
-                {item.id === 'javascript' && <SiJavascript size='22px' />}
-                {item.id === 'typescript' && <SiTypescript size='22px' />}
-                {item.id === 'react' && <SiReact size='22px' />}
-                {item.id === 'git' && <AiFillGithub size='22px' />}
-                {item.id === 'algorism' && <FaHeadSideVirus size='22px' />}
-                {item.id === 'other' && <BsFillChatSquareDotsFill size='22px' />}
-                {item.name}
-                <span>({Object.keys(boardData[item.id] || {})?.length})</span>
+              <Link href='/boardList/[menu]' as={`/boardList/${item.id}`}>
+                <a>
+                  {item.id === 'javascript' && <SiJavascript size='22px' />}
+                  {item.id === 'typescript' && <SiTypescript size='22px' />}
+                  {item.id === 'react' && <SiReact size='22px' />}
+                  {item.id === 'git' && <AiFillGithub size='22px' />}
+                  {item.id === 'algorism' && <FaHeadSideVirus size='22px' />}
+                  {item.id === 'other' && <BsFillChatSquareDotsFill size='22px' />}
+                  {item.name}
+                  <span>({Object.keys(boardData[item.id] || {})?.length})</span>
+                </a>
               </Link>
             </MenuList>
           ))}
@@ -175,6 +169,6 @@ function LeftBar() {
       </FooterBox>
     </Header>
   );
-}
+};
 
 export default LeftBar;

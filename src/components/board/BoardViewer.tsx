@@ -107,7 +107,7 @@ marked.setOptions({
 
 const IMAGE_PATH_REG_EXP = /(..\/..\/..\/images\/board)/g;
 
-function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
+const BoardViewer = function ({ match }: RouteComponentProps<IParamTypes>) {
   const { params } = match;
   const { boardData } = useBase();
   const windowSize = useWindowSize();
@@ -216,6 +216,6 @@ function BoardViewer({ match }: RouteComponentProps<IParamTypes>) {
       {toc.length > 0 && <BoardToc toc={toc} />}
     </>
   );
-}
+};
 
 export default BoardViewer;

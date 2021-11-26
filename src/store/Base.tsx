@@ -27,9 +27,10 @@ interface IBaseAction {
   value: string;
 }
 
-const blogTheme = localStorage.getItem('blogTheme');
+// TODO :: LocalStorage 적용
+// const blogTheme = localStorage.getItem('blogTheme');
 const INITIAL_STATE: IBaseState = {
-  theme: blogTheme || 'dark',
+  theme: 'dark',
   boardData,
 };
 
@@ -64,7 +65,7 @@ interface IBase {
   children: React.ReactNode;
 }
 
-export default function BaseProvider({ children }: IBase) {
+const BaseProvider = function ({ children }: IBase) {
   const [state, dispatch] = useReducer(BaseReducer, INITIAL_STATE);
 
   return (
@@ -72,6 +73,7 @@ export default function BaseProvider({ children }: IBase) {
       <BaseUpdateContext.Provider value={dispatch}>{children}</BaseUpdateContext.Provider>
     </BaseContext.Provider>
   );
-}
+};
 
+export default BaseProvider;
 export { useBase, useBaseUpdate };

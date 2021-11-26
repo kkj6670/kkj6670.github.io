@@ -42,7 +42,7 @@ const ThemeIcon = styled.span<IThemeIcon>`
   transition: all 0.125s ease-in 0s;
 `;
 
-function ThemeChangeBtn() {
+const ThemeChangeBtn = function () {
   const { theme } = useBase();
   const baseUpdate = useBaseUpdate();
 
@@ -56,6 +56,6 @@ function ThemeChangeBtn() {
       <ThemeIcon themeMode={theme} />
     </BtnThemeChange>
   );
-}
+};
 
 export default ThemeChangeBtn;
