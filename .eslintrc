@@ -21,6 +21,7 @@
 			}
 		}
 	},
+	"ignorePatterns": ["node_modules/", "dist/"],
 	"rules": {
 		"linebreak-style": [ "error", "unix" ],
 		"no-console": "off",
