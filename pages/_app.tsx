@@ -1,6 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
+
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+
 import { ThemeProvider } from 'styled-components';
 
 import BaseProvider, { useBase } from '../src/store/Base';
@@ -10,7 +13,12 @@ import { whiteTheme, darkTheme } from '../src/styles/theme';
 import MainLayout from '../src/components/layout/MainLayout';
 
 const App = function ({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   const { theme } = useBase();
+
+  useEffect(() => {
+    if (router.pathname === '/') router.push('/board/javascript');
+  }, [router]);
 
   const selectedTheme = useMemo(() => {
     return theme === 'dark' ? darkTheme : whiteTheme;

@@ -1,6 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
 import styled from 'styled-components';
+
 import { AiFillGithub } from 'react-icons/ai';
 import { SiJavascript, SiTypescript, SiReact } from 'react-icons/si';
 import { FaHeadSideVirus } from 'react-icons/fa';
@@ -128,11 +131,13 @@ const GitHubLink = styled.a`
 `;
 
 const LeftBar = function () {
+  const router = useRouter();
   const { boardData } = useBase();
+  const [selectedMenu, setMenu] = useState('');
 
-  const selectedMenu = useMemo(() => {
-    return 'javascript';
-  }, []);
+  useEffect(() => {
+    setMenu(String(router.query.menu) || '');
+  }, [router]);
 
   return (
     <Header>
@@ -144,7 +149,7 @@ const LeftBar = function () {
         <MenuBox>
           {menuData.map((item) => (
             <MenuList key={item.id} selected={selectedMenu === item.id}>
-              <Link href='/boardList/[menu]' as={`/boardList/${item.id}`}>
+              <Link href='/board/[menu]' as={`/board/${item.id}`}>
                 <a>
                   {item.id === 'javascript' && <SiJavascript size='22px' />}
                   {item.id === 'typescript' && <SiTypescript size='22px' />}

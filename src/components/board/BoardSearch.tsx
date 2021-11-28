@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import { IBoardDataDetail, useBase } from '../../store/Base';
@@ -245,10 +245,12 @@ const BoardSearch = function () {
 
             return (
               <SearchListItem key={item.fileName}>
-                <Link to={`${URL_PATH}${item.menu}/${item.fileName}`} title={`${item.title} 열기`}>
-                  {titleElem}
-                  <p>{item.date}</p>
-                  {contentElem}
+                <Link href={`/board/${item.menu}/${item.fileName}`} as={`/board/${item.menu}/${item.fileName}`}>
+                  <a>
+                    {titleElem}
+                    <p>{item.date}</p>
+                    {contentElem}
+                  </a>
                 </Link>
               </SearchListItem>
             );
