@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 
-const BOARD_JSON_DIR = './public/data/boardData.json';
-const BOARD_MD_DIR = './public/data/board/';
+const BOARD_JSON_DIR = './public/static/data/boardData.json';
+const BOARD_MD_DIR = './public/static/data/board/';
 
 const boardData = {};
 

@@ -1,9 +1,6 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
-import MoonIcon from '../../../public/images/icon/moon.svg';
-import SunIcon from '../../../public/images/icon/sun.svg';
-
 import { useBase, useBaseUpdate } from '../../store/Base';
 
 interface IThemeIcon {
@@ -32,11 +29,13 @@ const BtnThemeChange = styled.button`
   transition: all 0.125s ease-in 0s;
 `;
 
+const sunIconUrl = '/static/images/icon/sun.svg';
+const moonIconUrl = '/static/images/icon/moon.svg';
 const ThemeIcon = styled.span<IThemeIcon>`
   display: block;
   width: 35px;
   height: 35px;
-  mask: url(${({ themeMode }) => (themeMode === 'dark' ? SunIcon : MoonIcon)}) no-repeat;
+  mask: url(${({ themeMode }) => (themeMode === 'dark' ? sunIconUrl : moonIconUrl)}) no-repeat;
   mask-size: 35px;
   background-color: black;
   transition: all 0.125s ease-in 0s;

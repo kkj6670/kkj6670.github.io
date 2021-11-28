@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, Dispatch } from 'react';
-import boardData from '../../public/data/boardData.json';
+import boardData from '../../public/static/data/boardData.json';
 
 export interface IBoardDataDetail {
   fileName: string;

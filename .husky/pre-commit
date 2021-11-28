@@ -3,4 +3,4 @@
 
 yarn lint-staged
 yarn setBoardData
-git add public/data/boardData.json
+git add public/static/data/boardData.json

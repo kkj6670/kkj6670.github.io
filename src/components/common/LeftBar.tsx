@@ -6,9 +6,7 @@ import { SiJavascript, SiTypescript, SiReact } from 'react-icons/si';
 import { FaHeadSideVirus } from 'react-icons/fa';
 import { BsFillChatSquareDotsFill } from 'react-icons/bs';
 
-import NoteIcon from '../../../public/images/icon/note.svg';
-
-import menuData from '../../../public/data/menu.json';
+import menuData from '../../../public/static/data/menu.json';
 
 import { useBase } from '../../store/Base';
 
@@ -57,7 +55,7 @@ const HeaderTitle = styled.h1`
   text-align: center;
   font-size: 3rem;
   margin-bottom: 1.5rem;
-  background: url(${NoteIcon}) no-repeat 0 50%;
+  background: url('/static/images/icon/note.svg') no-repeat 0 50%;
   background-size: 30px;
 `;
 

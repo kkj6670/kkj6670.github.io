@@ -6,8 +6,6 @@ import { IBoardDataDetail, useBase } from '../../store/Base';
 
 import { mdToPlainText } from '../../lib/utils';
 
-import SearchIcon from '../../../public/images/icon/search.svg';
-
 interface IBoardSearchList extends IBoardDataDetail {
   menu: string;
 }
@@ -15,7 +13,7 @@ interface IBoardSearchList extends IBoardDataDetail {
 const SearchIconBox = styled.div`
   width: 25px;
   height: 25px;
-  mask: url(${SearchIcon}) no-repeat center;
+  mask: url('/static/images/icon/search.svg') no-repeat center;
   mask-size: 22px;
   background-color: ${({ theme }) => theme.textColor};
 `;
