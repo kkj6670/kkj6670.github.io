@@ -136,7 +136,7 @@ const LeftBar = function () {
   const [selectedMenu, setMenu] = useState('');
 
   useEffect(() => {
-    setMenu(String(router.query.menu) || '');
+    setMenu(String(router.query.category) || '');
   }, [router]);
 
   return (
@@ -149,7 +149,7 @@ const LeftBar = function () {
         <MenuBox>
           {menuData.map((item) => (
             <MenuList key={item.id} selected={selectedMenu === item.id}>
-              <Link href='/board/[menu]' as={`/board/${item.id}`}>
+              <Link href='/board/[category]' as={`/board/${item.id}`}>
                 <a>
                   {item.id === 'javascript' && <SiJavascript size='22px' />}
                   {item.id === 'typescript' && <SiTypescript size='22px' />}

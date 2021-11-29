@@ -2,5 +2,5 @@
 . "$(dirname "$0")/_/husky.sh"
 
 yarn lint-staged
-yarn setBoardData
+yarn cbd
 git add public/static/data/boardData.json

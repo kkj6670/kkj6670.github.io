@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
-import { Helmet } from 'react-helmet';
 
 import marked from 'marked';
 import hljs from 'highlight.js';
@@ -9,8 +7,8 @@ import 'highlight.js/styles/atom-one-dark.css';
 
 import BoardToc from './BoardToc';
 
-import { IParamTypes, IBoardTocData } from '../../types/common';
-import { useBase } from '../../store/Base';
+import { IBoardTocData } from '../../types/common';
+import { IBoardDataDetail } from '../../store/Base';
 import { mdToPlainText } from '../../lib/utils';
 import useWindowSize from '../../lib/hooks/useWindowSize';
 
@@ -107,9 +105,10 @@ marked.setOptions({
 
 const IMAGE_PATH_REG_EXP = /(..\/..\/..\/images\/board)/g;
 
-const BoardViewer = function ({ match }: RouteComponentProps<IParamTypes>) {
-  const { params } = match;
-  const { boardData } = useBase();
+interface IBoardViewerProps {
+  data: IBoardDataDetail;
+}
+const BoardViewer = function ({ data }: IBoardViewerProps) {
   const windowSize = useWindowSize();
 
   const firstUpdate = useRef(true);
@@ -124,17 +123,16 @@ const BoardViewer = function ({ match }: RouteComponentProps<IParamTypes>) {
   const [loadImg, setLoadImg] = useState(0);
 
   useEffect(() => {
-    const { content, title } = boardData[params.menu][params.fileName];
     const box = contentBox.current;
-    if (box !== null && content) {
-      const markedMd = marked(content);
-      const plainText = mdToPlainText(content);
+    if (box !== null && data) {
+      const markedMd = marked(data.content);
+      const plainText = mdToPlainText(data.content);
 
-      setMdHtml({ __html: markedMd.replace(IMAGE_PATH_REG_EXP, `${URL_PATH}images/board`) });
-      setMetaTitle(title || '');
+      setMdHtml({ __html: markedMd });
+      setMetaTitle(data.title || '');
       setPlainContent(plainText);
     }
-  }, [params.menu, params.fileName, boardData]);
+  }, [data]);
 
   const setTocData = useCallback(() => {
     if (contentBox.current) {
@@ -159,59 +157,62 @@ const BoardViewer = function ({ match }: RouteComponentProps<IParamTypes>) {
   }, [contentBox, setToc]);
 
   // 이미지 로딩후 boardToc offsetTop set
-  const contentObserver = useMemo(() => {
-    return new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'childList') {
-          const imgList = contentBox.current?.querySelectorAll('img');
-          setTotalImg(imgList?.length || 0);
-          let cnt = 0;
-          imgList?.forEach((img) => {
-            img.addEventListener('load', () => {
-              cnt += 1;
-              setLoadImg(cnt);
-            });
-          });
-        }
-      });
-    });
-  }, [setTotalImg, setLoadImg]);
+  // const contentObserver = useMemo(() => {
+  //   return new MutationObserver((mutations) => {
+  //     mutations.forEach((mutation) => {
+  //       if (mutation.type === 'childList') {
+  //         const imgList = contentBox.current?.querySelectorAll('img');
+  //         setTotalImg(imgList?.length || 0);
+  //         let cnt = 0;
+  //         imgList?.forEach((img) => {
+  //           img.addEventListener('load', () => {
+  //             cnt += 1;
+  //             setLoadImg(cnt);
+  //           });
+  //         });
+  //       }
+  //     });
+  //   });
+  // }, [setTotalImg, setLoadImg]);
+
+  // useEffect(() => {
+  //   const target = contentBox.current;
+  //   const config = { childList: true };
+
+  //   if (target) {
+  //     contentObserver.observe(target, config);
+  //   }
+
+  //   return () => {
+  //     contentObserver.disconnect();
+  //   };
+  // }, [contentBox, contentObserver]);
+
+  // useEffect(() => {
+  //   // 첫 렌더링시 실행 안함
+  //   if (firstUpdate.current) {
+  //     firstUpdate.current = false;
+  //     return;
+  //   }
+
+  //   setTocData();
+  // }, [windowSize, setTocData, firstUpdate]);
+
+  // useEffect(() => {
+  //   if (totalImg > -1 && totalImg === loadImg) {
+  //     setTocData();
+  //   }
+  // }, [totalImg, loadImg, setTocData]);
 
   useEffect(() => {
-    const target = contentBox.current;
-    const config = { childList: true };
-
-    if (target) {
-      contentObserver.observe(target, config);
+    if (contentBox.current) {
+      const hTags: NodeListOf<HTMLElement> = contentBox.current.querySelectorAll('h1, h2, h3');
+      console.log(hTags);
     }
-
-    return () => {
-      contentObserver.disconnect();
-    };
-  }, [contentBox, contentObserver]);
-
-  useEffect(() => {
-    // 첫 렌더링시 실행 안함
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      return;
-    }
-
-    setTocData();
-  }, [windowSize, setTocData, firstUpdate]);
-
-  useEffect(() => {
-    if (totalImg > -1 && totalImg === loadImg) {
-      setTocData();
-    }
-  }, [totalImg, loadImg, setTocData]);
+  }, [contentBox]);
 
   return (
     <>
-      <Helmet>
-        <meta name='title' content={metaTitle} />
-        <meta name='description' content={plainContent} />
-      </Helmet>
       <ContentBox ref={contentBox} dangerouslySetInnerHTML={mdHtml} />
       {toc.length > 0 && <BoardToc toc={toc} />}
     </>

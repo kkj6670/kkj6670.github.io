@@ -62,20 +62,18 @@
     "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack serve",
-    "build": "rm -rf ./dist & yarn setBoardData & cross-env NODE_ENV=production webpack --progress --mode production",
-    "lint": "eslint ./ --ext js,jsx,ts,tsx",
-    "lint:fix": "eslint --fix ./ --ext js,jsx,ts,tsx",
-    "predeploy": "yarn build & yarn postBuild",
+    "lint": "eslint ./src --ext js,jsx,ts,tsx",
+    "lint:fix": "eslint --fix ./src --ext js,jsx,ts,tsx",
     "deploy": "gh-pages -d dist",
-    "deploy:build": "yarn predeploy & yarn deploy",
-    "postBuild": "cp dist/index.html dist/404.html & yarn react-snap",
+    "deploy:build": "yarn build & yarn deploy",
     "prepare": "husky install",
-    "setBoardData": "node scripts/setBoardData.mjs",
-    "next": "next dev"
+    "cbd": "node scripts/setBoardData.mjs",
+    "dev": "next dev",
+		"build": "next build",
+		"start": "next start"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix",
       "prettier --write"
     ]

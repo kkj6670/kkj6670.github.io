@@ -1,8 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useMemo } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
 
 import LeftBar from '../common/LeftBar';
 import ThemeChangeBtn from '../common/ThemeChangeBtn';
+
+import { useBase } from '../../store/Base';
+import { whiteTheme, darkTheme } from '../../styles/theme';
 
 const Wrap = styled.div`
   width: 100vw;
@@ -39,12 +42,20 @@ interface IMainLayoutProps {
 }
 
 const MainLayout = function ({ children }: IMainLayoutProps) {
+  const { theme } = useBase();
+
+  const selectedTheme = useMemo(() => {
+    return theme === 'dark' ? darkTheme : whiteTheme;
+  }, [theme]);
+
   return (
-    <Wrap>
-      <LeftBar />
-      <Main>{children}</Main>
-      <ThemeChangeBtn />
-    </Wrap>
+    <ThemeProvider theme={selectedTheme}>
+      <Wrap>
+        <LeftBar />
+        <Main>{children}</Main>
+        <ThemeChangeBtn />
+      </Wrap>
+    </ThemeProvider>
   );
 };
 

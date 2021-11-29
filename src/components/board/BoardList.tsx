@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import React from 'react';
+
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
 import styled from 'styled-components';
 
-import { IParamTypes } from '../../types/common';
-
-import { useBase, IBoardDataDetail } from '../../store/Base';
+import { IBoardDataDetail } from '../../store/Base';
 
 interface IListItem {
   url: string;
@@ -66,32 +67,33 @@ const ListItem = function ({ url, data }: IListItem) {
   const { fileName, title, date, tag } = data;
   return (
     <ItemBox>
-      <Link to={`${url}/${fileName}`}>
-        <h1>{title}</h1>
-        <p>{date}</p>
-        <p>
-          {tag?.map((name) => (
-            <TagItem key={name}>{name}</TagItem>
-          ))}
-        </p>
+      <Link href={`${url}/${fileName}`} as={`${url}/${fileName}`}>
+        <a>
+          <h1>{title}</h1>
+          <p>{date}</p>
+          <p>
+            {tag?.map((name) => (
+              <TagItem key={name}>{name}</TagItem>
+            ))}
+          </p>
+        </a>
       </Link>
     </ItemBox>
   );
 };
 
-const BoardList = function ({ match }: RouteComponentProps<IParamTypes>) {
-  const { params, url } = match;
-  const { boardData } = useBase();
+interface IBoardListProps {
+  data: IBoardDataDetail[];
+}
 
-  const targetData = useMemo(() => {
-    return Object.keys(boardData[params.menu] || {}).map((fileName) => boardData[params.menu][fileName]);
-  }, [boardData, params.menu]);
+const BoardList = function ({ data }: IBoardListProps) {
+  const { asPath } = useRouter();
 
   return (
     <ListBox>
-      {!targetData || targetData.length === 0
+      {!data || data.length === 0
         ? '해당 Note가 존재하지 않습니다.'
-        : targetData.map((item) => <ListItem key={item.fileName} url={url} data={item} />)}
+        : data.map((item) => <ListItem key={item.fileName} url={asPath} data={item} />)}
     </ListBox>
   );
 };
