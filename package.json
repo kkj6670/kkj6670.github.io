@@ -30,15 +30,13 @@
     "@types/node": "^16.11.9",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
-    "@types/react-helmet": "^6.1.4",
     "@types/react-router-dom": "^5.1.9",
     "@types/styled-components": "^5.1.15",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^2.0.1",
     "copy-webpack-plugin": "^9.0.1",
-    "cross-env": "^7.0.3",
     "css-loader": "^6.5.0",
     "eslint": "<8.0.0",
     "eslint-config-airbnb": "^19.0.1",
@@ -52,7 +50,6 @@
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
     "prettier": "^2.3.2",
-    "react-snap": "^1.23.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.3",
     "typescript": "^4.5.2",
@@ -69,16 +66,13 @@
     "prepare": "husky install",
     "cbd": "node scripts/setBoardData.mjs",
     "dev": "next dev",
-		"build": "next build",
-		"start": "next start"
+    "build": "next build",
+    "start": "next start"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix",
       "prettier --write"
     ]
-  },
-  "reactSnap": {
-    "source": "dist"
   }
 }
