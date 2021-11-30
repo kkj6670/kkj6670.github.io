@@ -82,6 +82,8 @@ const TocItem = styled.li<ITocItem>`
   }}
 `;
 
+const TOP_INTERVAL = 15;
+
 const BoardToc = function ({ toc }: IBoardToc) {
   const tocBox = useRef(null);
   const scrollTop = useScrollTop();
@@ -93,7 +95,10 @@ const BoardToc = function ({ toc }: IBoardToc) {
       const { offsetTop, anchor } = toc[i];
       const nextOffsetTop = toc[i + 1]?.offsetTop;
       // offsetTop ~ nextOffsetTop scrollTop
-      if ((offsetTop <= scrollTop && nextOffsetTop >= scrollTop) || nextOffsetTop === undefined) {
+      if (
+        nextOffsetTop === undefined ||
+        (offsetTop - TOP_INTERVAL <= scrollTop && nextOffsetTop - TOP_INTERVAL >= scrollTop)
+      ) {
         targetItem = anchor;
         break;
       }

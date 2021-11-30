@@ -143,26 +143,29 @@ let timer: ReturnType<typeof setTimeout>;
 
 const BoardSearch = function () {
   const { boardData } = useBase();
-  const [searchText, setsearchText] = useState('');
+  const [searchText, setSearchText] = useState('');
   const [searchItems, setSearchItems] = useState<JSX.Element[]>([]);
 
   const handleInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;
-      setsearchText(value);
+      setSearchText(value);
     },
-    [setsearchText],
+    [setSearchText],
   );
 
   const handleKeydown = useCallback(
     (e: React.KeyboardEvent) => {
-      console.log(e);
       if (e.key === 'Escape') {
-        setsearchText('');
+        setSearchText('');
       }
     },
-    [setsearchText],
+    [setSearchText],
   );
+
+  const clearSearchText = useCallback(() => {
+    setSearchText('');
+  }, [setSearchText]);
 
   const allBoardList: IBoardSearchList[] = useMemo(() => {
     const menus = Object.keys(boardData);
@@ -244,8 +247,8 @@ const BoardSearch = function () {
             }
 
             return (
-              <SearchListItem key={item.fileName}>
-                <Link href={`/board/${item.menu}/${item.fileName}`} as={`/board/${item.menu}/${item.fileName}`}>
+              <SearchListItem key={item.fileName} onClick={clearSearchText}>
+                <Link href='/board/[category]/[boardName]' as={`/board/${item.menu}/${item.fileName}`}>
                   <a>
                     {titleElem}
                     <p>{item.date}</p>
@@ -260,7 +263,7 @@ const BoardSearch = function () {
 
       setSearchItems(items);
     }, 200);
-  }, [searchText, setSearchItems, allBoardList]);
+  }, [searchText, setSearchItems, allBoardList, clearSearchText]);
 
   return (
     <SearchBox>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
+import { InferGetStaticPropsType } from 'next';
 import styled from 'styled-components';
 
 import marked from 'marked';
@@ -107,109 +108,36 @@ const IMAGE_PATH_REG_EXP = /(..\/..\/..\/images\/board)/g;
 
 interface IBoardViewerProps {
   data: IBoardDataDetail;
+  test: number;
+  test2: number;
 }
-const BoardViewer = function ({ data }: IBoardViewerProps) {
-  const windowSize = useWindowSize();
 
-  const firstUpdate = useRef(true);
+const BoardViewer = function () {
   const contentBox = useRef<HTMLDivElement>(null);
-
-  const [metaTitle, setMetaTitle] = useState('');
-  const [plainContent, setPlainContent] = useState('');
   const [toc, setToc] = useState<IBoardTocData[]>([]);
   const [mdHtml, setMdHtml] = useState({ __html: '' });
 
-  const [totalImg, setTotalImg] = useState(-1);
-  const [loadImg, setLoadImg] = useState(0);
+  // const setTocData = useCallback(() => {
+  //   if (contentBox.current) {
+  //     const hTags: NodeListOf<HTMLElement> = contentBox.current.querySelectorAll('h1, h2, h3');
+  //     const tocList: IBoardTocData[] = [];
+  //     hTags.forEach((tag) => {
+  //       const level = +tag.tagName.replace('H', '');
+  //       const anchor = tag.id;
+  //       const text = tag.textContent || '';
+  //       const { offsetTop } = tag;
 
-  useEffect(() => {
-    const box = contentBox.current;
-    if (box !== null && data) {
-      const markedMd = marked(data.content);
-      const plainText = mdToPlainText(data.content);
-
-      setMdHtml({ __html: markedMd });
-      setMetaTitle(data.title || '');
-      setPlainContent(plainText);
-    }
-  }, [data]);
-
-  const setTocData = useCallback(() => {
-    if (contentBox.current) {
-      const hTags: NodeListOf<HTMLElement> = contentBox.current.querySelectorAll('h1, h2, h3');
-      const tocList: IBoardTocData[] = [];
-      hTags.forEach((tag) => {
-        const level = +tag.tagName.replace('H', '');
-        const anchor = tag.id;
-        const text = tag.textContent || '';
-        const { offsetTop } = tag;
-
-        tocList.push({
-          level,
-          anchor,
-          text,
-          offsetTop: offsetTop - 15,
-        });
-      });
-
-      setToc(tocList);
-    }
-  }, [contentBox, setToc]);
-
-  // 이미지 로딩후 boardToc offsetTop set
-  // const contentObserver = useMemo(() => {
-  //   return new MutationObserver((mutations) => {
-  //     mutations.forEach((mutation) => {
-  //       if (mutation.type === 'childList') {
-  //         const imgList = contentBox.current?.querySelectorAll('img');
-  //         setTotalImg(imgList?.length || 0);
-  //         let cnt = 0;
-  //         imgList?.forEach((img) => {
-  //           img.addEventListener('load', () => {
-  //             cnt += 1;
-  //             setLoadImg(cnt);
-  //           });
-  //         });
-  //       }
+  //       tocList.push({
+  //         level,
+  //         anchor,
+  //         text,
+  //         offsetTop: offsetTop - 15,
+  //       });
   //     });
-  //   });
-  // }, [setTotalImg, setLoadImg]);
 
-  // useEffect(() => {
-  //   const target = contentBox.current;
-  //   const config = { childList: true };
-
-  //   if (target) {
-  //     contentObserver.observe(target, config);
+  //     setToc(tocList);
   //   }
-
-  //   return () => {
-  //     contentObserver.disconnect();
-  //   };
-  // }, [contentBox, contentObserver]);
-
-  // useEffect(() => {
-  //   // 첫 렌더링시 실행 안함
-  //   if (firstUpdate.current) {
-  //     firstUpdate.current = false;
-  //     return;
-  //   }
-
-  //   setTocData();
-  // }, [windowSize, setTocData, firstUpdate]);
-
-  // useEffect(() => {
-  //   if (totalImg > -1 && totalImg === loadImg) {
-  //     setTocData();
-  //   }
-  // }, [totalImg, loadImg, setTocData]);
-
-  useEffect(() => {
-    if (contentBox.current) {
-      const hTags: NodeListOf<HTMLElement> = contentBox.current.querySelectorAll('h1, h2, h3');
-      console.log(hTags);
-    }
-  }, [contentBox]);
+  // }, [contentBox, setToc]);
 
   return (
     <>

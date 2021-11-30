@@ -38,6 +38,8 @@ folders.forEach((name) => {
   }
 });
 
+console.log(boardData);
+
 console.log('>>> write boardData - Start');
 fs.open(BOARD_JSON_DIR, 'w', (openErr, fd) => {
   if (openErr) throw openErr;

@@ -4,3 +4,7 @@ export interface IBoardTocData {
   text: string;
   offsetTop: number;
 }
+
+export interface ICategoryLen {
+  [key: string]: number;
+}

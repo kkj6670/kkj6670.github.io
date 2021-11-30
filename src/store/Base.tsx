@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, Dispatch } from 'react';
+
 import boardData from '../../public/static/data/boardData.json';
 
 export interface IBoardDataDetail {
@@ -20,6 +21,7 @@ export interface IBoardData {
 interface IBaseState {
   theme: string;
   boardData: IBoardData;
+  categoryLen: ICategoryLen;
 }
 
 interface IBaseAction {
@@ -32,6 +34,7 @@ interface IBaseAction {
 const INITIAL_STATE: IBaseState = {
   theme: 'dark',
   boardData,
+  categoryLen: {},
 };
 
 // BaseUpdateContext type
