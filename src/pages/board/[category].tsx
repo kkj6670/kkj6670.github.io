@@ -9,11 +9,20 @@ import { getBoardList } from '../api/boardApi';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const category = context.params?.category;
-  const boardListTest = getBoardList();
+
+  if (typeof category === 'string') {
+    const boardList = getBoardList(category);
+
+    return {
+      props: {
+        boardList,
+      },
+    };
+  }
 
   return {
     props: {
-      boardListTest,
+      boardList: null,
     },
   };
 };
@@ -25,16 +34,8 @@ export async function getStaticPaths() {
   };
 }
 
-const BoardListPage = function ({ boardListTest }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const router = useRouter();
-  const { boardData } = useBase();
-  const boardList = boardData[router.query.category as string];
-
-  const data = useMemo(() => {
-    return Object.keys(boardList || {}).map((key) => boardList[key]);
-  }, [boardList]);
-
-  return <BoardList data={data} />;
+const BoardListPage = function ({ boardList }: InferGetStaticPropsType<typeof getStaticProps>) {
+  return <BoardList data={boardList} />;
 };
 
 export default BoardListPage;
