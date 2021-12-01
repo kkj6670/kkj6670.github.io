@@ -1,18 +1,19 @@
 import React, { useMemo } from 'react';
-import { InferGetStaticPropsType } from 'next';
+import { InferGetStaticPropsType, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { useBase } from '../../store/Base';
 
 import BoardList from '../../components/board/BoardList';
 
-import { getCategoryLen } from '../api/board';
+import { getBoardList } from '../api/boardApi';
 
-export const getStaticProps = async () => {
-  const categoryLen = getCategoryLen();
+export const getStaticProps: GetStaticProps = async (context) => {
+  const category = context.params?.category;
+  const boardListTest = getBoardList();
 
   return {
     props: {
-      categoryLen,
+      boardListTest,
     },
   };
 };
@@ -24,9 +25,7 @@ export async function getStaticPaths() {
   };
 }
 
-const BoardListPage = function ({ categoryLen }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(categoryLen);
-
+const BoardListPage = function ({ boardListTest }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
   const { boardData } = useBase();
   const boardList = boardData[router.query.category as string];

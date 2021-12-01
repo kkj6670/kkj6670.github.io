@@ -7,7 +7,7 @@ import { useBase } from '../../../store/Base';
 
 import BoardViewer from '../../../components/board/BoardViewer';
 
-import { getCategoryLen } from '../../api/board';
+// import { getCategoryLen } from '../../api/boardApi';
 
 type Post = {
   test: number;

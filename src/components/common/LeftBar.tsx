@@ -130,9 +130,9 @@ const GitHubLink = styled.a`
   color: #000;
 `;
 
+const CATEGORY_LEN = JSON.parse(process.env.CATEGORY_LEN || '{}');
 const LeftBar = function () {
   const router = useRouter();
-  const { boardData } = useBase();
   const [selectedMenu, setMenu] = useState('');
 
   useEffect(() => {
@@ -158,7 +158,7 @@ const LeftBar = function () {
                   {item.id === 'algorism' && <FaHeadSideVirus size='22px' />}
                   {item.id === 'other' && <BsFillChatSquareDotsFill size='22px' />}
                   {item.name}
-                  <span>({Object.keys(boardData[item.id] || {})?.length})</span>
+                  <span>({CATEGORY_LEN[item.id] || 0})</span>
                 </a>
               </Link>
             </MenuList>

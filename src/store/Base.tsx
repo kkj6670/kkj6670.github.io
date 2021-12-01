@@ -21,7 +21,6 @@ export interface IBoardData {
 interface IBaseState {
   theme: string;
   boardData: IBoardData;
-  categoryLen: ICategoryLen;
 }
 
 interface IBaseAction {
@@ -34,7 +33,6 @@ interface IBaseAction {
 const INITIAL_STATE: IBaseState = {
   theme: 'dark',
   boardData,
-  categoryLen: {},
 };
 
 // BaseUpdateContext type

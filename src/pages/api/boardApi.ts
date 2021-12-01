@@ -21,7 +21,7 @@ function getFiles(category = '') {
   return fs.readdirSync(`${BOARD_MD_DIR}${category}`).map((folder) => folder);
 }
 
-export function getCategoryLen() {
+export function getBoardList() {
   const folders = getCategory();
   const categoryData: ICategoryLen = {};
 
