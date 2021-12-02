@@ -11,8 +11,6 @@ import { BsFillChatSquareDotsFill } from 'react-icons/bs';
 
 import menuData from '../../../public/static/data/menu.json';
 
-import { useBase } from '../../store/Base';
-
 import BoardSearch from '../board/BoardSearch';
 
 interface IMenuList {

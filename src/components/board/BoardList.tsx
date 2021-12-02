@@ -5,12 +5,7 @@ import { useRouter } from 'next/router';
 
 import styled from 'styled-components';
 
-import { IBoardDataDetail } from '../../store/Base';
-
-interface IListItem {
-  url: string;
-  data: IBoardDataDetail;
-}
+import { IBoardDataDetail } from '../../types/common';
 
 const ListBox = styled.section`
   width: 100%;
@@ -63,8 +58,13 @@ const TagItem = styled.span`
   }
 `;
 
-const ListItem = function ({ url, data }: IListItem) {
-  const { fileName, title, date, tag } = data;
+interface IListItem {
+  url: string;
+  info: IBoardDataDetail;
+}
+
+const ListItem = function ({ url, info }: IListItem) {
+  const { fileName, title, date, tag } = info;
   return (
     <ItemBox>
       <Link href={`${url}/${fileName}`} as={`${url}/${fileName}`}>
@@ -93,7 +93,7 @@ const BoardList = function ({ data }: IBoardListProps) {
     <ListBox>
       {!data || data.length === 0
         ? '해당 Note가 존재하지 않습니다.'
-        : data.map((item) => <ListItem key={item.fileName} url={asPath} data={item} />)}
+        : data.map((item) => <ListItem key={item.fileName} url={asPath} info={item} />)}
     </ListBox>
   );
 };

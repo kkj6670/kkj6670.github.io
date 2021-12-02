@@ -54,6 +54,7 @@
 			"aspects": [ "invalidHref", "preferButton" ]
 		}],	// next js Link -> a태그 href error
 		"react/jsx-props-no-spreading": "off", // next js _app.tsx 스프레드 props error
-		"import/no-anonymous-default-export": [2, {"allowObject": true}]	// default로 객체 리턴 가능
+		"import/no-anonymous-default-export": [2, {"allowObject": true}],	// default로 객체 리턴 가능
+		"import/no-extraneous-dependencies": ["error", {"devDependencies": true}]	// devDependencies 에러
 	}
 }

@@ -1,8 +1,8 @@
-<!--
-    BOARD_TITLE: Git Alias 설정
-    BOARD_DATE: 2021-11-06 16:52
-    BOARD_TAG: ["설정", "단축키", "기본세팅"]
--->
+---
+    title: Git Alias 설정
+    date: 2021-11-06 16:52
+    tag: ["설정", "단축키", "기본세팅"]
+---
 ## Alias 설정
 ```text
 // 추가

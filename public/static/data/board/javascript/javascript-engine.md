@@ -1,8 +1,8 @@
-<!--
-    BOARD_TITLE: 자바스크립트 엔진
-    BOARD_DATE: 2021-11-21 13:28
-    BOARD_TAG: ["엔진", "기초"]
--->
+---
+    title: 자바스크립트 엔진
+    date: 2021-11-21 13:28
+    tag: ["엔진", "기초"]
+---
 # 자바스크립트 엔진
 
 ![기본엔진](https://lh3.googleusercontent.com/pw/AM-JKLXagVMlC7MwP_VYS3DtolnCJZBmUGBiNkUjx7bIx_p1DG_np9b-5rxnsiQERilP3yq8aEQrCm1ss7cykfOUdQAf5ovJ2HDPiGrh26r_Z1r8wUG7xfBKEBiCrxcSfOi8UJkU8ubAFSBKM2ZLoebU_rmN=w605-h304-no?authuser=1)

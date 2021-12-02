@@ -5,6 +5,19 @@ export interface IBoardTocData {
   offsetTop: number;
 }
 
+export interface IBoardDataDetail {
+  fileName: string;
+  title: string;
+  date: string;
+  tag?: string[];
+  content?: string;
+}
+
 export interface ICategoryLen {
   [key: string]: number;
+}
+
+export interface IBoardContent {
+  content: string;
+  title: string;
 }

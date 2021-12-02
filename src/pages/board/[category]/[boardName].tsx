@@ -1,27 +1,24 @@
 import React from 'react';
 
-import { InferGetStaticPropsType } from 'next';
+import { InferGetStaticPropsType, GetStaticPropsContext } from 'next';
 import { useRouter } from 'next/router';
+
+import { getBoardContent } from '../../api/boardApi';
 
 import { useBase } from '../../../store/Base';
 
 import BoardViewer from '../../../components/board/BoardViewer';
 
-// import { getCategoryLen } from '../../api/boardApi';
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
+  const category = params?.category?.toString() || '';
+  const boardName = params?.boardName?.toString() || '';
 
-type Post = {
-  test: number;
-};
-
-export const getStaticProps = async () => {
-  const posts: Post[] = [{ test: 1 }];
-
-  const categoryLen = getCategoryLen();
+  const test = getBoardContent(category, boardName);
+  console.log(test);
 
   return {
     props: {
-      posts,
-      categoryLen,
+      test: 1,
     },
   };
 };
@@ -33,12 +30,7 @@ export async function getStaticPaths() {
   };
 }
 
-const BoardViewerPage = function ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(posts);
-  const router = useRouter();
-  const { boardData } = useBase();
-  const { category, boardName } = router.query;
-
+const BoardViewerPage = function () {
   return 'test';
 };
 

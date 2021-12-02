@@ -19,9 +19,6 @@ const App = function ({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyle />
-      <Head>
-        <title>K Note</title>
-      </Head>
       <BaseProvider>
         <MainLayout>
           <Component {...pageProps} />

@@ -1,7 +1,7 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import fs from 'fs';
+import matter from 'gray-matter';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { ICategoryLen } from '../../types/common';
+import { IBoardDataDetail, IBoardContent } from '../../types/common';
 
 import { BOARD_MD_DIR } from '../../../config/boardDir';
 
@@ -18,45 +18,71 @@ export function getCategory() {
 }
 
 export function getCategoryFiles(category = '') {
-  const dir = `${BOARD_MD_DIR}${category}`;
-  return fs.readdirSync(dir).map((fileName) => {
-    return {
-      fileName,
-      fileDir: `${dir}/${fileName}`,
-    };
-  });
+  const dir = `${BOARD_MD_DIR}/${category}`;
+
+  try {
+    return fs.readdirSync(dir).map((fileName) => {
+      return {
+        fileName,
+        fileDir: `${dir}/${fileName}`,
+      };
+    });
+  } catch {
+    return null;
+  }
 }
 
-export function getBoardList(category = '') {
-  const boardList = getCategoryFiles(category)
+export function getFile(category = '', fileName = '') {
+  const dir = `${BOARD_MD_DIR}/${category}/${fileName}.md`;
+
+  try {
+    return fs.readFileSync(dir, 'utf8');
+  } catch {
+    return null;
+  }
+}
+
+export function getBoardList(category = ''): IBoardDataDetail[] {
+  const fileList = getCategoryFiles(category);
+  if (fileList === null) return [];
+
+  const boardList = fileList
     .map(({ fileName, fileDir }) => {
       const md = fs.readFileSync(fileDir, 'utf8');
+      const {
+        data: { title = '', date = '', tag = '[]' },
+      } = matter(md);
 
-      // TODO :: 정규표현식 연구
-      // const commentRegExp = /(<!--)([\r\n]+)(.*)([\r\n]+)(.*)([\r\n]+)(.*)([\r\n]+)(-->)([\r\n]+)/g;
-      // const content = md.replace(commentRegExp, '');
-
-      const info = md.match(/(BOARD_)(.*)(:\s)(.*)/g);
-      if (info) {
-        const [title, date, tag] = info.map((item) => item.replace(/(BOARD_)(.*)(:\s)/, ''));
-
-        return {
-          fileName: fileName.replace('.md', ''),
-          title,
-          date,
-          tag: JSON.parse(tag),
-        };
-      }
-
-      return null;
+      return {
+        fileName: fileName.replace('.md', ''),
+        title,
+        date,
+        tag,
+      };
     })
     .filter((file) => file !== null);
 
   boardList.sort((a, b) => {
-    const bDate = new Date(b?.date || 0).getTime();
-    const aDate = new Date(a?.date || 0).getTime();
+    const bDate = new Date(b.date).getTime();
+    const aDate = new Date(a.date).getTime();
     return bDate - aDate;
   });
 
   return boardList;
+}
+
+export function getBoardContent(category = '', fileName = ''): IBoardContent {
+  console.log(category, fileName, 'getBoardContent');
+  const md = getFile(category, fileName) || '';
+  const {
+    data: { title = '' },
+    content,
+  } = matter(md);
+
+  console.log(content);
+
+  return {
+    title,
+    content,
+  };
 }
