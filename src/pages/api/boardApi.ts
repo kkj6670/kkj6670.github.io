@@ -17,7 +17,7 @@ export function getCategory() {
   return fs.readdirSync(BOARD_MD_DIR).map((folder) => folder);
 }
 
-export function getCategoryFiles(category = '') {
+export function getCategoryFile(category = '') {
   const dir = `${BOARD_MD_DIR}/${category}`;
 
   try {
@@ -32,7 +32,7 @@ export function getCategoryFiles(category = '') {
   }
 }
 
-export function getFile(category = '', fileName = '') {
+export function getBoardFile(category = '', fileName = '') {
   const dir = `${BOARD_MD_DIR}/${category}/${fileName}.md`;
 
   try {
@@ -43,8 +43,7 @@ export function getFile(category = '', fileName = '') {
 }
 
 export function getBoardList(category = ''): IBoardDataDetail[] {
-  const fileList = getCategoryFiles(category);
-  if (fileList === null) return [];
+  const fileList = getCategoryFile(category) || [];
 
   const boardList = fileList
     .map(({ fileName, fileDir }) => {
@@ -72,14 +71,11 @@ export function getBoardList(category = ''): IBoardDataDetail[] {
 }
 
 export function getBoardContent(category = '', fileName = ''): IBoardContent {
-  console.log(category, fileName, 'getBoardContent');
-  const md = getFile(category, fileName) || '';
+  const md = getBoardFile(category, fileName) || '';
   const {
     data: { title = '' },
     content,
   } = matter(md);
-
-  console.log(content);
 
   return {
     title,

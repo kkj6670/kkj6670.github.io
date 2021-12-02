@@ -1,19 +1,15 @@
 import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
-import { InferGetStaticPropsType } from 'next';
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { MDXRemote } from 'next-mdx-remote';
 import styled from 'styled-components';
 
-import marked from 'marked';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-dark.css';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
-import BoardToc from './BoardToc';
+import HeadSeo from '../common/HeadSeo';
 
 import { IBoardTocData } from '../../types/common';
-import { IBoardDataDetail } from '../../store/Base';
-import { mdToPlainText } from '../../lib/utils';
-import useWindowSize from '../../lib/hooks/useWindowSize';
 
-const ContentBox = styled.section`
+const ViewerBox = styled.section`
   width: 100%;
   padding-right: 200px;
   color: ${({ theme }) => theme.textColor};
@@ -88,62 +84,28 @@ const ContentBox = styled.section`
   }
 `;
 
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  highlight(code, lang) {
-    const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-    return hljs.highlight(code, { language }).value;
-  },
-  langPrefix: 'hljs language-', // highlight.js css expects a top-level 'hljs' class.
-  pedantic: false,
-  gfm: true,
-  breaks: true,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false,
-  xhtml: false,
-});
-
-const IMAGE_PATH_REG_EXP = /(..\/..\/..\/images\/board)/g;
-
 interface IBoardViewerProps {
-  data: IBoardDataDetail;
-  test: number;
-  test2: number;
+  title: string;
+  mdxSource: MDXRemoteSerializeResult;
 }
 
-const BoardViewer = function () {
-  const contentBox = useRef<HTMLDivElement>(null);
-  const [toc, setToc] = useState<IBoardTocData[]>([]);
-  const [mdHtml, setMdHtml] = useState({ __html: '' });
+function code({ className, ...props }) {
+  const match = /language-(\w+)/.exec(className || '');
+  return match ? (
+    <SyntaxHighlighter language={match[1]} PreTag='div' {...props} />
+  ) : (
+    <code className={className} {...props} />
+  );
+}
 
-  // const setTocData = useCallback(() => {
-  //   if (contentBox.current) {
-  //     const hTags: NodeListOf<HTMLElement> = contentBox.current.querySelectorAll('h1, h2, h3');
-  //     const tocList: IBoardTocData[] = [];
-  //     hTags.forEach((tag) => {
-  //       const level = +tag.tagName.replace('H', '');
-  //       const anchor = tag.id;
-  //       const text = tag.textContent || '';
-  //       const { offsetTop } = tag;
-
-  //       tocList.push({
-  //         level,
-  //         anchor,
-  //         text,
-  //         offsetTop: offsetTop - 15,
-  //       });
-  //     });
-
-  //     setToc(tocList);
-  //   }
-  // }, [contentBox, setToc]);
-
+const BoardViewer = function ({ title, mdxSource }: IBoardViewerProps) {
   return (
-    <>
-      <ContentBox ref={contentBox} dangerouslySetInnerHTML={mdHtml} />
-      {toc.length > 0 && <BoardToc toc={toc} />}
-    </>
+    <ViewerBox>
+      <HeadSeo title={title} />
+      <MDXRemote {...mdxSource} components={{ code }} />
+      {/* <ContentBox ref={contentBox} dangerouslySetInnerHTML={mdHtml} />
+      {toc.length > 0 && <BoardToc toc={toc} />} */}
+    </ViewerBox>
   );
 };
 
