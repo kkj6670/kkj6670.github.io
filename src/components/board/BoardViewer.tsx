@@ -1,13 +1,16 @@
-import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
+import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
+import styled from 'styled-components';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { MDXRemote } from 'next-mdx-remote';
-import styled from 'styled-components';
-
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { a11yDark, vs } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import HeadSeo from '../common/HeadSeo';
+import BoardToc from './BoardToc';
 
+import useWindowSize from '../../lib/hooks/useWindowSize';
 import { IBoardTocData } from '../../types/common';
+import { useBase } from '../../store/Base';
 
 const ViewerBox = styled.section`
   width: 100%;
@@ -45,27 +48,39 @@ const ViewerBox = styled.section`
     font-weight: 500;
   }
 
-  code {
-    font-family: 'NOTO SANS KR' sans-serif;
+  pre {
     border-radius: 8px;
 
-    color: ${({ theme }) => theme.textColor};
-    background-color: ${({ theme }) => theme.pointBgColor};
+    > div {
+      background-color: ${({ theme }) => theme.pointBgColor} !important;
 
-    ::-webkit-scrollbar {
-      width: 15px;
-      height: 15px;
-    }
+      ::-webkit-scrollbar {
+        width: 15px;
+        height: 15px;
+      }
 
-    ::-webkit-scrollbar-thumb {
-      background-color: ${({ theme }) => theme.scrollColor.thumb};
-      border-radius: 10px;
-      background-clip: content-box;
-      border: 3px solid rgba(255, 255, 255, 0);
-    }
+      ::-webkit-scrollbar-thumb {
+        background-color: ${({ theme }) => theme.scrollColor.thumb};
+        border-radius: 10px;
+        background-clip: content-box;
+        border: 3px solid rgba(255, 255, 255, 0);
+      }
 
-    ::-webkit-scrollbar-track {
-      background-color: ${({ theme }) => theme.scrollColor.track};
+      ::-webkit-scrollbar-track {
+        background-color: ${({ theme }) => theme.scrollColor.track};
+      }
+
+      padding: 20px !important;
+
+      line-height: 1.5 !important;
+      font-size: 1.5rem !important;
+      text-shadow: none !important;
+
+      > code {
+        line-height: 1.5 !important;
+        font-size: 1.5rem !important;
+        text-shadow: none !important;
+      }
     }
   }
 
@@ -86,26 +101,81 @@ const ViewerBox = styled.section`
 
 interface IBoardViewerProps {
   title: string;
+  description: string;
   mdxSource: MDXRemoteSerializeResult;
 }
 
-function code({ className, ...props }) {
-  const match = /language-(\w+)/.exec(className || '');
-  return match ? (
-    <SyntaxHighlighter language={match[1]} PreTag='div' {...props} />
-  ) : (
-    <code className={className} {...props} />
+function h1({ children = '' }) {
+  return (
+    <h1 id={children} className='tocHeading'>
+      {children}
+    </h1>
   );
 }
 
-const BoardViewer = function ({ title, mdxSource }: IBoardViewerProps) {
+function h2({ children = '' }) {
   return (
-    <ViewerBox>
-      <HeadSeo title={title} />
-      <MDXRemote {...mdxSource} components={{ code }} />
-      {/* <ContentBox ref={contentBox} dangerouslySetInnerHTML={mdHtml} />
-      {toc.length > 0 && <BoardToc toc={toc} />} */}
-    </ViewerBox>
+    <h2 id={children} className='tocHeading'>
+      {children}
+    </h2>
+  );
+}
+
+function h3({ children = '' }) {
+  return (
+    <h3 id={children} className='tocHeading'>
+      {children}
+    </h3>
+  );
+}
+
+const BoardViewer = function ({ title, description, mdxSource }: IBoardViewerProps) {
+  const viewrBox = useRef<HTMLElement>(null);
+  const [toc, setToc] = useState<IBoardTocData[]>([]);
+  const { theme } = useBase();
+  const windowSize = useWindowSize();
+
+  const code = useCallback(
+    ({ className = '', ...props }) => {
+      const targetTheme = theme === 'dark' ? a11yDark : vs;
+      const match = /language-(\w+)/.exec(className || '');
+      return match ? (
+        <SyntaxHighlighter language={match[1]} PreTag='div' {...props} style={targetTheme} />
+      ) : (
+        <code className={className} {...props} />
+      );
+    },
+    [theme],
+  );
+
+  useEffect(() => {
+    if (viewrBox?.current) {
+      const tags = viewrBox.current.getElementsByClassName('tocHeading');
+
+      const tocList: IBoardTocData[] = Array.from(tags).map((tag) => {
+        const { offsetTop, id, innerText, tagName } = tag as HTMLHeadingElement;
+        const level = +tagName.replace('H', '');
+
+        return {
+          anchor: id,
+          level,
+          text: innerText,
+          offsetTop,
+        };
+      });
+
+      setToc(tocList);
+    }
+  }, [viewrBox, setToc, windowSize]);
+
+  return (
+    <>
+      <ViewerBox ref={viewrBox}>
+        <HeadSeo title={title} description={description} />
+        <MDXRemote {...mdxSource} components={{ code, h1, h2, h3 }} />
+      </ViewerBox>
+      {toc.length > 0 && <BoardToc toc={toc} />}
+    </>
   );
 };
 

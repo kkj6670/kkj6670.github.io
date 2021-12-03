@@ -13,8 +13,10 @@ export function mdToPlainText(
   const codeStart = /(```\w+)+/g;
   const codeEnd = /(```)/g;
   const onlyWord = /([^\w가-힣ㄱ-ㅎㅏ-ㅣ])/g;
+  const image = /(![.*](.*))/g;
 
-  let plainText = text.replace(header, '');
+  let plainText = text.replace(header, '').replace(image, '');
+
   if (options.whiteSpace) plainText = plainText.replace(whiteSpace, '');
   if (options.code) {
     plainText = plainText.replace(codeStart, '');

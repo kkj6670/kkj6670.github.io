@@ -5,16 +5,6 @@ import { IBoardTocData } from '../../types/common';
 
 import useScrollTop from '../../lib/hooks/useScrollTop';
 
-interface IBoardToc {
-  toc: IBoardTocData[];
-}
-
-interface ITocItem {
-  level: number;
-  activeItem: string;
-  anchor: string;
-}
-
 const TocBox = styled.ul`
   width: 185px;
   position: fixed;
@@ -42,6 +32,12 @@ const TocBox = styled.ul`
     background-color: ${({ theme }) => theme.scrollColor.track};
   }
 `;
+
+interface ITocItem {
+  level: number;
+  activeItem: string;
+  anchor: string;
+}
 
 const TocItem = styled.li<ITocItem>`
   ${({ level }) => {
@@ -82,9 +78,13 @@ const TocItem = styled.li<ITocItem>`
   }}
 `;
 
-const TOP_INTERVAL = 15;
+const TOP_INTERVAL = 30;
 
-const BoardToc = function ({ toc }: IBoardToc) {
+interface IBoardTocProps {
+  toc: IBoardTocData[];
+}
+
+const BoardToc = function ({ toc }: IBoardTocProps) {
   const tocBox = useRef(null);
   const scrollTop = useScrollTop();
 

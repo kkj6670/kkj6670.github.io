@@ -22,7 +22,7 @@
     "react-markdown": "^6.0.2",
     "react-router-dom": "^5.3.0",
     "react-syntax-highlighter": "^15.4.5",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -31,7 +31,7 @@
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
     "@types/marked": "^3.0.2",
-    "@types/node": "^16.11.9",
+    "@types/node": "^16.11.11",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "@types/react-router-dom": "^5.1.9",
@@ -67,12 +67,11 @@
   "scripts": {
     "lint": "eslint ./src --ext js,jsx,ts,tsx",
     "lint:fix": "eslint --fix ./src --ext js,jsx,ts,tsx",
-    "deploy": "gh-pages -d dist",
-    "deploy:build": "yarn build & yarn deploy",
+    "deploy": "gh-pages -d out -t true",
     "prepare": "husky install",
     "cbd": "node scripts/setBoardData.mjs",
     "dev": "next dev",
-    "build": "next build",
+    "build": "rm -rf node_modules/.cache && next build && next export && touch ./out/.nojekyll",
     "start": "next start"
   },
   "lint-staged": {

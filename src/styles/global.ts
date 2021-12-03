@@ -87,7 +87,7 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
   
-  li {
+  ul, li {
 	  list-style: none;
   }
   

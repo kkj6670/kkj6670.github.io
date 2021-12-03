@@ -6,7 +6,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel='icon' href='/static/images/icon/note.svg' />
+          <link rel='icon' href={`${process.env.URL_PATH}/static/images/icon/note.svg`} />
           <meta name='google-site-verification' content='P8e-wgPtyXmOnZCbu4AwxrZ51MqT_DUxGbMTDlBgigg' />
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link rel='preconnect' href='https://fonts.gstatic.com' />

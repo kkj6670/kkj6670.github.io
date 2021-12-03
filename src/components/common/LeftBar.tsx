@@ -56,7 +56,7 @@ const HeaderTitle = styled.h1`
   text-align: center;
   font-size: 3rem;
   margin-bottom: 1.5rem;
-  background: url('/static/images/icon/note.svg') no-repeat 0 50%;
+  background: url('${process.env.URL_PATH}/static/images/icon/note.svg') no-repeat 0 50%;
   background-size: 30px;
 `;
 

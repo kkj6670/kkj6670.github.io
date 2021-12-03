@@ -13,6 +13,7 @@ module.exports = withMDX({
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   env: {
     BOARD_MD_DIR,
+    URL_PATH: isProd ? URL_PATH : '',
     CATEGORY_LEN: JSON.stringify(CATEGORY_LEN),
   },
   basePath: isProd ? URL_PATH : '',
