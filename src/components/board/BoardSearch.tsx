@@ -13,7 +13,7 @@ interface IBoardSearchList extends IBoardDataDetail {
 const SearchIconBox = styled.div`
   width: 25px;
   height: 25px;
-  mask: url('/static/images/icon/search.svg') no-repeat center;
+  mask: url('${process.env.URL_PATH}/static/images/icon/search.svg') no-repeat center;
   mask-size: 22px;
   background-color: ${({ theme }) => theme.textColor};
 `;

@@ -148,7 +148,7 @@ const BoardViewer = function ({ title, description, mdxSource }: IBoardViewerPro
     [theme],
   );
 
-  useEffect(() => {
+  const createTocInfo = useCallback(() => {
     if (viewrBox?.current) {
       const tags = viewrBox.current.getElementsByClassName('tocHeading');
 
@@ -166,7 +166,17 @@ const BoardViewer = function ({ title, description, mdxSource }: IBoardViewerPro
 
       setToc(tocList);
     }
-  }, [viewrBox, setToc, windowSize]);
+  }, [viewrBox, setToc]);
+
+  useEffect(() => {
+    createTocInfo();
+  }, [createTocInfo]);
+
+  useEffect(() => {
+    if (windowSize.width > 0 && windowSize.height > 0) {
+      createTocInfo();
+    }
+  }, [windowSize, createTocInfo]);
 
   return (
     <>

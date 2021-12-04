@@ -29,8 +29,8 @@ const BtnThemeChange = styled.button`
   transition: all 0.125s ease-in 0s;
 `;
 
-const sunIconUrl = '/static/images/icon/sun.svg';
-const moonIconUrl = '/static/images/icon/moon.svg';
+const sunIconUrl = `${process.env.URL_PATH}/static/images/icon/sun.svg`;
+const moonIconUrl = `${process.env.URL_PATH}/static/images/icon/moon.svg`;
 const ThemeIcon = styled.span<IThemeIcon>`
   display: block;
   width: 35px;
