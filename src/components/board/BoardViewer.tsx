@@ -1,9 +1,10 @@
-import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import styled from 'styled-components';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { MDXRemote } from 'next-mdx-remote';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { a11yDark, vs } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import Image from 'next/image';
 
 import HeadSeo from '../common/HeadSeo';
 import BoardToc from './BoardToc';
@@ -100,7 +101,6 @@ const ViewerBox = styled.section`
   }
 
   img {
-    max-width: 80%;
     background-color: #fff;
   }
 `;
@@ -132,6 +132,25 @@ function h3({ children = '' }) {
     <h3 id={children} className='tocHeading'>
       {children}
     </h3>
+  );
+}
+
+function img({ alt = '', src = '' }) {
+  const imageSize = src.match(/((=)(w)([0-9]+)(-)(h)([[0-9]+)(-no))/) || [];
+  const width = imageSize[4];
+  const height = imageSize[7];
+
+  if (width && height) {
+    return (
+      <span style={{ display: 'block', width: '80%', position: 'relative' }}>
+        <Image alt={alt} src={src} width={width} height={height} />
+      </span>
+    );
+  }
+  return (
+    <span style={{ display: 'block', width: '80%', position: 'relative', paddingBottom: '50%' }}>
+      <Image alt={alt} src={src} layout='fill' objectFit='contain' />
+    </span>
   );
 }
 
@@ -188,7 +207,7 @@ const BoardViewer = function ({ title, description, mdxSource }: IBoardViewerPro
     <>
       <ViewerBox ref={viewrBox}>
         <HeadSeo title={title} description={description} />
-        <MDXRemote {...mdxSource} components={{ code, h1, h2, h3 }} />
+        <MDXRemote {...mdxSource} components={{ code, h1, h2, h3, img }} />
       </ViewerBox>
       {toc.length > 0 && <BoardToc toc={toc} />}
     </>

@@ -1,7 +1,4 @@
 const { CATEGORY_LEN, BOARD_DATA } = require('./scripts/getBoardData');
-const withMDX = require('@next/mdx')({
-  extension: /\.mdx$/,
-});
 
 const { NODE_ENV } = process.env;
 const URL_PATH = '/react-blog'; // github pages url
@@ -9,7 +6,10 @@ const BOARD_MD_DIR = './public/static/data/board/';
 
 const isProd = NODE_ENV === 'production';
 
-module.exports = withMDX({
+module.exports = {
+  images: {
+    domains: ['lh3.googleusercontent.com'],
+  },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   env: {
     BOARD_MD_DIR,
@@ -29,4 +29,4 @@ module.exports = withMDX({
       ...customConfig,
     };
   },
-});
+};
