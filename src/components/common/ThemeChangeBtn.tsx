@@ -11,11 +11,18 @@ const BtnThemeChange = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
   width: 60px;
   height: 60px;
-  position: fixed;
   right: 25px;
-  bottom: 25px;
+  bottom: 10px;
+
+  @media only screen and (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+    right: 25px;
+    bottom: 10px;
+  }
 
   border-radius: 50%;
   background-color: ${({ theme }) => theme.pointBgColor};
@@ -33,10 +40,10 @@ const sunIconUrl = `${process.env.URL_PATH}/static/images/icon/sun.svg`;
 const moonIconUrl = `${process.env.URL_PATH}/static/images/icon/moon.svg`;
 const ThemeIcon = styled.span<IThemeIcon>`
   display: block;
-  width: 35px;
-  height: 35px;
+  width: 60%;
+  height: 60%;
   mask: url(${({ themeMode }) => (themeMode === 'dark' ? sunIconUrl : moonIconUrl)}) no-repeat;
-  mask-size: 35px;
+  mask-size: 100%;
   background-color: black;
   transition: all 0.125s ease-in 0s;
 `;

@@ -1,4 +1,4 @@
-const { CATEGORY_LEN } = require('./scripts/getCategoryLen.js');
+const { CATEGORY_LEN, BOARD_DATA } = require('./scripts/getBoardData');
 const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 });
@@ -15,6 +15,7 @@ module.exports = withMDX({
     BOARD_MD_DIR,
     URL_PATH: isProd ? URL_PATH : '',
     CATEGORY_LEN: JSON.stringify(CATEGORY_LEN),
+    BOARD_DATA: JSON.stringify(BOARD_DATA),
   },
   basePath: isProd ? URL_PATH : '',
   assetPrefix: isProd ? URL_PATH : '',

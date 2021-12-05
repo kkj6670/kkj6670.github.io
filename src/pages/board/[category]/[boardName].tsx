@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { InferGetStaticPropsType, GetStaticPropsContext } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 

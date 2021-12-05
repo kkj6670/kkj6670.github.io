@@ -1,7 +1,7 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { IBoardDataDetail, IBoardContent } from '../../types/common';
+import { IBoardDetail, IBoardContent } from '../../types/common';
 
 import { BOARD_MD_DIR } from '../../../config/boardDir';
 
@@ -42,7 +42,7 @@ export function getBoardFile(category = '', fileName = '') {
   }
 }
 
-export function getBoardList(category = ''): IBoardDataDetail[] {
+export function getBoardList(category = ''): IBoardDetail[] {
   const fileList = getCategoryFile(category) || [];
 
   const boardList = fileList
@@ -57,6 +57,7 @@ export function getBoardList(category = ''): IBoardDataDetail[] {
         title,
         date,
         tag,
+        content: '',
       };
     })
     .filter((file) => file !== null);

@@ -5,12 +5,15 @@ export interface IBoardTocData {
   offsetTop: number;
 }
 
-export interface IBoardDataDetail {
+export interface IBoardList {
   fileName: string;
   title: string;
   date: string;
   tag?: string[];
-  content?: string;
+}
+
+export interface IBoardDetail extends IBoardList {
+  content: string;
 }
 
 export interface ICategoryLen {

@@ -15,6 +15,12 @@ import { useBase } from '../../store/Base';
 const ViewerBox = styled.section`
   width: 100%;
   padding-right: 200px;
+  @media only screen and (max-width: 1280px) {
+    padding-right: 70px;
+  }
+  @media only screen and (max-width: 768px) {
+    padding-right: 40px;
+  }
   color: ${({ theme }) => theme.textColor};
   font-size: 2rem;
   font-weight: 100;

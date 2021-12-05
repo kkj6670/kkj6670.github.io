@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 import styled from 'styled-components';
 
-import { IBoardDataDetail } from '../../types/common';
+import { IBoardDetail } from '../../types/common';
 
 const ListBox = styled.section`
   width: 100%;
@@ -60,7 +60,7 @@ const TagItem = styled.span`
 
 interface IListItem {
   url: string;
-  info: IBoardDataDetail;
+  info: IBoardDetail;
 }
 
 const ListItem = function ({ url, info }: IListItem) {
@@ -83,7 +83,7 @@ const ListItem = function ({ url, info }: IListItem) {
 };
 
 interface IBoardListProps {
-  data: IBoardDataDetail[];
+  data: IBoardDetail[];
 }
 
 const BoardList = function ({ data }: IBoardListProps) {

@@ -22,6 +22,12 @@ const Header = styled.header`
   flex-direction: column;
   width: 250px;
   height: 100%;
+  /* @media only screen and (max-width: 768px) {
+    width: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+  } */
   padding: 40px 20px;
   overflow-y: auto;
 
@@ -129,6 +135,7 @@ const GitHubLink = styled.a`
 `;
 
 const CATEGORY_LEN = JSON.parse(process.env.CATEGORY_LEN || '{}');
+
 const LeftBar = function () {
   const router = useRouter();
   const [selectedMenu, setMenu] = useState('');

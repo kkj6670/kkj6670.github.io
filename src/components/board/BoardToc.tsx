@@ -6,6 +6,9 @@ import { IBoardTocData } from '../../types/common';
 import useScrollTop from '../../lib/hooks/useScrollTop';
 
 const TocBox = styled.ul`
+  @media only screen and (max-width: 1280px) {
+    display: none;
+  }
   width: 185px;
   position: fixed;
   right: 20px;

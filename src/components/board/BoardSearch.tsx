@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { IBoardDataDetail, useBase } from '../../store/Base';
+import { IBoardDetail } from '../../types/common';
 
 import { mdToPlainText } from '../../lib/utils';
 
-interface IBoardSearchList extends IBoardDataDetail {
+interface IBoardSearchList extends IBoardDetail {
   menu: string;
 }
 
@@ -140,9 +140,18 @@ const Overlay = styled.div`
 `;
 
 let timer: ReturnType<typeof setTimeout>;
+const BOARD_DATA = JSON.parse(process.env.BOARD_DATA || '{}');
+const ALL_BOARD_LIST = Object.keys(BOARD_DATA).reduce<IBoardSearchList[]>((prev: IBoardSearchList[], menu: string) => {
+  const items = Object.keys(BOARD_DATA[menu]);
+  const nextList = items.map((item) => {
+    const nextItem = { ...BOARD_DATA[menu][item], menu };
+    nextItem.content = mdToPlainText(nextItem.content, { code: true });
+    return nextItem;
+  });
+  return [...prev, ...nextList];
+}, []);
 
 const BoardSearch = function () {
-  const { boardData } = useBase();
   const [searchText, setSearchText] = useState('');
   const [searchItems, setSearchItems] = useState<JSX.Element[]>([]);
 
@@ -167,20 +176,6 @@ const BoardSearch = function () {
     setSearchText('');
   }, [setSearchText]);
 
-  const allBoardList: IBoardSearchList[] = useMemo(() => {
-    const menus = Object.keys(boardData);
-
-    return menus.reduce<IBoardSearchList[]>((prev: IBoardSearchList[], menu: string) => {
-      const items = Object.keys(boardData[menu]);
-      const nextList = items.map((item) => {
-        const nextItem = { ...boardData[menu][item], menu };
-        nextItem.content = mdToPlainText(nextItem.content, { code: true });
-        return nextItem;
-      });
-      return [...prev, ...nextList];
-    }, []);
-  }, [boardData]);
-
   useEffect(() => {
     if (timer) clearTimeout(timer);
 
@@ -192,9 +187,9 @@ const BoardSearch = function () {
 
         let searchList: IBoardSearchList[] = [];
         if (isTagSearch) {
-          searchList = allBoardList.filter((board) => board.tag?.includes(searchText.replace(/#/g, '')));
+          searchList = ALL_BOARD_LIST.filter((board) => board.tag?.includes(searchText.replace(/#/g, '')));
         } else {
-          searchList = allBoardList.filter(
+          searchList = ALL_BOARD_LIST.filter(
             (board) => board.content?.includes(searchText) || board.title?.includes(searchText),
           );
         }
@@ -263,7 +258,7 @@ const BoardSearch = function () {
 
       setSearchItems(items);
     }, 200);
-  }, [searchText, setSearchItems, allBoardList, clearSearchText]);
+  }, [searchText, setSearchItems, clearSearchText]);
 
   return (
     <SearchBox>

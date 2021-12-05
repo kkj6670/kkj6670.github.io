@@ -1,26 +1,7 @@
-import React, { createContext, useContext, useReducer, Dispatch } from 'react';
-
-import boardData from '../../public/static/data/boardData.json';
-
-export interface IBoardDataDetail {
-  fileName: string;
-  title: string;
-  date: string;
-  tag?: string[];
-  content: string;
-}
-
-export interface IBoardDataList {
-  [key: string]: IBoardDataDetail;
-}
-
-export interface IBoardData {
-  [key: string]: IBoardDataList;
-}
+import React, { createContext, useContext, useReducer, Dispatch, useEffect } from 'react';
 
 interface IBaseState {
   theme: string;
-  boardData: IBoardData;
 }
 
 interface IBaseAction {
@@ -28,11 +9,8 @@ interface IBaseAction {
   value: string;
 }
 
-// TODO :: LocalStorage 적용
-// const blogTheme = localStorage.getItem('blogTheme');
 const INITIAL_STATE: IBaseState = {
   theme: 'dark',
-  boardData,
 };
 
 // BaseUpdateContext type
@@ -68,6 +46,11 @@ interface IBase {
 
 const BaseProvider = function ({ children }: IBase) {
   const [state, dispatch] = useReducer(BaseReducer, INITIAL_STATE);
+
+  useEffect(() => {
+    const value = localStorage.getItem('blogTheme') || 'dark';
+    dispatch({ type: 'THEME_CHANGE', value });
+  }, [dispatch]);
 
   return (
     <BaseContext.Provider value={state}>
