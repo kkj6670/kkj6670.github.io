@@ -8,6 +8,8 @@ const isProd = NODE_ENV === 'production';
 
 module.exports = {
   images: {
+    loader: 'imgix',
+    path: '',
     domains: ['lh3.googleusercontent.com'],
   },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
