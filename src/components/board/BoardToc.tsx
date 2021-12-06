@@ -9,7 +9,7 @@ const TocBox = styled.ul`
   @media only screen and (max-width: 1280px) {
     display: none;
   }
-  width: 185px;
+  width: 200px;
   position: fixed;
   right: 20px;
   top: 50px;
@@ -18,6 +18,7 @@ const TocBox = styled.ul`
   padding: 0 15px 5px 20px;
   border-left: 3px solid #eee;
   border-top-color: transparent;
+  word-break: break-all;
 
   ::-webkit-scrollbar {
     width: 10px;

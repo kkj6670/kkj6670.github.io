@@ -144,7 +144,7 @@ function img({ alt = '', src = '' }) {
 
   if (width && height) {
     return (
-      <span style={{ display: 'block', width: '80%', position: 'relative' }}>
+      <span style={{ display: 'block', width: '80%', position: 'relative', margin: '15px 0' }}>
         <Image alt={alt} src={src} width={width} height={height} />
       </span>
     );
