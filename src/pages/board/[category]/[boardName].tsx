@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { InferGetStaticPropsType, GetStaticPropsContext } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 
@@ -8,12 +8,13 @@ import BoardViewer from '../../../components/board/BoardViewer';
 
 import { mdToPlainText } from '../../../lib/utils';
 
+const MAX_DESCRIPTION = 155;
 export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   const category = params?.category?.toString() || '';
   const boardName = params?.boardName?.toString() || '';
 
   const { title, content } = getBoardContent(category, boardName);
-  const description = mdToPlainText(content);
+  const description = mdToPlainText(content).slice(0, MAX_DESCRIPTION);
   const mdxSource = await serialize(content);
 
   return {

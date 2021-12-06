@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-import LeftBar from '../common/LeftBar';
+import LeftBar from '../common/Header';
 import ThemeChangeBtn from '../common/ThemeChangeBtn';
 
 import { useBase } from '../../store/Base';
@@ -19,6 +19,11 @@ const Main = styled.main`
   height: 100%;
   padding: 15px;
   overflow-y: auto;
+
+  @media only screen and (max-width: 768px) {
+    margin-top: 50px;
+    height: calc(100% - 50px);
+  }
 
   ::-webkit-scrollbar {
     width: 15px;

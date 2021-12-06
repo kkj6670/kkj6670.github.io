@@ -11,6 +11,9 @@ const ListBox = styled.section`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
   grid-column-gap: 15px;
   grid-row-gap: 12px;
 

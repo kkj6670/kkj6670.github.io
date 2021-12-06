@@ -77,11 +77,13 @@ const ViewerBox = styled.section`
         background-color: ${({ theme }) => theme.scrollColor.track};
       }
 
-      padding: 20px !important;
+      padding: 20px 20px 0 20px !important;
 
       line-height: 1.5 !important;
       font-size: 1.5rem !important;
       text-shadow: none !important;
+      border-radius: 8px !important;
+      border: 0 none !important;
 
       > code {
         line-height: 1.5 !important;
@@ -195,12 +197,6 @@ const BoardViewer = function ({ title, description, mdxSource }: IBoardViewerPro
 
   useEffect(() => {
     createTocInfo();
-  }, [createTocInfo]);
-
-  useEffect(() => {
-    if (windowSize.width > 0 && windowSize.height > 0) {
-      createTocInfo();
-    }
   }, [windowSize, createTocInfo]);
 
   return (

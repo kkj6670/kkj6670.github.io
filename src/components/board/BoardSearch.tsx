@@ -57,6 +57,12 @@ const SearchListBox = styled.div`
   z-index: 1000;
   background-color: ${({ theme }) => theme.pointBgColor};
 
+  @media only screen and (max-width: 768px) {
+    width: 90%;
+    left: 5%;
+    top: 130px;
+  }
+
   ::-webkit-scrollbar {
     width: 15px;
     height: 15px;
@@ -126,6 +132,13 @@ const SearchListItem = styled.article`
     > p:last-child {
       margin-bottom: 0;
       padding-left: 10px;
+      word-break: break-all;
+
+      @media only screen and (max-width: 768px) {
+        height: 42px;
+        overflow: hidden;
+        max-height: calc(100% - 147px);
+      }
     }
   }
 `;
@@ -145,7 +158,7 @@ const ALL_BOARD_LIST = Object.keys(BOARD_DATA).reduce<IBoardSearchList[]>((prev:
   const items = Object.keys(BOARD_DATA[menu]);
   const nextList = items.map((item) => {
     const nextItem = { ...BOARD_DATA[menu][item], menu };
-    nextItem.content = mdToPlainText(nextItem.content, { code: true });
+    nextItem.content = mdToPlainText(nextItem.content);
     return nextItem;
   });
   return [...prev, ...nextList];
@@ -263,6 +276,7 @@ const BoardSearch = function () {
   return (
     <SearchBox>
       <input
+        id='boardSearch'
         type='text'
         placeholder='Quick Search...'
         onInput={handleInput}

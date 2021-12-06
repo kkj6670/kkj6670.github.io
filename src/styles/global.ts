@@ -66,6 +66,9 @@ const GlobalStyle = createGlobalStyle`
   
   html {
 	  font-size: 10px;
+    @media only screen and (max-width: 768px) {
+      font-size: 8px;
+    }
   }
   
   body {
@@ -73,6 +76,8 @@ const GlobalStyle = createGlobalStyle`
 	  font-family: 'Noto Sans KR', sans-serif;
     font-weight: 400;
   }
+
+  
   
   input, button {
     font-family: 'Noto Sans KR', sans-serif;
