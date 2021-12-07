@@ -114,27 +114,15 @@ interface IBoardViewerProps {
 }
 
 const h1 = function ({ children = '' }) {
-  return (
-    <h1 id={children} className='tocHeading'>
-      {children}
-    </h1>
-  );
+  return <h1 className='tocHeading'>{children}</h1>;
 };
 
 const h2 = function ({ children = '' }) {
-  return (
-    <h2 id={children} className='tocHeading'>
-      {children}
-    </h2>
-  );
+  return <h2 className='tocHeading'>{children}</h2>;
 };
 
 const h3 = function ({ children = '' }) {
-  return (
-    <h3 id={children} className='tocHeading'>
-      {children}
-    </h3>
-  );
+  return <h3 className='tocHeading'>{children}</h3>;
 };
 
 const img = function ({ alt = '', src = '' }) {
@@ -175,16 +163,19 @@ const BoardViewer = function ({ title, description, mdxSource }: IBoardViewerPro
     [theme],
   );
 
-  const createTocInfo = useCallback(() => {
-    if (viewrBox?.current) {
+  useEffect(() => {
+    if (windowSize.width > 0 && viewrBox?.current) {
       const tags = viewrBox.current.getElementsByClassName('tocHeading');
 
       const tocList: IBoardTocData[] = Array.from(tags).map((tag) => {
-        const { offsetTop, id, innerText, tagName } = tag as HTMLHeadingElement;
+        const { offsetTop, innerText, tagName } = tag as HTMLHeadingElement;
         const level = +tagName.replace('H', '');
+        const anchor = `${innerText}-${offsetTop}`;
+        // eslint-disable-next-line no-param-reassign
+        tag.id = anchor;
 
         return {
-          anchor: id,
+          anchor,
           level,
           text: innerText,
           offsetTop,
@@ -193,11 +184,7 @@ const BoardViewer = function ({ title, description, mdxSource }: IBoardViewerPro
 
       setToc(tocList);
     }
-  }, [viewrBox, setToc]);
-
-  useEffect(() => {
-    createTocInfo();
-  }, [windowSize, createTocInfo]);
+  }, [windowSize, viewrBox, setToc]);
 
   return (
     <>
