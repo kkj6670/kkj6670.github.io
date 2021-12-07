@@ -213,7 +213,7 @@ const Header = function () {
       hideSideBar(false);
       setMobile(false);
     }
-  }, [windowSize, hideSideBar]);
+  }, [windowSize.width, hideSideBar]);
 
   const handleSideBarOpen = useCallback(() => {
     hideSideBar(!isHideSideBar);
@@ -234,8 +234,8 @@ const Header = function () {
     <header>
       <SideBar isHide={isMobile && isHideSideBar}>
         <div>
-          <SideBarTitle>K Note</SideBarTitle>
           <BoardSearch />
+          <SideBarTitle>K Note</SideBarTitle>
         </div>
         <nav>
           <MenuBox>

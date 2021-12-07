@@ -113,48 +113,48 @@ interface IBoardViewerProps {
   mdxSource: MDXRemoteSerializeResult;
 }
 
-function h1({ children = '' }) {
+const h1 = function ({ children = '' }) {
   return (
     <h1 id={children} className='tocHeading'>
       {children}
     </h1>
   );
-}
+};
 
-function h2({ children = '' }) {
+const h2 = function ({ children = '' }) {
   return (
     <h2 id={children} className='tocHeading'>
       {children}
     </h2>
   );
-}
+};
 
-function h3({ children = '' }) {
+const h3 = function ({ children = '' }) {
   return (
     <h3 id={children} className='tocHeading'>
       {children}
     </h3>
   );
-}
+};
 
-function img({ alt = '', src = '' }) {
+const img = function ({ alt = '', src = '' }) {
   const imageSize = src.match(/((=)(w)([0-9]+)(-)(h)([[0-9]+)(-no))/) || [];
   const width = imageSize[4];
   const height = imageSize[7];
 
   if (width && height) {
     return (
-      <span style={{ display: 'block', width: '80%', position: 'relative', margin: '15px 0' }}>
+      <span style={{ display: 'block', width: '90%', position: 'relative', margin: '15px 0' }}>
         <Image alt={alt} src={src} width={width} height={height} />
       </span>
     );
   }
   return (
-    <span style={{ display: 'block', width: '80%', position: 'relative', paddingBottom: '50%' }}>
+    <span style={{ display: 'block', width: '90%', position: 'relative', paddingBottom: '50%' }}>
       <Image alt={alt} src={src} layout='fill' objectFit='contain' />
     </span>
   );
-}
+};
 
 const BoardViewer = function ({ title, description, mdxSource }: IBoardViewerProps) {
   const viewrBox = useRef<HTMLElement>(null);

@@ -50,40 +50,23 @@ const SearchListBox = styled.div`
   position: fixed;
   width: calc(100% - 280px);
   border-radius: 7px;
-  max-height: calc(100% - 40px);
-  overflow-y: auto;
   top: 20px;
-  left: 240px;
+  left: 250px;
   z-index: 1000;
   background-color: ${({ theme }) => theme.pointBgColor};
 
   @media only screen and (max-width: 768px) {
     width: 90%;
     left: 5%;
-    top: 130px;
-  }
-
-  ::-webkit-scrollbar {
-    width: 15px;
-    height: 15px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.scrollColor.thumb};
-    border-radius: 10px;
-    background-clip: content-box;
-    border: 3px solid rgba(255, 255, 255, 0);
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: ${({ theme }) => theme.scrollColor.track};
+    top: 75px;
   }
 
   // 검색결과 text
-  > div {
+  > div:first-child {
     display: flex;
     align-items: center;
-    padding: 20px 0 10px 20px;
+    padding: 1.5rem 0 1rem 1.5rem;
+
     font-weight: 400;
     > span {
       font-weight: bold;
@@ -91,15 +74,41 @@ const SearchListBox = styled.div`
       text-decoration: underline;
     }
   }
+
+  // board list
+  > div:last-child {
+    width: 100%;
+    max-height: calc(100vh - 85px);
+    @media only screen and (max-width: 768px) {
+      max-height: calc(100vh - 200px);
+    }
+    overflow-y: auto;
+
+    ::-webkit-scrollbar {
+      width: 15px;
+      height: 15px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: ${({ theme }) => theme.scrollColor.thumb};
+      border-radius: 10px;
+      background-clip: content-box;
+      border: 3px solid rgba(255, 255, 255, 0);
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: ${({ theme }) => theme.scrollColor.track};
+    }
+  }
 `;
 
 const SearchListItem = styled.article`
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.textColor};
-  padding: 15px;
+  padding: 1.2rem;
   color: ${({ theme }) => theme.textColor};
 
-  :first-child {
+  :last-child {
     border-bottom: 0 none;
   }
 
@@ -135,7 +144,7 @@ const SearchListItem = styled.article`
       word-break: break-all;
 
       @media only screen and (max-width: 768px) {
-        height: 42px;
+        height: 40px;
         overflow: hidden;
         max-height: calc(100% - 147px);
       }
@@ -286,9 +295,9 @@ const BoardSearch = function () {
       <SearchListBox hidden={searchText.length === 0}>
         <div>
           <SearchIconBox />
-          검색 결과 <span>{searchItems.length}</span>개
+          검색 결과&nbsp;<span>{searchItems.length}</span>개
         </div>
-        {searchItems}
+        <div>{searchItems}</div>
       </SearchListBox>
       <Overlay hidden={searchText.length === 0} />
       <SearchIconBox />
