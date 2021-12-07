@@ -18,7 +18,7 @@ const TocBox = styled.ul`
   padding: 0 15px 5px 20px;
   border-left: 3px solid #eee;
   border-top-color: transparent;
-  word-break: break-all;
+  word-break: break-word;
 
   ::-webkit-scrollbar {
     width: 10px;
