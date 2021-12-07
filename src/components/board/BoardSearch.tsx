@@ -287,7 +287,7 @@ const BoardSearch = function () {
       <input
         id='boardSearch'
         type='text'
-        placeholder='Quick Search...'
+        placeholder='Search...'
         onInput={handleInput}
         value={searchText}
         onKeyDown={handleKeydown}

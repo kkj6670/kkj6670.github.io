@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { MDXRemote } from 'next-mdx-remote';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { a11yDark, vs } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { a11yDark, coy } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Image from 'next/image';
 
 import HeadSeo from '../common/HeadSeo';
@@ -164,7 +164,7 @@ const BoardViewer = function ({ title, description, mdxSource }: IBoardViewerPro
 
   const code = useCallback(
     ({ className = '', ...props }) => {
-      const targetTheme = theme === 'dark' ? a11yDark : vs;
+      const targetTheme = theme === 'dark' ? a11yDark : coy;
       const match = /language-(\w+)/.exec(className || '');
       return match ? (
         <SyntaxHighlighter language={match[1]} PreTag='div' {...props} style={targetTheme} />
