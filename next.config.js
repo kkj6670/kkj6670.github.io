@@ -7,6 +7,7 @@ const BOARD_MD_DIR = './public/static/data/board/';
 const isProd = NODE_ENV === 'production';
 
 module.exports = {
+  productionBrowserSourceMaps: true, // 프로덕션 빌드중 소스맵 생성x, 빌드속도 향상 https://nextjs.org/docs/advanced-features/source-maps
   images: {
     loader: 'imgix',
     path: '',
@@ -22,11 +23,18 @@ module.exports = {
   basePath: isProd ? URL_PATH : '',
   assetPrefix: isProd ? URL_PATH : '',
   compress: true,
-  webpack: (config, options) => {
+  webpack: (config, { dev, isServer }) => {
     const customConfig = { ...config };
-    if (!options.dev) {
-      customConfig.devtool = options.isServer ? false : 'cheap-module-source-map';
+
+    if (dev) {
+      // ip 외부접속 허용
+      customConfig.devServer = {
+        host: '0.0.0.0',
+      };
+    } else {
+      customConfig.devtool = isServer ? false : 'nosources-source-map'; // https://nextjs.org/docs/messages/improper-devtool
     }
+
     return {
       ...customConfig,
     };
