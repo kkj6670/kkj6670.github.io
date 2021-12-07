@@ -22,5 +22,9 @@
 	{
 		"id": "other",
 		"name": "Other"
+	},
+	{
+		"id": "toyProject",
+		"name": "ToyProject"
 	}
 ]

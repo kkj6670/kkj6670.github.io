@@ -12,7 +12,7 @@ unix, mac : LF(Line Feed, \n)
 - core.eol = crlf - CRLF로 사용
 - core.eol = lf - LF로 사용
   
-```text
+```shell
 // 설정
 git config --global core.eol native
 
@@ -27,7 +27,7 @@ git config --global --list|grep core.eol
 
 - core.autocrlf = input - LF로 사용
 
-```text
+```shell
 // 설정
 git config --global core.autocrlf native
 
@@ -41,12 +41,12 @@ git config --global --list|grep core.autocrlf
 저장소에서 가져올 때 LF -> CRLF로 변경하고  
 저장소로 보낼 때는 CRLF -> LF 로 변경하도록 true 로 설정한다.
 
-```text
+```shell
 git config --global core.autocrlf true
 ```
 
 ### unix, mac
 
-```text
+```shell
 git config --global core.autocrlf input
 ```

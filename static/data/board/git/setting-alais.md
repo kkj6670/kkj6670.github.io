@@ -4,7 +4,7 @@
     tag: ["설정", "단축키", "기본세팅"]
 ---
 ## Alias 설정
-```text
+```shell
 // 추가
 $ git config --global alias.cm commit
 
@@ -16,7 +16,7 @@ $ git config --global --get-regexp alias
 ```
 
 ## Alias 기본 설정 모음
-```text
+```shell
 // status
 git config --global alias.st
 
