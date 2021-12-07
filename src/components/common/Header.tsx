@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import { AiFillGithub } from 'react-icons/ai';
 import { SiJavascript, SiTypescript, SiReact } from 'react-icons/si';
-import { FaHeadSideVirus } from 'react-icons/fa';
+import { FaHeadSideVirus, FaBookOpen } from 'react-icons/fa';
 import { BsFillChatSquareDotsFill } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
@@ -249,6 +249,7 @@ const Header = function () {
                     {item.id === 'git' && <AiFillGithub size='22px' />}
                     {item.id === 'algorism' && <FaHeadSideVirus size='22px' />}
                     {item.id === 'other' && <BsFillChatSquareDotsFill size='22px' />}
+                    {item.id === 'toyProject' && <FaBookOpen size='22px' />}
                     {item.name}
                     <span>({CATEGORY_LEN[item.id] || 0})</span>
                   </a>
