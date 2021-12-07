@@ -10,9 +10,9 @@ import { IBoardDetail } from '../../types/common';
 const ListBox = styled.section`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: calc(50% - 7.5px) calc(50% - 7.5px);
   @media only screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
   }
   grid-column-gap: 15px;
   grid-row-gap: 12px;
@@ -34,6 +34,9 @@ const ItemBox = styled.article`
     > h1 {
       margin-bottom: 10px;
       font-size: 2.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     > p {
       font-size: 1.5rem;
