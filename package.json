@@ -67,7 +67,7 @@
   "scripts": {
     "lint": "eslint ./src --ext js,jsx,ts,tsx",
     "lint:fix": "eslint --fix ./src --ext js,jsx,ts,tsx",
-    "deploy": "yarn build && gh-pages -d out -t true",
+    "deploy": "yarn lint:fix && yarn build && gh-pages -d out -t true",
     "prepare": "husky install",
     "dev": "next dev",
     "build": "rm -rf node_modules/.cache && next build && next export && touch ./out/.nojekyll",

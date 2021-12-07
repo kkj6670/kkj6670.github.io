@@ -14,7 +14,9 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   const boardName = params?.boardName?.toString() || '';
 
   const { title, content } = getBoardContent(category, boardName);
-  const description = mdToPlainText(content).slice(0, MAX_DESCRIPTION);
+  const description = mdToPlainText(content)
+    .replace(/[\r\n]/g, '')
+    .slice(0, MAX_DESCRIPTION);
   const mdxSource = await serialize(content);
 
   return {
