@@ -25,6 +25,7 @@ const ViewerBox = styled.section`
   color: ${({ theme }) => theme.textColor};
   font-size: 2rem;
   font-weight: 100;
+  line-height: 1.8;
 
   pre {
     margin: 2rem 0;
@@ -33,7 +34,7 @@ const ViewerBox = styled.section`
   h1,
   h2,
   h3 {
-    margin-top: 4rem;
+    margin-top: 3.8rem;
     margin-bottom: 1.2rem;
 
     :first-child {
@@ -93,12 +94,21 @@ const ViewerBox = styled.section`
     }
   }
 
-  li {
+  ul > li {
     list-style: disc;
     margin-left: 3rem;
 
     li {
       list-style: unset;
+    }
+  }
+
+  ol > li {
+    list-style-type: decimal;
+    margin-left: 3rem;
+    ::marker {
+      font-family: 'Noto Sans KR', sans-serif;
+      padding-bottom: 100px;
     }
   }
 
