@@ -68,11 +68,11 @@
   "scripts": {
     "lint": "eslint ./src --ext js,jsx,ts,tsx",
     "lint:fix": "eslint --fix ./src --ext js,jsx,ts,tsx",
-    "deploy": "yarn lint:fix && yarn build && gh-pages -d out -t true",
+    "deploy": "yarn build && gh-pages -d out -t true",
     "prepare": "husky install",
     "dev": "next dev",
-    "postBuild": "touch ./out/.nojekyll && node ./scripts/sitemap.js && cp ./sitemap.xml ./robots.txt ./out",
-    "build": "rm -rf node_modules/.cache && next build && next export && yarn postBuild",
+    "sitemap": "node ./scripts/sitemap.js",
+    "build": "rm -rf node_modules/.cache && rm -rf out/ && yarn lint:fix && yarn sitemap && next build && next export",
     "start": "next start"
   },
   "lint-staged": {
