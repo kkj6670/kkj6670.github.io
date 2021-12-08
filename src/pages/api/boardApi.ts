@@ -1,17 +1,8 @@
 import fs from 'fs';
 import matter from 'gray-matter';
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { IBoardDetail, IBoardContent } from '../../types/common';
 
 import { BOARD_MD_DIR } from '../../../config/boardDir';
-
-// type Data = {
-//   name: string;
-// };
-
-// export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-//   res.status(200).json({ name: 'John Doe' });
-// }
 
 export function getCategory() {
   return fs.readdirSync(BOARD_MD_DIR).map((folder) => folder);
