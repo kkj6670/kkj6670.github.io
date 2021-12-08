@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://kkj6670.github.io/sitemap.xml
