@@ -259,7 +259,12 @@ const Header = function () {
           </MenuBox>
         </nav>
         <FooterBox>
-          <GitHubLink href='https://github.com/kkj6670' target='_blank' title='kkj6670GitHubLinkOpen' rel='noreferrer'>
+          <GitHubLink
+            href='https://github.com/kkj6670'
+            target='_blank'
+            title='kkj6670GitHubLinkOpen'
+            rel='noreferrer'
+          >
             <AiFillGithub size='100%' />
           </GitHubLink>
         </FooterBox>

@@ -34,7 +34,6 @@ allList.forEach(([category, categoryBoardData = {}]) => {
 });
 
 const prettyXml = xml.end({ pretty: true });
-console.log(prettyXml);
 fs.open('./sitemap.xml', 'w', (openErr, fd) => {
   if (openErr) throw openErr;
 

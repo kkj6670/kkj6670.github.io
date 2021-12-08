@@ -115,7 +115,12 @@ const BoardToc = function ({ toc }: IBoardTocProps) {
     <TocBox ref={tocBox}>
       {toc.map((item) => {
         return (
-          <TocItem key={item.anchor} level={item.level} activeItem={activeItem} anchor={item.anchor}>
+          <TocItem
+            key={item.anchor}
+            level={item.level}
+            activeItem={activeItem}
+            anchor={item.anchor}
+          >
             <a href={`#${item.anchor}`} title={`${item.anchor} 바로가기`}>
               {item.text}
             </a>

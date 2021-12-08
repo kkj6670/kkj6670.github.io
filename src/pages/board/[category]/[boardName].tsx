@@ -47,7 +47,11 @@ export async function getStaticPaths() {
   };
 }
 
-const BoardContentPage = function ({ title, description, mdxSource }: InferGetStaticPropsType<typeof getStaticProps>) {
+const BoardContentPage = function ({
+  title,
+  description,
+  mdxSource,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return <BoardViewer title={title} description={description} mdxSource={mdxSource} />;
 };
 

@@ -163,15 +163,18 @@ const Overlay = styled.div`
 
 let timer: ReturnType<typeof setTimeout>;
 const BOARD_DATA = JSON.parse(process.env.BOARD_DATA || '{}');
-const ALL_BOARD_LIST = Object.keys(BOARD_DATA).reduce<IBoardSearchList[]>((prev: IBoardSearchList[], menu: string) => {
-  const items = Object.keys(BOARD_DATA[menu]);
-  const nextList = items.map((item) => {
-    const nextItem = { ...BOARD_DATA[menu][item], menu };
-    nextItem.content = mdToPlainText(nextItem.content);
-    return nextItem;
-  });
-  return [...prev, ...nextList];
-}, []);
+const ALL_BOARD_LIST = Object.keys(BOARD_DATA).reduce<IBoardSearchList[]>(
+  (prev: IBoardSearchList[], menu: string) => {
+    const items = Object.keys(BOARD_DATA[menu]);
+    const nextList = items.map((item) => {
+      const nextItem = { ...BOARD_DATA[menu][item], menu };
+      nextItem.content = mdToPlainText(nextItem.content);
+      return nextItem;
+    });
+    return [...prev, ...nextList];
+  },
+  [],
+);
 
 const BoardSearch = function () {
   const [searchText, setSearchText] = useState('');
@@ -209,7 +212,9 @@ const BoardSearch = function () {
 
         let searchList: IBoardSearchList[] = [];
         if (isTagSearch) {
-          searchList = ALL_BOARD_LIST.filter((board) => board.tag?.includes(searchText.replace(/#/g, '')));
+          searchList = ALL_BOARD_LIST.filter((board) =>
+            board.tag?.includes(searchText.replace(/#/g, '')),
+          );
         } else {
           searchList = ALL_BOARD_LIST.filter(
             (board) => board.content?.includes(searchText) || board.title?.includes(searchText),
@@ -265,7 +270,10 @@ const BoardSearch = function () {
 
             return (
               <SearchListItem key={item.fileName} onClick={clearSearchText}>
-                <Link href='/board/[category]/[boardName]' as={`/board/${item.menu}/${item.fileName}`}>
+                <Link
+                  href='/board/[category]/[boardName]'
+                  as={`/board/${item.menu}/${item.fileName}`}
+                >
                   <a>
                     {titleElem}
                     <p>{item.date}</p>
