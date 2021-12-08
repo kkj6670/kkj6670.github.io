@@ -1,7 +1,7 @@
 const { CATEGORY_LEN, BOARD_DATA } = require('./scripts/getBoardData');
 
 const { NODE_ENV } = process.env;
-const URL_PATH = '/react-blog'; // github pages url
+const URL_PATH = ''; // github pages url
 const BOARD_MD_DIR = './public/static/data/board/';
 
 const isProd = NODE_ENV === 'production';
