@@ -62,7 +62,8 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "xmlbuilder": "^15.1.1"
   },
   "scripts": {
     "lint": "eslint ./src --ext js,jsx,ts,tsx",
