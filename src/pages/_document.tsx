@@ -30,7 +30,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang='ko-KR'>
         <Head>
           <link rel='icon' href={`${process.env.URL_PATH}/static/images/icon/note.svg`} />
           <meta
