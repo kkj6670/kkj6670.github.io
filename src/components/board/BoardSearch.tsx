@@ -1,4 +1,11 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -176,9 +183,15 @@ const ALL_BOARD_LIST = Object.keys(BOARD_DATA).reduce<IBoardSearchList[]>(
   [],
 );
 
-const BoardSearch = function () {
+export interface ISearchHandle {
+  clear: () => void;
+  focus: () => void;
+}
+
+const BoardSearch = forwardRef<ISearchHandle>((props, ref) => {
   const [searchText, setSearchText] = useState('');
   const [searchItems, setSearchItems] = useState<JSX.Element[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -200,6 +213,19 @@ const BoardSearch = function () {
   const clearSearchText = useCallback(() => {
     setSearchText('');
   }, [setSearchText]);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      clear() {
+        clearSearchText();
+      },
+      focus() {
+        inputRef?.current?.focus();
+      },
+    }),
+    [clearSearchText, inputRef],
+  );
 
   useEffect(() => {
     if (timer) clearTimeout(timer);
@@ -293,6 +319,7 @@ const BoardSearch = function () {
   return (
     <SearchBox>
       <input
+        ref={inputRef}
         id='boardSearch'
         type='text'
         placeholder='Search...'
@@ -311,6 +338,7 @@ const BoardSearch = function () {
       <SearchIconBox />
     </SearchBox>
   );
-};
+});
 
+BoardSearch.displayName = 'BoardSearch';
 export default BoardSearch;

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -14,7 +14,7 @@ import useWindowSize from '../../lib/hooks/useWindowSize';
 
 import menuData from '../../../public/static/data/menu.json';
 
-import BoardSearch from '../board/BoardSearch';
+import BoardSearch, { ISearchHandle } from '../board/BoardSearch';
 
 interface IMenuList {
   selected: boolean;
@@ -198,6 +198,7 @@ const Header = function () {
   const [isHideSideBar, hideSideBar] = useState(false);
   const [isMobile, setMobile] = useState(false);
   const windowSize = useWindowSize();
+  const handleSearchRef = useRef<ISearchHandle>(null);
 
   useEffect(() => {
     setMenu(String(router.query.category));
@@ -213,7 +214,9 @@ const Header = function () {
       hideSideBar(false);
       setMobile(false);
     }
-  }, [windowSize.width, hideSideBar]);
+
+    handleSearchRef?.current?.clear();
+  }, [windowSize.width, hideSideBar, handleSearchRef]);
 
   const handleSideBarOpen = useCallback(() => {
     hideSideBar(!isHideSideBar);
@@ -222,9 +225,9 @@ const Header = function () {
   const handleSearchOpen = useCallback(() => {
     hideSideBar(false);
     setTimeout(() => {
-      document.getElementById('boardSearch')?.focus();
+      handleSearchRef?.current?.focus();
     }, 0);
-  }, [hideSideBar]);
+  }, [hideSideBar, handleSearchRef]);
 
   const handleOverlayClick = useCallback(() => {
     hideSideBar(true);
@@ -234,7 +237,7 @@ const Header = function () {
     <header>
       <SideBar isHide={isMobile && isHideSideBar}>
         <div>
-          <BoardSearch />
+          <BoardSearch ref={handleSearchRef} />
           <SideBarTitle>K Note</SideBarTitle>
         </div>
         <nav>
