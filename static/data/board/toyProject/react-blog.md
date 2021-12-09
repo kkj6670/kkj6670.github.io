@@ -31,24 +31,24 @@ Front-End: react, typescript, next.js, styled-components
 Back-End: x
 
 ## 주요기능
-1. board 목록
-    ![board 목록](https://lh3.googleusercontent.com/pw/AM-JKLVpXqGstCsNaBevvC9Nuj2sQyQ-UWYsP4cJVd9qXNU0VetJF9XjSOd1W3AkNba_Ihc08pBSzTqzGyiazB1aDBu021ds_WwcQwJkBrJnE6jFArnPWIbUOiNPf0Db9ihZOTv7Pw2MU2k45wIdjZg_wv-s=w2022-h375-no?authuser=1)
+### 1. board 목록
+![board 목록](https://lh3.googleusercontent.com/pw/AM-JKLVpXqGstCsNaBevvC9Nuj2sQyQ-UWYsP4cJVd9qXNU0VetJF9XjSOd1W3AkNba_Ihc08pBSzTqzGyiazB1aDBu021ds_WwcQwJkBrJnE6jFArnPWIbUOiNPf0Db9ihZOTv7Pw2MU2k45wIdjZg_wv-s=w2022-h375-no?authuser=1)
     
-2. board 뷰어
-    ![board 뷰어](https://lh3.googleusercontent.com/pw/AM-JKLVd17kC3W6mgJEiCdPp3NP3K4aDdRQUCtRgYsF4CdxvK4SMqyVdWpGgAD_5fXWniSZ_r1o6yl-3qsDfRUnF_fO2iFEedz3OQcmHzvSK9x01hbhdplu5zA8yF56Xv2yE0IXP9wcthRcc_gHVvJJ3Abfr=w1835-h1301-no?authuser=1)
+### 2. board 뷰어
+![board 뷰어](https://lh3.googleusercontent.com/pw/AM-JKLVd17kC3W6mgJEiCdPp3NP3K4aDdRQUCtRgYsF4CdxvK4SMqyVdWpGgAD_5fXWniSZ_r1o6yl-3qsDfRUnF_fO2iFEedz3OQcmHzvSK9x01hbhdplu5zA8yF56Xv2yE0IXP9wcthRcc_gHVvJJ3Abfr=w1835-h1301-no?authuser=1)
     
-3. board 검색
-    ![board 검색](https://lh3.googleusercontent.com/pw/AM-JKLWyhtrcBjinFuHbAH2us_w351FvN5h7qWo1LfFdO4NLa1pJ6IZJ5R96bW81VG0MfdlSAS9hfKiZOpsH8H3iXLAQPNgG29cSvZ5hkP6cUr0M3WfE1M6VyLdCXrp4R6m-oVsjhVKjSD1C_fVu7ApNRr4v=w2021-h795-no?authuser=1)
+### 3. board 검색
+![board 검색](https://lh3.googleusercontent.com/pw/AM-JKLWyhtrcBjinFuHbAH2us_w351FvN5h7qWo1LfFdO4NLa1pJ6IZJ5R96bW81VG0MfdlSAS9hfKiZOpsH8H3iXLAQPNgG29cSvZ5hkP6cUr0M3WfE1M6VyLdCXrp4R6m-oVsjhVKjSD1C_fVu7ApNRr4v=w2021-h795-no?authuser=1)
     
-4. board 목차 navigation
-    ![board 목차 navigation](https://lh3.googleusercontent.com/pw/AM-JKLX-WzTWzODKs-FvLZwf16UpACiBKQREe9JNefXSKYvNIs7C_PB4KI2n1GFJYwttr-OUBlYkdgpmcgQlBORz_3vR0LZBAGmwUkHDWalwOJfm5-JS6OztNgtCaIozuvdZLHuar4atvJ01g6sCqmjxvnmR=w362-h394-no?authuser=1)
+### 4. board 목차 navigation
+![board 목차 navigation](https://lh3.googleusercontent.com/pw/AM-JKLX-WzTWzODKs-FvLZwf16UpACiBKQREe9JNefXSKYvNIs7C_PB4KI2n1GFJYwttr-OUBlYkdgpmcgQlBORz_3vR0LZBAGmwUkHDWalwOJfm5-JS6OztNgtCaIozuvdZLHuar4atvJ01g6sCqmjxvnmR=w362-h394-no?authuser=1)
     
-5. theme 변경 (dark, white)
-    ![theme 변경 dark](https://lh3.googleusercontent.com/pw/AM-JKLXLZxGZ1vKmbTw0VeWxYn3tM32Qeyly7TnsXggm21SrQv-0OlvgaOEmZugjee2Mweh7q2-UzPbhCfO5jJfIVcrNj-txo-VZe1fj7GRfhteVdr3oIHrkqUrRLcirYxFtd5H2lfem3mobknFTmNotF5VB=w2022-h896-no?authuser=1)
-    ![theme 변경 white](https://lh3.googleusercontent.com/pw/AM-JKLXJoYMKVvfalDk3jlFb_8sdycZwrOpCE4IA9b6l9Picf2_59QOqKjTOg6nfG6wlqLvmOWgc9LRL2Afh8m5tt6l1K0xXfoXRd5YGj8v9XQ7RXrSu00p5OUf5IiSxZ85LNXRQN7mOh43qMlqqehgyvbNG=w2021-h903-no?authuser=1)
+### 5. theme 변경 (dark, white)
+![theme 변경 dark](https://lh3.googleusercontent.com/pw/AM-JKLXLZxGZ1vKmbTw0VeWxYn3tM32Qeyly7TnsXggm21SrQv-0OlvgaOEmZugjee2Mweh7q2-UzPbhCfO5jJfIVcrNj-txo-VZe1fj7GRfhteVdr3oIHrkqUrRLcirYxFtd5H2lfem3mobknFTmNotF5VB=w2022-h896-no?authuser=1)
+![theme 변경 white](https://lh3.googleusercontent.com/pw/AM-JKLXJoYMKVvfalDk3jlFb_8sdycZwrOpCE4IA9b6l9Picf2_59QOqKjTOg6nfG6wlqLvmOWgc9LRL2Afh8m5tt6l1K0xXfoXRd5YGj8v9XQ7RXrSu00p5OUf5IiSxZ85LNXRQN7mOh43qMlqqehgyvbNG=w2021-h903-no?authuser=1)
     
-6. 모바일 반응형 처리
-    ![모바일 반응형 처리](https://lh3.googleusercontent.com/pw/AM-JKLXV5hr1ZbsjGcPMywDGf0yUjZoY7MuNGh-vWr1l_EsLw1KNIMWvxOsadCEYjK6yW-Num6JZB6JnzAVIsuFOCXLPgwOCEvLg9liZusInpgXmmHqmt_QWArJyGu3NzQwxSv5krPMZcq-4xfYRTXl8OAFX=w601-h1056-no?authuser=1)
+### 6. 모바일 반응형 처리
+![모바일 반응형 처리](https://lh3.googleusercontent.com/pw/AM-JKLXV5hr1ZbsjGcPMywDGf0yUjZoY7MuNGh-vWr1l_EsLw1KNIMWvxOsadCEYjK6yW-Num6JZB6JnzAVIsuFOCXLPgwOCEvLg9liZusInpgXmmHqmt_QWArJyGu3NzQwxSv5krPMZcq-4xfYRTXl8OAFX=w601-h1056-no?authuser=1)
 
 ## 배운점
 - next.js 기본 사용법
