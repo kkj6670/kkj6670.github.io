@@ -31,7 +31,12 @@ const ViewerBox = styled.section`
     margin: 2rem 0;
   }
 
-  h1,
+  h1 {
+    font-size: 4rem;
+    margin-bottom: 4rem;
+    line-height: 1.2;
+  }
+
   h2,
   h3 {
     margin-top: 3.8rem;
@@ -40,10 +45,6 @@ const ViewerBox = styled.section`
     :first-child {
       margin-top: 0;
     }
-  }
-
-  h1 {
-    font-size: 4rem;
   }
 
   h2 {
@@ -115,6 +116,11 @@ const ViewerBox = styled.section`
   img {
     background-color: #fff;
   }
+
+  a {
+    color: ${({ theme }) => theme.textColor};
+    text-decoration: underline;
+  }
 `;
 
 interface IBoardViewerProps {
@@ -122,10 +128,6 @@ interface IBoardViewerProps {
   description: string;
   mdxSource: MDXRemoteSerializeResult;
 }
-
-const h1 = function ({ children = '' }) {
-  return <h1 className='tocHeading'>{children}</h1>;
-};
 
 const h2 = function ({ children = '' }) {
   return <h2 className='tocHeading'>{children}</h2>;
@@ -200,7 +202,8 @@ const BoardViewer = function ({ title, description, mdxSource }: IBoardViewerPro
     <>
       <ViewerBox ref={viewrBox}>
         <HeadSeo title={title} description={description} />
-        <MDXRemote {...mdxSource} components={{ code, h1, h2, h3, img }} />
+        <h1>{title}</h1>
+        <MDXRemote {...mdxSource} components={{ code, h2, h3, img }} />
       </ViewerBox>
       {toc.length > 0 && <BoardToc toc={toc} />}
     </>

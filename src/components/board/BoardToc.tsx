@@ -100,6 +100,7 @@ const BoardToc = function ({ toc }: IBoardTocProps) {
       const nextOffsetTop = toc[i + 1]?.offsetTop;
       // offsetTop ~ nextOffsetTop scrollTop
       if (
+        (i === 0 && scrollTop < offsetTop - TOP_INTERVAL) ||
         nextOffsetTop === undefined ||
         (offsetTop - TOP_INTERVAL <= scrollTop && nextOffsetTop - TOP_INTERVAL >= scrollTop)
       ) {
