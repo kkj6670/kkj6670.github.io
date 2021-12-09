@@ -20,7 +20,8 @@ const ViewerBox = styled.section`
     padding-right: 70px;
   }
   @media only screen and (max-width: 768px) {
-    padding-right: 40px;
+    padding-right: 0px;
+    padding-bottom: 40px;
   }
   color: ${({ theme }) => theme.textColor};
   font-size: 2rem;

@@ -93,6 +93,15 @@ const TopBar = styled.div`
       background-color: transparent;
     }
   }
+
+  // title
+  > p {
+    width: calc(100% - 150px);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 const SearchBtn = styled.button`
