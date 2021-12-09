@@ -62,6 +62,9 @@ const BoardSearch = forwardRef<ISearchHandle>((props, ref) => {
     </SearchBox>
   );
 });
+
+// 4. typescript에서 forwardRef를 사용할경우 eslint에서 에러가 생김
+BoardSearch.displayName = 'BoardSearch';
 ```
 
 ## 부모 컴포넌트 예제
