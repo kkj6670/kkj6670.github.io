@@ -13,7 +13,7 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/git/setting-line-break/</loc>
+    <loc>https://kkj6670.github.io/board/git/setting-lineBreak/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -25,25 +25,37 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/javascript/javascript-engine/</loc>
-    <lastmod>2021-11-21</lastmod>
+    <loc>https://kkj6670.github.io/board/javascript/es2020/</loc>
+    <lastmod>2021-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/react/react-display-name/</loc>
+    <loc>https://kkj6670.github.io/board/javascript/javascriptEngine/</loc>
+    <lastmod>2021-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://kkj6670.github.io/board/other/google-seo-sitemap404/</loc>
+    <lastmod>2021-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://kkj6670.github.io/board/react/react-displayName/</loc>
     <lastmod>2021-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/react/imperative-handle/</loc>
+    <loc>https://kkj6670.github.io/board/react/imperativeHandle/</loc>
     <lastmod>2021-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/react/design-pattern-cp/</loc>
+    <loc>https://kkj6670.github.io/board/react/designPattern-cp/</loc>
     <lastmod>2021-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -56,6 +68,24 @@
   </url>
   <url>
     <loc>https://kkj6670.github.io/board/toyProject/react-blog/</loc>
+    <lastmod>2021-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://kkj6670.github.io/board/typescript/getStaticProps-typescript/</loc>
+    <lastmod>2021-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://kkj6670.github.io/board/typescript/typeofTypeOperator/</loc>
+    <lastmod>2021-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://kkj6670.github.io/board/typescript/interfaceVsType/</loc>
     <lastmod>2021-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
