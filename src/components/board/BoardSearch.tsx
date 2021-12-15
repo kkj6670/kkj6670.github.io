@@ -176,8 +176,9 @@ const ALL_BOARD_LIST = Object.keys(BOARD_DATA).reduce<IBoardSearchList[]>(
   (prev: IBoardSearchList[], menu: string) => {
     const items = Object.keys(BOARD_DATA[menu]);
     const nextList = items.map((item) => {
-      const nextItem = { ...BOARD_DATA[menu][item], menu };
+      const nextItem: IBoardSearchList = { ...BOARD_DATA[menu][item], menu };
       nextItem.content = mdToPlainText(nextItem.content);
+      nextItem.tag = nextItem.tag?.map((tag) => tag.toLowerCase());
       return nextItem;
     });
     return [...prev, ...nextList];
@@ -241,7 +242,7 @@ const BoardSearch = forwardRef<ISearchHandle>((props, ref) => {
         let searchList: IBoardSearchList[] = [];
         if (isTagSearch) {
           searchList = ALL_BOARD_LIST.filter((board) =>
-            board.tag?.includes(searchText.replace(/#/g, '')),
+            board.tag?.includes(searchText.replace(/#/g, '').toLowerCase()),
           );
         } else {
           searchList = ALL_BOARD_LIST.filter(
