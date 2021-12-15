@@ -97,6 +97,7 @@ const ViewerBox = styled.section`
   }
 
   ul > li {
+    word-break: break-word;
     list-style: disc;
     margin-left: 3rem;
 

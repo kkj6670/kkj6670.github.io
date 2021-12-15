@@ -132,6 +132,8 @@ const SearchListItem = styled.article`
       text-decoration: underline;
     }
 
+    word-break: break-all;
+
     // 제목
     > p:first-child {
       font-size: 2.2rem;
