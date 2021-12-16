@@ -1,7 +1,7 @@
 ---
     title: MongoDB(몽고디비) 데이터 조회, 검색 기초
     date: 2021-12-15 09:20
-    tag: ["MongoDB"]
+    tag: ["MongoDB", "몽고디비"]
 ---
 
 ## 배열 특정개수 조회

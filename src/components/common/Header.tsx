@@ -4,10 +4,9 @@ import { useRouter } from 'next/router';
 
 import styled from 'styled-components';
 
-import { AiFillGithub } from 'react-icons/ai';
 import { SiJavascript, SiTypescript, SiReact } from 'react-icons/si';
-import { FaHeadSideVirus, FaBookOpen } from 'react-icons/fa';
-import { BsFillChatSquareDotsFill } from 'react-icons/bs';
+import { FaHeadSideVirus, FaBookOpen, FaDatabase } from 'react-icons/fa';
+import { BsFillChatSquareDotsFill, BsGithub } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
 import useWindowSize from '../../lib/hooks/useWindowSize';
@@ -199,6 +198,7 @@ const Overlay = styled.div`
 `;
 
 const CATEGORY_LEN = JSON.parse(process.env.CATEGORY_LEN || '{}');
+const MENU_ICON_SIZE = '22px';
 
 const Header = function () {
   const router = useRouter();
@@ -255,13 +255,14 @@ const Header = function () {
               <MenuList key={item.id} selected={selectedMenu === item.id}>
                 <Link href='/board/[category]' as={`/board/${item.id}`}>
                   <a>
-                    {item.id === 'javascript' && <SiJavascript size='22px' />}
-                    {item.id === 'typescript' && <SiTypescript size='22px' />}
-                    {item.id === 'react' && <SiReact size='22px' />}
-                    {item.id === 'git' && <AiFillGithub size='22px' />}
-                    {item.id === 'algorism' && <FaHeadSideVirus size='22px' />}
-                    {item.id === 'other' && <BsFillChatSquareDotsFill size='22px' />}
-                    {item.id === 'toyProject' && <FaBookOpen size='22px' />}
+                    {item.id === 'javascript' && <SiJavascript size={MENU_ICON_SIZE} />}
+                    {item.id === 'typescript' && <SiTypescript size={MENU_ICON_SIZE} />}
+                    {item.id === 'react' && <SiReact size={MENU_ICON_SIZE} />}
+                    {item.id === 'git' && <BsGithub size={MENU_ICON_SIZE} />}
+                    {item.id === 'db' && <FaDatabase size={MENU_ICON_SIZE} />}
+                    {item.id === 'other' && <BsFillChatSquareDotsFill size={MENU_ICON_SIZE} />}
+                    {item.id === 'toyProject' && <FaBookOpen size={MENU_ICON_SIZE} />}
+                    {item.id === 'algorism' && <FaHeadSideVirus size={MENU_ICON_SIZE} />}
                     {item.name}
                     <span>({CATEGORY_LEN[item.id] || 0})</span>
                   </a>
@@ -277,7 +278,7 @@ const Header = function () {
             title='kkj6670GitHubLinkOpen'
             rel='noreferrer'
           >
-            <AiFillGithub size='100%' />
+            <BsGithub size='100%' />
           </GitHubLink>
         </FooterBox>
       </SideBar>
