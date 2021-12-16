@@ -16,8 +16,8 @@
 		"name": "Git"
 	},
 	{
-		"id": "algorism",
-		"name": "Algorism"
+		"id": "db",
+		"name": "DB"
 	},
 	{
 		"id": "other",
@@ -26,5 +26,9 @@
 	{
 		"id": "toyProject",
 		"name": "ToyProject"
+	},
+	{
+		"id": "algorism",
+		"name": "Algorism"
 	}
 ]

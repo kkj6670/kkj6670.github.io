@@ -1,6 +1,24 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://kkj6670.github.io/board/db/db-join/</loc>
+    <lastmod>2021-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://kkj6670.github.io/board/db/mongoDB-select/</loc>
+    <lastmod>2021-12-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://kkj6670.github.io/board/git/stash/</loc>
+    <lastmod>2021-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://kkj6670.github.io/board/git/edit-return/</loc>
     <lastmod>2021-12-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -31,14 +49,8 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/javascript/javascriptEngine/</loc>
+    <loc>https://kkj6670.github.io/board/javascript/javascript-engine/</loc>
     <lastmod>2021-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://kkj6670.github.io/board/other/mongoDB-select/</loc>
-    <lastmod>2021-12-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
