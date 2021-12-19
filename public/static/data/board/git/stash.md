@@ -1,5 +1,5 @@
 ---
-    title: git 임시저장, 백업 (stash)
+    title: Git 임시저장, 백업 (stash)
     date: 2021-12-16 18:20
     tag: ["stash"]
 ---
