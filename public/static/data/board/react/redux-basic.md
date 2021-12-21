@@ -43,7 +43,7 @@
 
 - Ducks 구조에는 Reducer 파일 안에 액션타입과 액션생성자 함수를 함께 넣어서 관리하고 이를 ‘모듈’ 이라고 부릅니다.
 
-```
+```javascript
 // widgets.js
 
 // Actions
@@ -80,7 +80,7 @@ export function removeWidget(widget) {
 
 ## createAction 을 통한 액션생성 자동화
 
-```
+```javascript
 export const increment = createAction(types.INCREMENT);
 export const decrement = createAction(types.DECREMENT);
 
@@ -112,7 +112,7 @@ switch문 사용식 scope → 리듀서 함수
 
 case 에서 let 이나 const 를 변수 이름이 중첩될시엔 에러가 발생
 
-```
+```javascript
 handleActions(fn, initialState)
 
 const reducer = handleActions({
