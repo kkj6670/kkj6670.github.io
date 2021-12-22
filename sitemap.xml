@@ -85,6 +85,12 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://kkj6670.github.io/board/react/react-router-dom-v6/</loc>
+    <lastmod>2021-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://kkj6670.github.io/board/react/redux-basic/</loc>
     <lastmod>2021-12-21</lastmod>
     <changefreq>weekly</changefreq>
