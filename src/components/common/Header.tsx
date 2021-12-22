@@ -104,7 +104,7 @@ const TopBar = styled.div`
 `;
 
 const SearchBtn = styled.button`
-  mask: url('${process.env.URL_PATH}/static/images/icon/search.svg') no-repeat center;
+  mask: ${`url(${process.env.URL_PATH}/static/images/icon/search.svg) no-repeat center`};
   mask-size: 24px;
   background-color: ${({ theme }) => theme.textColor};
   color: transparent;
@@ -114,7 +114,7 @@ const SideBarTitle = styled.h1`
   text-align: center;
   font-size: 3rem;
   margin-top: 2rem;
-  background: url('${process.env.URL_PATH}/static/images/icon/note.svg') no-repeat 0 50%;
+  background: ${`url(${process.env.URL_PATH}/static/images/icon/note.svg) no-repeat 0 50%`};
   background-size: 30px;
 `;
 
