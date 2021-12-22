@@ -14,10 +14,10 @@ const INITIAL_STATE: IBaseState = {
 };
 
 // BaseUpdateContext type
-type dispatchType = Dispatch<IBaseAction>;
+type DispatchType = Dispatch<IBaseAction>;
 
 const BaseContext = createContext<IBaseState>(INITIAL_STATE);
-const BaseUpdateContext = createContext<dispatchType>(() => null);
+const BaseUpdateContext = createContext<DispatchType>(() => null);
 
 const useBase = () => useContext(BaseContext);
 const useBaseUpdate = () => useContext(BaseUpdateContext);
