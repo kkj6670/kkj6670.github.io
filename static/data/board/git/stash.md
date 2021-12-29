@@ -36,7 +36,7 @@ git stash apply stash@{0}
 ```
 
 ## 삭제
-```
+```shell
 // 가장 최근에 저장한 stash를 삭제 한다.
 git stash drop
 
