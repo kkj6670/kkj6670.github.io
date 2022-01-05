@@ -1,175 +1,175 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kkj6670.github.io/board/db/db-join/</loc>
+    <loc>https://kkj6670.github.io/board/db/db-join</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/db/mongoDB-select/</loc>
+    <loc>https://kkj6670.github.io/board/db/mongoDB-select</loc>
     <lastmod>2021-12-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/git/git-cherry-pick/</loc>
+    <loc>https://kkj6670.github.io/board/git/git-cherry-pick</loc>
     <lastmod>2021-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/git/git-form/</loc>
+    <loc>https://kkj6670.github.io/board/git/git-form</loc>
     <lastmod>2021-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/git/rebase-commit/</loc>
+    <loc>https://kkj6670.github.io/board/git/rebase-commit</loc>
     <lastmod>2021-12-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/git/stash/</loc>
+    <loc>https://kkj6670.github.io/board/git/stash</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/git/edit-return/</loc>
+    <loc>https://kkj6670.github.io/board/git/edit-return</loc>
     <lastmod>2021-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/git/git-workflow/</loc>
+    <loc>https://kkj6670.github.io/board/git/git-workflow</loc>
     <lastmod>2021-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/git/setting-lineBreak/</loc>
+    <loc>https://kkj6670.github.io/board/git/setting-lineBreak</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/git/setting-alais/</loc>
+    <loc>https://kkj6670.github.io/board/git/setting-alais</loc>
     <lastmod>2021-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/javascript/es2020/</loc>
+    <loc>https://kkj6670.github.io/board/javascript/es2020</loc>
     <lastmod>2021-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/javascript/javascript-engine/</loc>
+    <loc>https://kkj6670.github.io/board/javascript/javascript-engine</loc>
     <lastmod>2021-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/other/private-repository/</loc>
+    <loc>https://kkj6670.github.io/board/other/private-repository</loc>
     <lastmod>2021-12-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/other/gray-matter/</loc>
+    <loc>https://kkj6670.github.io/board/other/gray-matter</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/other/google-seo-sitemap404/</loc>
+    <loc>https://kkj6670.github.io/board/other/google-seo-sitemap404</loc>
     <lastmod>2021-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/react/react-router-dom-v6/</loc>
+    <loc>https://kkj6670.github.io/board/react/react-router-dom-v6</loc>
     <lastmod>2021-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/react/redux-basic/</loc>
+    <loc>https://kkj6670.github.io/board/react/redux-basic</loc>
     <lastmod>2021-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/react/historyApiFallBack/</loc>
+    <loc>https://kkj6670.github.io/board/react/historyApiFallBack</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/react/nextjs-HMR/</loc>
+    <loc>https://kkj6670.github.io/board/react/nextjs-HMR</loc>
     <lastmod>2021-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/react/react-displayName/</loc>
+    <loc>https://kkj6670.github.io/board/react/react-displayName</loc>
     <lastmod>2021-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/react/imperativeHandle/</loc>
+    <loc>https://kkj6670.github.io/board/react/imperativeHandle</loc>
     <lastmod>2021-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/react/nextjs-webpack-devtool/</loc>
+    <loc>https://kkj6670.github.io/board/react/nextjs-webpack-devtool</loc>
     <lastmod>2021-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/react/designPattern-cp/</loc>
+    <loc>https://kkj6670.github.io/board/react/designPattern-cp</loc>
     <lastmod>2021-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/react/basic-hook/</loc>
+    <loc>https://kkj6670.github.io/board/react/basic-hook</loc>
     <lastmod>2021-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/toyProject/exchange-app/</loc>
+    <loc>https://kkj6670.github.io/board/toyProject/exchange-app</loc>
     <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/toyProject/react-blog/</loc>
+    <loc>https://kkj6670.github.io/board/toyProject/react-blog</loc>
     <lastmod>2021-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/typescript/getStaticProps-typescript/</loc>
+    <loc>https://kkj6670.github.io/board/typescript/getStaticProps-typescript</loc>
     <lastmod>2021-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/typescript/typeofTypeOperator/</loc>
+    <loc>https://kkj6670.github.io/board/typescript/typeofTypeOperator</loc>
     <lastmod>2021-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkj6670.github.io/board/typescript/interfaceVsType/</loc>
+    <loc>https://kkj6670.github.io/board/typescript/interfaceVsType</loc>
     <lastmod>2021-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
