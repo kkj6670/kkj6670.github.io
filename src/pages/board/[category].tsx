@@ -28,16 +28,10 @@ export async function getStaticPaths() {
   };
 }
 
-const BoardListPage = function ({
-  boardList,
-  category,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+const BoardListPage = function ({ boardList, category }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <HeadSeo
-        title={`K Note - ${category}`}
-        description={boardList.map((item) => item.title).toString()}
-      />
+      <HeadSeo title={`K Note - ${category}`} description={boardList.map((item) => item.title).toString()} />
       <BoardList data={boardList} />
     </>
   );

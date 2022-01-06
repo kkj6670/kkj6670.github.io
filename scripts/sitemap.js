@@ -12,7 +12,7 @@ allList.forEach(([category, categoryBoardData = {}]) => {
 
   categoryBoardList.forEach(([boardName, { date }]) => {
     const url = xml.ele('url');
-    url.ele('loc', `${DOMAIN}${category}/${boardName}/`);
+    url.ele('loc', `${DOMAIN}${category}/${boardName}`);
     url.ele('lastmod', date.replace(/(\s)([0-9:]+)/, ''));
     url.ele('changefreq', 'weekly');
     url.ele('priority', '1.0');

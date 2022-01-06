@@ -33,10 +33,7 @@ export default class MyDocument extends Document {
       <Html lang='ko-KR'>
         <Head>
           <link rel='icon' href={`${process.env.URL_PATH}/static/images/icon/note.svg`} />
-          <meta
-            name='google-site-verification'
-            content='P8e-wgPtyXmOnZCbu4AwxrZ51MqT_DUxGbMTDlBgigg'
-          />
+          <meta name='google-site-verification' content='P8e-wgPtyXmOnZCbu4AwxrZ51MqT_DUxGbMTDlBgigg' />
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link
@@ -48,6 +45,11 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+        <script
+          async
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5117589915431439'
+          crossOrigin='anonymous'
+        />
       </Html>
     );
   }

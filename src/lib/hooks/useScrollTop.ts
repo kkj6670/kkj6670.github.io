@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export default function useScrollTop(
-  element: HTMLElement = document.getElementsByTagName('main')[0],
-) {
+export default function useScrollTop(element: HTMLElement = document.getElementsByTagName('main')[0]) {
   const [scrollTop, setScrollTop] = useState(0);
 
   const scrollEvent = useCallback(() => {

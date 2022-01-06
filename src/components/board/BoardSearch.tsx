@@ -1,11 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useCallback,
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+import React, { useEffect, useState, useCallback, forwardRef, useImperativeHandle, useRef } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -172,19 +165,16 @@ const Overlay = styled.div`
 
 let timer: ReturnType<typeof setTimeout>;
 const BOARD_DATA = JSON.parse(process.env.BOARD_DATA || '{}');
-const ALL_BOARD_LIST = Object.keys(BOARD_DATA).reduce<IBoardSearchList[]>(
-  (prev: IBoardSearchList[], menu: string) => {
-    const items = Object.keys(BOARD_DATA[menu]);
-    const nextList = items.map((item) => {
-      const nextItem: IBoardSearchList = { ...BOARD_DATA[menu][item], menu };
-      nextItem.content = mdToPlainText(nextItem.content);
-      nextItem.tag = nextItem.tag?.map((tag) => tag.toLowerCase());
-      return nextItem;
-    });
-    return [...prev, ...nextList];
-  },
-  [],
-);
+const ALL_BOARD_LIST = Object.keys(BOARD_DATA).reduce<IBoardSearchList[]>((prev: IBoardSearchList[], menu: string) => {
+  const items = Object.keys(BOARD_DATA[menu]);
+  const nextList = items.map((item) => {
+    const nextItem: IBoardSearchList = { ...BOARD_DATA[menu][item], menu };
+    nextItem.content = mdToPlainText(nextItem.content);
+    nextItem.tag = nextItem.tag?.map((tag) => tag.toLowerCase());
+    return nextItem;
+  });
+  return [...prev, ...nextList];
+}, []);
 
 export interface ISearchHandle {
   clear: () => void;
@@ -299,10 +289,7 @@ const BoardSearch = forwardRef<ISearchHandle>((props, ref) => {
 
             return (
               <SearchListItem key={item.fileName} onClick={clearSearchText}>
-                <Link
-                  href='/board/[category]/[boardName]'
-                  as={`/board/${item.menu}/${item.fileName}`}
-                >
+                <Link href='/board/[category]/[boardName]' as={`/board/${item.menu}/${item.fileName}`}>
                   <a>
                     {titleElem}
                     <p>{item.date}</p>
