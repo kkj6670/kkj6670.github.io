@@ -1,7 +1,7 @@
 ---
     title: 프로그래머스 방문 길이
     date: 2022-01-11 10:20
-    tag: ["기초", "join"]
+    tag: ["프로그래머스", "level2"]
 ---
 
 [문제링크](https://programmers.co.kr/learn/courses/30/lessons/49994)
