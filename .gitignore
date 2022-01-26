@@ -15,3 +15,6 @@ yarn-error.log*
 # next.js
 /.next/
 /out/
+
+# mac
+.DS_Store
